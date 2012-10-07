@@ -12,6 +12,8 @@
     <target
             name="build"
             depends="
+	updatesrc,
+	updatevendor,
         clearcache,
 	warmupcache,
 	unittest,
@@ -19,6 +21,44 @@
 
             description="Cleans the workspace, update sources and builds the whole application including default fixtures and unit- and functionaltests."
             />
+
+    <target
+            name="update"
+            depends="
+        updatesrc,
+        clearcache,
+        warmupcache,
+        unittest,
+        functionaltest"
+
+            description="Lightweight build, does not update vendors."
+            />
+
+    <!-- Update sources -->
+    <target name="updatesrc" hidden="false">
+        <echo message="Update sources" />
+        <exec
+                command="git remote update -p"
+                checkreturn="true"
+                logoutput="true"
+                />
+        <exec
+                command="git merge origin/master"
+                checkreturn="true"
+                logoutput="true"
+                />
+    </target>
+
+
+    <!-- Update vendor -->
+    <target name="updatevendor" hidden="false">
+        <echo message="Update vendors" />
+        <exec
+                command="php composer.phar update"
+                checkreturn="true"
+                logoutput="true"
+                />
+    </target>
 
     <!-- Cache Clearing and Stuff -->
     <target name="clearcache" hidden="false">
