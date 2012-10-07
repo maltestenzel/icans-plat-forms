@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- http://www.phpunit.de/manual/current/en/appendixes.configuration.html -->
+<phpunit
+    backupGlobals               = "false"
+    backupStaticAttributes      = "false"
+    colors                      = "true"
+    convertErrorsToExceptions   = "true"
+    convertNoticesToExceptions  = "true"
+    convertWarningsToExceptions = "true"
+    processIsolation            = "false"
+    stopOnFailure               = "false"
+    syntaxCheck                 = "false"
+    bootstrap                   = "bootstrap.php.cache" >
+
+    <testsuites>
+        <testsuite name="Project Test Suite">
+            <directory>../src/*/*/Bundle/*Bundle/Tests/Functional</directory>
+            <directory>../src/*/*/Bundle/*Bundle/Tests/Controller</directory>
+        </testsuite>
+    </testsuites>
+
+	<groups>
+		<include>
+			<group>Functional</group>
+		</include>
+	</groups>
+
+    <!--
+    <php>
+        <server name="KERNEL_DIR" value="/path/to/your/app/" />
+    </php>
+    -->
+
+    <filter>
+        <whitelist>
+            <directory>../src</directory>
+            <exclude>
+                <directory>../src/*/*/Bundle/*Bundle/Resources</directory>
+                <directory>../src/*/*/Bundle/*Bundle/Tests</directory>
+                <directory>../src/*/*/Bundle/*Bundle/DataFixtures</directory>
+                <directory>../src/*/*/Bundle/*Bundle/Form</directory>
+                <directory>../src/*/*/Bundle/*Bundle/Decoda/Templates</directory>
+                <directory>../src/*/*/Bundle/*Bundle/vendor</directory>
+
+                <directory>../src/*/*/Component/*/Resources</directory>
+                <directory>../src/*/*/Component/*/Tests</directory>
+                <directory>../src/*/*/Component/*/DataFixtures</directory>
+                <directory>../src/*/*/Component/*/Form</directory>
+
+            </exclude>
+        </whitelist>
+    </filter>
+
+</phpunit>
+
