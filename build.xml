@@ -9,44 +9,40 @@
 
     <property name="path.app" value="${path.base}/app" />
 
-    <target
-            name="build"
-            depends="
+    <target name="build" depends="
 	updatesrc,
 	updatevendor,
         clearcache,
-	warmupcache,
-	unittest,
-	functionaltest"
+        warmupcache,
+        unittest,
+        functionaltest"
 
-            description="Cleans the workspace, update sources and builds the whole application including default fixtures and unit- and functionaltests."
-            />
+        description="Cleans the workspace, update sources and builds the whole application including default fixtures and unit- and functionaltests."
+    />
 
-    <target
-            name="update"
-            depends="
+    <target name="update" depends="
         updatesrc,
         clearcache,
         warmupcache,
         unittest,
         functionaltest"
 
-            description="Lightweight build, does not update vendors."
-            />
+        description="Lightweight build, does not update vendors."
+    />
 
     <!-- Update sources -->
     <target name="updatesrc" hidden="false">
         <echo message="Update sources" />
         <exec
-                command="git remote update -p"
-                checkreturn="true"
-                logoutput="true"
-                />
+            command="git remote update -p"
+            checkreturn="true"
+            logoutput="true"
+        />
         <exec
-                command="git merge origin/master"
-                checkreturn="true"
-                logoutput="true"
-                />
+            command="git merge origin/master"
+            checkreturn="true"
+            logoutput="true"
+        />
     </target>
 
 
@@ -54,55 +50,55 @@
     <target name="updatevendor" hidden="false">
         <echo message="Update vendors" />
         <exec
-                command="php composer.phar update"
-                checkreturn="true"
-                logoutput="true"
-                />
+            command="php composer.phar update"
+            checkreturn="true"
+            logoutput="true"
+        />
     </target>
 
-    <!-- Cache Clearing and Stuff -->
+    <!-- Cache Clearing -->
     <target name="clearcache" hidden="false">
         <echo message="Removing cache directories" />
         <exec
-                command="php ${path.app}/console --env=prod cache:clear --no-warmup"
-                checkreturn="true"
-                logoutput="true"
-                />
+            command="php ${path.app}/console --env=prod cache:clear --no-warmup"
+            checkreturn="true"
+            logoutput="true"
+        />
         <exec
-                command="php ${path.app}/console --env=dev cache:clear --no-warmup"
-                checkreturn="true"
-                logoutput="true"
-                />
+            command="php ${path.app}/console --env=dev cache:clear --no-warmup"
+            checkreturn="true"
+            logoutput="true"
+        />
     </target>
-    <!-- Cache Clearing and Stuff -->
+
     <target name="warmupcache" hidden="false">
         <echo message="Warmup caches" />
         <exec
-                command="php ${path.app}/console --env=prod cache:warmup"
-                checkreturn="true"
-                logoutput="true"
-                />
+            command="php ${path.app}/console --env=prod cache:warmup"
+            checkreturn="true"
+            logoutput="true"
+        />
         <exec
-                command="php ${path.app}/console --env=dev cache:warmup"
-                checkreturn="true"
-                logoutput="true"
-                />
+            command="php ${path.app}/console --env=dev cache:warmup"
+            checkreturn="true"
+            logoutput="true"
+        />
     </target>
 
     <target name="unittest" hidden="false">
         <echo message="Unittests" />
         <exec
-                command="phpunit -c ${path.app}"
-                checkreturn="true"
-                logoutput="true"
-                />
+            command="phpunit -c ${path.app}"
+            checkreturn="true"
+            logoutput="true"
+        />
     </target>
 
     <target name="functionaltest" hidden="false">
         <echo message="Functionaltests" />
         <exec command="${path.base}/build/bin/functionalTest.sh"
-                checkreturn="true"
-                passthru="true"
-                />
+            checkreturn="true"
+            passthru="true"
+        />
     </target>
 </project>
