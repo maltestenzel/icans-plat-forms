@@ -45,7 +45,6 @@
         />
     </target>
 
-
     <!-- Update vendor -->
     <target name="updatevendor" hidden="false">
         <echo message="Update vendors" />
