@@ -12,6 +12,8 @@
     <target name="build" depends="
 	updatesrc,
 	updatevendor,
+        installassets,
+        dumpassets,
         clearcache,
         warmupcache,
         unittest,
@@ -22,6 +24,8 @@
 
     <target name="update" depends="
         updatesrc,
+        installassets,
+        dumpassets,
         clearcache,
         warmupcache,
         unittest,
@@ -98,6 +102,22 @@
         <exec command="${path.base}/build/bin/functionalTest.sh"
             checkreturn="true"
             passthru="true"
+        />
+    </target>
+
+    <target name="installassets" hidden="false">
+        <echo message="Install Assets" />
+        <exec command="php ${path.app}/console assets:install web"
+              checkreturn="true"
+              passthru="true"
+        />
+    </target>
+
+    <target name="dumpassets" hidden="false">
+        <echo message="Dump Assets" />
+        <exec command="php ${path.app}/console assets:install web"
+              checkreturn="true"
+              passthru="true"
         />
     </target>
 </project>
