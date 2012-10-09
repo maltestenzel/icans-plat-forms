@@ -57,7 +57,7 @@ class MenuController extends Controller
 
     /**
      * Return a menu entry (currently as array)
-     * @todo MenuEntry would make for a nice object
+     * @todo MenuEntry would make for a really nice object
      *
      * @param string $name
      * @param string $route
