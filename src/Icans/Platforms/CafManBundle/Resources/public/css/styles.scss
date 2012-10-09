@@ -24,7 +24,7 @@ body{
     @extend .btn-mini;
 }
 
-.user-account-edit-form {
+%formbuilder-horizontal-form {
     @extend .form-horizontal;
 
     .form-row {
@@ -43,10 +43,48 @@ body{
         display: inline;
     }
 }
+
+.user-account-edit-form {
+    @extend %formbuilder-horizontal-form;
+}
+
+
 .user-account-edit-actions {
      @extend .controls;
 }
 .user-account-edit-primary-action {
     @extend .btn;
     @extend .btn-primary;
+}
+
+.create-kitty-form {
+    @extend .form-inline;
+}
+
+/**
+ * User Registration Form
+ * ======================
+ */
+.user-registration-form {
+    @extend %formbuilder-horizontal-form;
+}
+.user-registration-actions {
+    @extend .controls;
+}
+.user-registration-primary-action {
+    @extend .btn;
+}
+
+/**
+ * Login Form
+ * ==========
+ */
+.login-form {
+    @extend %formbuilder-horizontal-form;
+}
+.login-actions {
+    @extend .controls;
+}
+.login-primary-action {
+    @extend .btn;
 }

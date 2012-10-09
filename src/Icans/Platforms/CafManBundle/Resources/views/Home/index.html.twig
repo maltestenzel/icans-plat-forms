@@ -17,12 +17,12 @@
     </div>
     <div class="row">
         <div class="span6">
+            <h2>{{ 'page.home.register.title'|trans }}</h2>
             {% render '/register/' %}
-            {{ block('sign_up') }}
         </div>
         <div class="span6">
+            <h2>{{ 'page.home.login.title'|trans }}</h2>
             {% render '/login' %}
-            {{ block('sign_in') }}
         </div>
     </div>
 {% endblock stage %}

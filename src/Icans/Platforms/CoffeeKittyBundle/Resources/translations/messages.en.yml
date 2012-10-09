@@ -9,6 +9,8 @@ module:
     actionLabel: Action
     action:
       requestMembership: Request Membership
+  createKitty:
+    title: or start a new coffee kitty
 
 form:
   create:
