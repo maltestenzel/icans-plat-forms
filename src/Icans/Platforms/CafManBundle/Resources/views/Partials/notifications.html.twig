@@ -8,19 +8,37 @@
 {% block notifications %}
     <div class="page-header notifications">
         {# @TODO: use translator #}
-        <h1>Notifications</h1>
+        <h1>{{ 'module.notifications.title'|trans }}</h1>
         <div class="alert alert-info">
-          John Smith (CoffeePapa) has requested to become a member of "The Addicts".
+            {{ 'module.notifications.joinKittenRequest'|trans({
+                '%user.name%': 'John Smith',
+                '%user.screenname%': 'CoffeePapa',
+                '%kitten.name%': 'The Addicts'
+                })
+            }}
           <div class="pull-right alert-controls">
-            <button type="submit" class="btn btn-success btn-mini accept-member" data-dismiss="alert">Accept</button>
-            <button type="submit" class="btn btn-danger btn-mini decline-member" data-dismiss="alert">Decline</button>
+            <button type="submit" class="btn btn-success btn-mini accept-member" data-dismiss="alert">
+                {{ 'module.notifications.action.acceptUserRequest'|trans }}
+            </button>
+            <button type="submit" class="btn btn-danger btn-mini decline-member" data-dismiss="alert">
+                {{ 'module.notifications.action.declineUserRequest'|trans }}
+            </button>
           </div>
         </div>
         <div class="alert alert-info">
-          Old Bushmills (Irish Coffee) has requested to become a member of "The Addicts".
+            {{ 'module.notifications.joinKittenRequest'|trans({
+                '%user.name%': 'Old Bushmills',
+                '%user.screenname%': 'Irish Coffee',
+                '%kitten.name%': 'The Addicts'
+                })
+            }}
           <div class="pull-right alert-controls">
-            <button type="submit" class="btn btn-success btn-mini accept-member" data-dismiss="alert">Accept</button>
-            <button type="submit" class="btn btn-danger btn-mini decline-member" data-dismiss="alert">Decline</button>
+            <button type="submit" class="btn btn-success btn-mini accept-member" data-dismiss="alert">
+                {{ 'module.notifications.action.acceptUserRequest'|trans }}
+            </button>
+            <button type="submit" class="btn btn-danger btn-mini decline-member" data-dismiss="alert">
+                {{ 'module.notifications.action.declineUserRequest'|trans }}
+            </button>
           </div>
         </div>
     </div>

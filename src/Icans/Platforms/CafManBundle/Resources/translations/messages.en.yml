@@ -24,4 +24,11 @@ module:
     primaryAction: Save Changes
   defaultKitty:
     title: Choose Default Kitty
-    primary Action: Set Default
+    primaryAction: Set Default
+  notifications:
+    title: Notifications
+    joinKittenRequest: %user.name% (%user.screenname%) has requested to become a member of "%kitten.name%"
+    action:
+      acceptUserRequest: Accept
+      declineUserRequest: Decline
+
