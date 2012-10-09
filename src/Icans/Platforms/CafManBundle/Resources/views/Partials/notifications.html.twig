@@ -1,0 +1,27 @@
+{#
+    Template to render Notifications.
+
+    Author:    Sascha 's10z' Schulz
+    origin:    M
+    copyright: ${date} ICANS GmbH
+ #}
+{% block notifications %}
+    <div class="page-header notifications">
+        {# @TODO: use translator #}
+        <h1>Notifications</h1>
+        <div class="alert alert-info">
+          John Smith (CoffeePapa) has requested to become a member of "The Addicts".
+          <div class="pull-right alert-controls">
+            <button type="submit" class="btn btn-success btn-mini accept-member" data-dismiss="alert">Accept</button>
+            <button type="submit" class="btn btn-danger btn-mini decline-member" data-dismiss="alert">Decline</button>
+          </div>
+        </div>
+        <div class="alert alert-info">
+          Old Bushmills (Irish Coffee) has requested to become a member of "The Addicts".
+          <div class="pull-right alert-controls">
+            <button type="submit" class="btn btn-success btn-mini accept-member" data-dismiss="alert">Accept</button>
+            <button type="submit" class="btn btn-danger btn-mini decline-member" data-dismiss="alert">Decline</button>
+          </div>
+        </div>
+    </div>
+{% endblock notifications %}
