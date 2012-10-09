@@ -18,3 +18,8 @@ body{
 .cafman-footer { // @TODO: use ID for footer?
     @extend .container; // mimic twitter bootstrap container
 }
+
+.search-result-item-action {
+    @extend .btn-primary;
+    @extend .btn-mini;
+}
