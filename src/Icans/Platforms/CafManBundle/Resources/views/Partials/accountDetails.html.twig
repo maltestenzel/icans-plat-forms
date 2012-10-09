@@ -1,0 +1,61 @@
+{#
+    Template to render the Account Details dialogue.
+
+    Author:    Sascha 's10z' Schulz
+    origin:    M
+    copyright: ${date} ICANS GmbH
+ #}
+{% block account_details %}
+    <h2>{{ 'module.accountDetails.title'|trans }}</h2>
+    <form class="form-horizontal">
+        <div class="control-group">
+          <label class="control-label" for="update-email">Email</label>
+          <div class="controls">
+            <input type="text" id="update-email" value="ulrich.staerk@fu-berlin.de">
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="update-password">New Password</label>
+          <div class="controls">
+            <input type="password" id="update-password">
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="update-repeat-password">Repeat New Password</label>
+          <div class="controls">
+            <input type="password" id="update-repeat-password">
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="update-displayname">Display Name</label>
+          <div class="controls">
+            <input type="text" id="update-displayname" value="Decaf">
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="update-fullname">Full Name</label>
+          <div class="controls">
+            <input type="text" id="update-fullname" value="Ulrich Stärk">
+          </div>
+        </div>
+        <div class="control-group">
+          <div class="controls">
+            <label class="checkbox">
+              <input type="checkbox" checked="checked" id="update-publish"> Publish Statistics
+            </label>
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="update-old-password">Old Password</label>
+          <div class="controls">
+            <input type="password" id="update-old-password">
+            <span class="help-inline">Your old password must be given in order to confirm any changes.</span>
+          </div>
+        </div>
+        <div class="control-group">
+          <div class="controls">
+            <button type="submit" class="btn btn-primary" id="update-submit">{{ 'module.accountDetails.primaryAction'|trans }}</button>
+          </div>
+        </div>
+      </form>
+{% endblock account_details %}
