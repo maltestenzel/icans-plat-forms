@@ -15,7 +15,7 @@ use Icans\Platforms\CoffeeKittyBundle\Document\Kitty;
 use Icans\Platforms\CoffeeKittyBundle\Api\KittyInterface;
 
 /**
- * Description of KittyUser
+ * Declares the interface for a kitty user relation.
  */
 interface KittyUserInterface
 {

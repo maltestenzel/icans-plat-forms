@@ -54,7 +54,7 @@ class KittyUser implements KittyUserInterface
     protected $pending = true;
 
     /**
-     * Returns the id of this document.
+     * {@inheritDoc}
      */
     public function getId()
     {
