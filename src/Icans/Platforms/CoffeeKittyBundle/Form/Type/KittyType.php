@@ -30,7 +30,6 @@ class KittyType extends AbstractType
             null,
             array('attr' => array(
                 'placeholder' => 'form.create.placeholder.kitty',
-                'id' => 'create-name',
             ))
         );
     }
