@@ -10,6 +10,8 @@
  */
 namespace Icans\Platforms\CoffeeKittyBundle\Api;
 
+use Icans\Platforms\UserBundle\Api\UserInterface;
+
 /**
  * Declares a known Peak for a User.
  */
