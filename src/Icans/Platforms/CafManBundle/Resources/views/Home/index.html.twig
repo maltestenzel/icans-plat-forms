@@ -17,12 +17,12 @@
     </div>
     <div class="row">
         <div class="span6">
-            {% use 'IcansPlatformsCafManBundle:Partials:signUp.html.twig' %}
-            {{ block('sign_up') }}
+            <h2>{{ 'page.home.register.title'|trans }}</h2>
+            {% render '/register/' %}
         </div>
         <div class="span6">
-            {% use 'IcansPlatformsCafManBundle:Partials:signIn.html.twig' %}
-            {{ block('sign_in') }}
+            <h2>{{ 'page.home.login.title'|trans }}</h2>
+            {% render '/login' %}
         </div>
     </div>
 {% endblock stage %}

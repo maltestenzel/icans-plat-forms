@@ -24,6 +24,12 @@ class HomeController extends Controller
      */
     public function indexAction()
     {
+        // Redirect already logged in users
+        $user = $this->getUser();
+        if(!empty($user)) {
+            return $this->redirect($this->generateUrl('coffeekitty_manage', array()));
+        }
+
         return array();
     }
 }
