@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Declares Consumption
+ * Declares UserPeak
  *
  * origin: M
  *
@@ -10,8 +10,7 @@
  */
 namespace Icans\Platforms\CoffeeKittyBundle\Document;
 
-use Icans\Platforms\CoffeeKittyBundle\Api\ConsumptionInterface;
-use Icans\Platforms\CoffeeKittyBundle\Api\KittyInterface;
+use Icans\Platforms\CoffeeKittyBundle\Api\UserPeakInterface;
 use Icans\Platforms\UserBundle\Api\UserInterface;
 use Icans\Platforms\UserBundle\Document\User;
 
@@ -19,10 +18,10 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
 
 /**
  * Document holding the comsumption timestamp of a user.
- * 
+ *
  * @MongoDB\Document
  */
-class Consumption implements ConsumptionInterface
+class UserPeak implements UserPeakInterface
 {
     /**
      * @MongoDB\Id(strategy="auto")
@@ -41,6 +40,12 @@ class Consumption implements ConsumptionInterface
      * @var \DateTime
      */
     protected $timestamp;
+
+    /**
+     * @MongoDB\Float
+     * @var float
+     */
+    protected $peak;
 
     /**
      * {@inheritDoc}
@@ -82,5 +87,22 @@ class Consumption implements ConsumptionInterface
     public function getTimestamp()
     {
         return $this->timestamp;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setPeak($peak)
+    {
+        $this->peak = $peak;
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getPeak()
+    {
+        return $this->peak;
     }
 }

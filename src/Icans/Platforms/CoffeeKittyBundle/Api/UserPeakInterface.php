@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Declares Consumption
+ * Declares UserPeakInterface
  *
  * origin: M
  *
@@ -10,12 +10,10 @@
  */
 namespace Icans\Platforms\CoffeeKittyBundle\Api;
 
-use Icans\Platforms\UserBundle\Api\UserInterface;
-
 /**
- * Declares the interface of a coffee consumption by a user.
+ * Declares a known Peak for a User.
  */
-interface ConsumptionInterface
+interface UserPeakInterface
 {
     /**
      * Get id
@@ -28,7 +26,8 @@ interface ConsumptionInterface
      * Set user
      *
      * @param UserInterface $user
-     * @return ConsumptionInterface
+     * 
+     * @return UserPeakInterface
      */
     public function setUser(UserInterface $user);
 
@@ -43,7 +42,8 @@ interface ConsumptionInterface
      * Set timestamp
      *
      * @param \DateTime $timestamp
-     * @return ConsumptionInterface
+     *
+     * @return UserPeakInterface
      */
     public function setTimestamp(\DateTime $timestamp);
 
@@ -53,4 +53,20 @@ interface ConsumptionInterface
      * @return timestamp $timestamp
      */
     public function getTimestamp();
+
+    /**
+     * Set the peak.
+     *
+     * @param float $peak
+     *
+     * @return UserPeakInterface
+     */
+    public function setPeak($peak);
+
+    /**
+     * Get the peak.
+     *
+     * @return float
+     */
+    public function getPeak();
 }
