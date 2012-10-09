@@ -23,7 +23,7 @@ class KittyUserTest extends \PHPUnit_Framework_TestCase
     {
         $kittyUser = $this->getKittyUser();
         $this->assertNull($kittyUser->getUser());
-        $userMock = $this->getMockBuilder('\Icans\Platforms\UserBundle\Document\User')->getMock();
+        $userMock = $this->getMockBuilder('\Icans\Platforms\UserBundle\Api\UserInterface')->getMock();
         $returnedKittyUser = $kittyUser->setUser($userMock);
         $this->assertInstanceOf('\Icans\Platforms\CoffeeKittyBundle\Api\KittyUserInterface', $returnedKittyUser);
         $this->assertSame($userMock, $kittyUser->getUser());
@@ -36,7 +36,7 @@ class KittyUserTest extends \PHPUnit_Framework_TestCase
     {
         $kittyUser = $this->getKittyUser();
         $this->assertNull($kittyUser->getKitty());
-        $kittyMock = $this->getMockBuilder('\Icans\Platforms\CoffeeKittyBundle\Document\Kitty')->getMock();
+        $kittyMock = $this->getMockBuilder('\Icans\Platforms\CoffeeKittyBundle\Api\KittyInterface')->getMock();
         $returnedKittyUser = $kittyUser->setKitty($kittyMock);
         $this->assertInstanceOf('\Icans\Platforms\CoffeeKittyBundle\Api\KittyUserInterface', $returnedKittyUser);
         $this->assertSame($kittyMock, $kittyUser->getKitty());

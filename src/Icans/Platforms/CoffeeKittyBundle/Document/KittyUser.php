@@ -12,6 +12,8 @@ namespace Icans\Platforms\CoffeeKittyBundle\Document;
 use Icans\Platforms\UserBundle\Document\User;
 use Icans\Platforms\CoffeeKittyBundle\Document\Kitty;
 use Icans\Platforms\CoffeeKittyBundle\Api\KittyUserInterface;
+use Icans\Platforms\CoffeeKittyBundle\Api\KittyInterface;
+use Icans\Platforms\UserBundle\Api\UserInterface;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
 
@@ -29,13 +31,13 @@ class KittyUser implements KittyUserInterface
 
     /**
      * @MongoDB\ReferenceOne(targetDocument="Icans\Platforms\UserBundle\Document\User")
-     * @var User
+     * @var UserInterface
      */
     protected $user;
 
     /**
      * @MongoDB\ReferenceOne(targetDocument="Icans\Platforms\CoffeeKittyBundle\Document\Kitty")
-     * @var Kitty
+     * @var KittyInterface
      */
     protected $kitty;
 
@@ -60,21 +62,16 @@ class KittyUser implements KittyUserInterface
     }
 
     /**
-     * Set user
-     *
-     * @param User $user
-     * @return KittyUser
+     * {@inheritDoc}
      */
-    public function setUser(User $user)
+    public function setUser(UserInterface $user)
     {
         $this->user = $user;
         return $this;
     }
 
     /**
-     * Get user
-     *
-     * @return User $user
+     * {@inheritDoc}
      */
     public function getUser()
     {
@@ -82,21 +79,16 @@ class KittyUser implements KittyUserInterface
     }
 
     /**
-     * Set kitty
-     *
-     * @param Kitty $kitty
-     * @return KittyUser
+     * {@inheritDoc}
      */
-    public function setKitty(Kitty $kitty)
+    public function setKitty(KittyInterface $kitty)
     {
         $this->kitty = $kitty;
         return $this;
     }
 
     /**
-     * Get kitty
-     *
-     * @return Kitty $kitty
+     * {@inheritDoc}
      */
     public function getKitty()
     {
@@ -104,11 +96,7 @@ class KittyUser implements KittyUserInterface
     }
 
     /**
-     * Set balance
-     *
-     * @param float $balance
-     * 
-     * @return KittyUser
+     * {@inheritDoc}
      */
     public function setBalance($balance)
     {
@@ -117,9 +105,7 @@ class KittyUser implements KittyUserInterface
     }
 
     /**
-     * Get balance
-     *
-     * @return float $balance
+     * {@inheritDoc}
      */
     public function getBalance()
     {
@@ -127,11 +113,7 @@ class KittyUser implements KittyUserInterface
     }
 
     /**
-     * Set pending
-     *
-     * @param boolean $isPending
-     * 
-     * @return KittyUser
+     * {@inheritDoc}
      */
     public function setPending($isPending)
     {
@@ -141,9 +123,7 @@ class KittyUser implements KittyUserInterface
     }
 
     /**
-     * Get pending
-     *
-     * @return boolean $pending
+     * {@inheritDoc}
      */
     public function isPending()
     {

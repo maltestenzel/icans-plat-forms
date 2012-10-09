@@ -10,8 +10,9 @@
  */
 namespace Icans\Platforms\CoffeeKittyBundle\Api;
 
-use Icans\Platforms\UserBundle\Document\User;
+use Icans\Platforms\UserBundle\Api\UserInterface;
 use Icans\Platforms\CoffeeKittyBundle\Document\Kitty;
+use Icans\Platforms\CoffeeKittyBundle\Api\KittyInterface;
 
 /**
  * Description of KittyUser
@@ -20,31 +21,32 @@ interface KittyUserInterface
 {
    /**
      * Returns the id of this document.
+     * @return \MongoId
      */
     public function getId();
 
     /**
      * Set user
      *
-     * @param User $user
+     * @param UserInterface $user
      * @return KittyUserInterface
      */
-    public function setUser(User $user);
+    public function setUser(UserInterface $user);
 
     /**
      * Get user
      *
-     * @return User $user
+     * @return UserInterface $user
      */
     public function getUser();
 
     /**
      * Set kitty
      *
-     * @param Kitty $kitty
+     * @param KittyInterface $kitty
      * @return KittyUserInterface
      */
-    public function setKitty(Kitty $kitty);
+    public function setKitty(KittyInterface $kitty);
 
     /**
      * Get kitty

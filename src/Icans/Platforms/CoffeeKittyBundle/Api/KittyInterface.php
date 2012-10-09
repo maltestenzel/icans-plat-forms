@@ -9,7 +9,7 @@
  */
 namespace Icans\Platforms\CoffeeKittyBundle\Api;
 
-use Icans\Platforms\UserBundle\Document\User;
+use Icans\Platforms\UserBundle\Api\UserInterface;
 
 /**
  * Declares the interface for our coffee kitty
@@ -41,15 +41,15 @@ interface KittyInterface
     /**
      * Set owner
      *
-     * @param User $owner
+     * @param UserInterface $owner
      * @return KittyInterface
      */
-    public function setOwner(User $owner);
+    public function setOwner(UserInterface $owner);
 
     /**
      * Get owner
      *
-     * @return User $owner
+     * @return UserInterface $owner
      */
     public function getOwner();
 
