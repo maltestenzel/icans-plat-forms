@@ -6,6 +6,16 @@
     copyright: ${date} ICANS GmbH
  #}
 {% block notifications %}
+    {#% set notifications = {
+            level: 'info',
+            data: {
+                message: ''
+            }
+            actions: {
+
+            }
+        }
+    %#}
     <div class="page-header notifications">
         {# @TODO: use translator #}
         <h1>{{ 'module.notifications.title'|trans }}</h1>
@@ -17,10 +27,10 @@
                 })
             }}
           <div class="pull-right alert-controls">
-            <button type="submit" class="btn btn-success btn-mini accept-member" data-dismiss="alert">
+            <button type="submit" class="notification-action accept-member" data-dismiss="alert">
                 {{ 'module.notifications.action.acceptUserRequest'|trans }}
             </button>
-            <button type="submit" class="btn btn-danger btn-mini decline-member" data-dismiss="alert">
+            <button type="submit" class="notification-action decline-member" data-dismiss="alert">
                 {{ 'module.notifications.action.declineUserRequest'|trans }}
             </button>
           </div>
@@ -33,10 +43,10 @@
                 })
             }}
           <div class="pull-right alert-controls">
-            <button type="submit" class="btn btn-success btn-mini accept-member" data-dismiss="alert">
+            <button type="submit" class="notification-action accept-member" data-dismiss="alert">
                 {{ 'module.notifications.action.acceptUserRequest'|trans }}
             </button>
-            <button type="submit" class="btn btn-danger btn-mini decline-member" data-dismiss="alert">
+            <button type="submit" class="notification-action decline-member" data-dismiss="alert">
                 {{ 'module.notifications.action.declineUserRequest'|trans }}
             </button>
           </div>

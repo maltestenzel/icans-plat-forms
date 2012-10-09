@@ -18,3 +18,14 @@ body{
 .cafman-footer { // @TODO: use ID for footer?
     @extend .container; // mimic twitter bootstrap container
 }
+
+.notification-action {
+    @extend .btn;
+    @extend .btn-mini;
+}
+.notification-action.accept-member {
+    @extend .btn-success;
+}
+.notification-action.decline-member {
+    @extend .btn-danger;
+}
