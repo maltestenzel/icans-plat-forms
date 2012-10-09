@@ -1,4 +1,102 @@
+{#
+    Defined how the Page 'Home' will look like.
+
+    Author:    Sascha 's10z' Schulz
+    origin:    M
+    copyright: ${date} ICANS GmbH
+ #}
+{# use the abstracted page layout #}
 {% extends 'IcansPlatformsCafManBundle::base.html.twig' %}
+
+{# define the content to be displayed in the stage #}
 {% block stage %}
-    Hello world.
+    <div class="hero-unit">
+        {# @TODO: Inject via translator? #}
+        <h1>Welcome to CafMan by ICANS GmbH!</h1>
+        <p>
+          CafMan is your all-purpose Caffeine Manager. It allows you to manage your team's coffee kitty, and plan and
+          monitor your caffeine intoxication.
+        </p>
+    </div>
+    {# this will be outsourced soon ... #}
+    <div class="row">
+        <div class="span12">
+            This will be replaced by implementation soon ...
+        </div>
+    </div>
+    <div class="row">
+        <div class="span6">
+          <h2>Sign up</h2>
+          <p>
+            <form class="form-horizontal" action="index-authd-no-kitty.html">
+              <div class="control-group">
+                <label class="control-label" for="signup-email">Email</label>
+                <div class="controls">
+                  <input type="text" id="signup-email" placeholder="e.g. foo@bar.com">
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label" for="signup-password">Password</label>
+                <div class="controls">
+                  <input type="password" id="signup-password" placeholder="Password">
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label" for="signup-repeat-password">Repeat Password</label>
+                <div class="controls">
+                  <input type="password" id="signup-repeat-password" placeholder="Password">
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label" for="signup-displayname">Display Name</label>
+                <div class="controls">
+                  <input type="text" id="signup-displayname" placeholder="e.g. &quot;Decaf&quot;">
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label" for="signup-fullname">Full Name</label>
+                <div class="controls">
+                  <input type="text" id="signup-fullname" placeholder="e.g. John Smith">
+                </div>
+              </div>
+              <div class="control-group">
+                <div class="controls">
+                  <label class="checkbox">
+                    <input type="checkbox" checked="checked" id="signup-publish"> Publish Statistics
+                  </label>
+                </div>
+              </div>
+              <div class="control-group">
+                <div class="controls">
+                  <button id="signup-submit" type="submit" class="btn">Sign up</button>
+                </div>
+              </div>
+            </form>
+          </p>
+       </div>
+        <div class="span6">
+          <h2>... or sign in</h2>
+          <p>
+            <form class="form-horizontal" action="index-authd.html">
+              <div class="control-group">
+                <label class="control-label" for="signin-email">Email</label>
+                <div class="controls">
+                  <input type="text" id="signin-email" placeholder="Email">
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label" for="signin-password">Password</label>
+                <div class="controls">
+                  <input type="password" id="signin-password" placeholder="Password">
+                </div>
+              </div>
+              <div class="control-group">
+                <div class="controls">
+                  <button id="signin-submit" type="submit" class="btn">Sign in</button>
+                </div>
+              </div>
+            </form>
+          </p>
+        </div>
+      </div>
 {% endblock stage %}
