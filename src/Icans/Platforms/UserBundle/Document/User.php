@@ -1,24 +1,24 @@
 <?php
-// src/Acme/UserBundle/Document/User.php
+/**
+ * Declares User
+ *
+ * origin: GM
+ *
+ * @author    Thorsten 'stepo' Hallwas
+ * @author    Malte Stenzel
+ * @copyright ${date} ICANS GmbH
+ */
 
 namespace Icans\Platforms\UserBundle\Document;
 
-use FOS\UserBundle\Document\User as BaseUser;
+use Icans\Platforms\UserBundle\Model\User as UserModel;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
 
 /**
+ * Class to be used as a MongoDB document.
+ *
  * @MongoDB\Document
  */
-class User extends BaseUser
+class User extends UserModel
 {
-    /**
-     * @MongoDB\Id(strategy="auto")
-     */
-    protected $id;
-
-    public function __construct()
-    {
-        parent::__construct();
-        // your own logic
-    }
 }
