@@ -1,0 +1,32 @@
+{#
+    Template to handle the sign in task.
+
+    Author:    Sascha 's10z' Schulz
+    origin:    M
+    copyright: 2012 ICANS GmbH
+ #}
+{% block sign_in %}
+    {#% trans_default_domain "IcansPlatformsCafManBundle" %#}
+    <h2>{{ 'module.signIn.title'|trans }}</h2>
+    <p>
+      <form class="form-horizontal" action="index-authd.html">
+        <div class="control-group">
+          <label class="control-label" for="signin-email">Email</label>
+          <div class="controls">
+            <input type="text" id="signin-email" placeholder="Email">
+          </div>
+        </div>
+        <div class="control-group">
+          <label class="control-label" for="signin-password">Password</label>
+          <div class="controls">
+            <input type="password" id="signin-password" placeholder="Password">
+          </div>
+        </div>
+        <div class="control-group">
+          <div class="controls">
+            <button id="signin-submit" type="submit" class="btn">{{ 'module.signIn.primaryAction'|trans }}</button>
+          </div>
+        </div>
+      </form>
+    </p>
+{% endblock sign_in %}

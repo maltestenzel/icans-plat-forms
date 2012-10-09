@@ -1,0 +1,27 @@
+## Author: Sascha 's10z' Schulz
+## origin: m
+## Copyright: 2012 Icans GmbH
+
+company:
+  name: ICANS GmbH
+
+page:
+  home:
+    title: Welcome to CafMan by %company.name%!
+    subTitle: CafMan is your all-purpose Caffeine Manager. It allows you to manage your team's coffee kitty, and plan and monitor your caffeine intoxication.
+
+module:
+  navPrimary:
+    brand: CafMan by %company.name%
+  signIn:
+    title: ... or sign in
+    primaryAction: Sign in
+  signUp:
+    title: Sign up
+    primaryAction: Sign up
+  accountDetails:
+    title: Account Details
+    primaryAction: Save Changes
+  defaultKitty:
+    title: Choose Default Kitty
+    primary Action: Set Default

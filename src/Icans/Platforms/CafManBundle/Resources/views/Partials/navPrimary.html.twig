@@ -14,7 +14,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="">CafMan by ICANS GmbH</a>
+          <a class="brand" href="">{{ 'module.navPrimary.brand'|trans({'%company.name%': 'company.name'|trans}) }}</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
             <li class="dropdown active">
@@ -32,4 +32,4 @@
         </div>
       </div>
     </div>
-{% endblock %}
+{% endblock nav_primary %}
