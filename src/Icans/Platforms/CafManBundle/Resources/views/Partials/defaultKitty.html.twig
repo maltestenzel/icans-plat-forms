@@ -1,0 +1,23 @@
+{#
+    Template to handle the default kitty selection.
+
+    Author:    Sascha 's10z' Schulz
+    origin:    M
+    copyright: ${date} ICANS GmbH
+ #}
+{% block default_kitty %}
+    <h2>{{ 'module.defaultKitty.title'|trans }}</h2>
+    <p>
+    <form class="form-horizontal">
+      <div class="control-group">
+        <label class="control-label" for="kitty-select">Select kitty:</label>
+        <div class="controls">
+          <select id="kitty-select">
+            <option>The Addicts</option>
+            <option>vel dolor.</option>
+          </select>
+          <button type="submit" class="btn btn-primary" id="kitty-submit">{{ 'module.defaultKitty.primaryAction'|trans }}</button>
+        </div>
+      </div>
+    </form>
+{% endblock default_kitty %}

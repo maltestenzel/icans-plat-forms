@@ -1,0 +1,28 @@
+{#
+    Defined how the Page 'Home' will look like.
+
+    Author:    Sascha 's10z' Schulz
+    origin:    M
+    copyright: ${date} ICANS GmbH
+ #}
+{# use the abstracted page layout #}
+{% extends 'IcansPlatformsCafManBundle::base.html.twig' %}
+
+{# define the content to be displayed in the stage #}
+{% block stage %}
+    <div class="hero-unit">
+        {# @TODO: Inject via translator? #}
+        <h1>{{ 'page.home.title'|trans({'%company.name%': 'company.name'|trans }) }}</h1>
+        <p>{{ 'page.home.subTitle'|trans}}</p>
+    </div>
+    <div class="row">
+        <div class="span6">
+            {% use 'IcansPlatformsCafManBundle:Partials:signUp.html.twig' %}
+            {{ block('sign_up') }}
+        </div>
+        <div class="span6">
+            {% use 'IcansPlatformsCafManBundle:Partials:signIn.html.twig' %}
+            {{ block('sign_in') }}
+        </div>
+    </div>
+{% endblock stage %}
