@@ -25,15 +25,13 @@ body{
  */
 .header {
     @extend .navbar;
-    @extend .navbar-inverse;
     @extend .navbar-fixed-top;
+    @extend .navbar-inverse;
 
-    .container {
+    .header-inside {
         @extend .navbar-inner;
     }
-    .brand {
 
-    }
     .primary-navigation {
         @extend .nav;
         @extend .nav-collapse;

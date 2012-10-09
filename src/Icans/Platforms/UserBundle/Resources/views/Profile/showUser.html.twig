@@ -5,5 +5,8 @@
     origin:    M
     copyright: ${date} ICANS GmbH
  #}
+{% extends 'IcansPlatformsCafManBundle::base.html.twig' %}
 
-This would be the profile of {{user.username}}.
+{% block stage %}
+    This would be the profile of {{user.username}}.
+{% endblock stage %}
