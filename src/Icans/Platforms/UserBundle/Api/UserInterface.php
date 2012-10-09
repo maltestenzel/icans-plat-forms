@@ -1,6 +1,6 @@
 <?php
 /**
- * Declares User
+ * Declares UserInterface
  *
  * origin: GM
  *
@@ -13,13 +13,8 @@ namespace Icans\Platforms\UserBundle\Api;
 
 use FOS\UserBundle\Model\UserInterface as BaseUserInterface;
 
-use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
-
 /**
  * Document extending the default FOS User with the attributes needed for the CafMan Application.
- *
- * @codeCoverageIgnore Model class with getter and setters.
- * @MongoDB\Document
  */
 interface UserInterface extends BaseUserInterface
 {

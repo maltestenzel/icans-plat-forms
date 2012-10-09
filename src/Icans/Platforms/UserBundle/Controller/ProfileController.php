@@ -12,12 +12,14 @@ namespace Icans\Platforms\UserBundle\Controller;
 
 use Icans\Platforms\UserBundle\Document\User;
 use Icans\Platforms\UserBundle\Form\Type\DefaultKittyFormType;
+use Icans\Platforms\UserBundle\Api\UserInterface;
 
 use FOS\UserBundle\Controller\ProfileController as BaseController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 /**
  * Controller handling the profile display and editing functionality for users.
@@ -39,6 +41,34 @@ class ProfileController extends BaseController
 
         return array(
             'user' => $user,
+        );
+    }
+
+    /**
+     * Edit the user, added security check for his own profile after moving to new route.
+     *
+     * @Route("/profile/{username}/edit/", name="fos_user_profile_edit")
+     * @Template("FOSUserBundle:Profile:edit.html.twig")
+     */
+    public function editSelfAction($username)
+    {
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        if (!is_object($user) || !$user instanceof UserInterface || $user->getUserName() != $username) {
+            throw new AccessDeniedException('This user does not have access to this section.');
+        }
+
+        $form = $this->container->get('fos_user.profile.form');
+        $formHandler = $this->container->get('fos_user.profile.form.handler');
+
+        $process = $formHandler->process($user);
+        if ($process) {
+            $this->setFlash('fos_user_success', 'profile.flash.updated');
+
+            return new RedirectResponse($this->getRedirectionUrl($user));
+        }
+
+        return array(
+            'form' => $form->createView()
         );
     }
 
