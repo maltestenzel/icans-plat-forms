@@ -37,7 +37,7 @@ module:
     primaryAction: Save Changes
   defaultkitty:
     title: Choose Default Kitty
-    primaryAction:
+    primaryAction: Set Default
 
 registration:
   submit: Sign up

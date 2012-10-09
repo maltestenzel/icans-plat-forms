@@ -8,14 +8,24 @@
  #}
 {% extends 'IcansPlatformsCafManBundle::base.html.twig' %}
 {% block stage %}
-    <h2>{{ 'module.accountDetails.title'|trans }}</h2>
-    <form action="" method="post" class="user-account-edit-form" {{ form_enctype(form) }}>
-        {{ form_widget(form) }}
-        <div class="user-account-edit-actions">
-            <button type="submit" class="user-account-edit-primary-action" id="update-submit">
-                {{ 'module.accountDetails.primaryAction'|trans }}
-            </button>
+    <div class="row">
+        <div class="span12">
+            <h2>{{ 'module.accountDetails.title'|trans }}</h2>
+            <form action="" method="post" class="user-account-edit-form" {{ form_enctype(form) }}>
+                {{ form_widget(form) }}
+                <div class="user-account-edit-actions">
+                    <button type="submit" class="user-account-edit-primary-action" id="update-submit">
+                        {{ 'module.accountDetails.primaryAction'|trans }}
+                    </button>
+                </div>
+            </form>
         </div>
-    </form>
-    {% render 'IcansPlatformsUserBundle:Profile:defaultkitty' with {} %}
+    </div>
+    <hr />
+    <div class="row">
+        <div class="span12">
+            {% render 'IcansPlatformsUserBundle:Profile:defaultkitty' with {} %}
+        </div>
+    </div>
+    <hr  />
 {% endblock stage %}

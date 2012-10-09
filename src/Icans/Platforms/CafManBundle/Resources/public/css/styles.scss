@@ -132,3 +132,20 @@ body{
 .login-primary-action {
     @extend .btn;
 }
+
+/**
+ * Default Kitty Form
+ * ==================
+ */
+.default-kitty-edit-form {
+    @extend %formbuilder-horizontal-form;
+
+    .form-row {
+        float: left;
+        margin-right: 4px; // arbitrarily set in order to simulate whitespace enforcing prototype spacing
+    }
+}
+.default-kitty-edit-primary-action {
+    @extend .btn;
+    @extend .btn-primary;
+}

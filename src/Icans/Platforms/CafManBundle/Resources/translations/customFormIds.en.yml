@@ -14,7 +14,7 @@ fos_user_registration_form_username: signup-displayname
 fos_user_registration_form_fullName: signup-fullname
 fos_user_registration_form_statisticPublic: signup-publish
 
-# IDs for the create kitty from fields
+# IDs for the create kitty from field
 icans_platforms_coffeekitty_kitty_name: create-name
 
 # IDs for the profile edit form fields
@@ -25,3 +25,6 @@ fos_user_profile_form_username: update-displayname
 fos_user_profile_form_fullName: update-fullname
 fos_user_profile_form_statisticPublic: update-publish
 fos_user_profile_form_current_password: update-old-password
+
+# IDs for the default kitty form field
+icans_platforms_user_defaultkitty_defaultKittyId: kitty-select
