@@ -43,3 +43,17 @@ registration:
   submit: Sign up
 login:
   submit: Sign in
+
+page:
+  userProfile:
+    title: Decaf's Caffeine Levels
+    # caffeineLevels24h and caffeineLevels7d looks quite similar
+    # nevertheless kept seperate as changerequest at such positions occur most likly
+    caffeineLevels24h:
+      title: Caffeine levels (last 24 hours)
+      body: Shows your caffeine levels in the last 24 hours. You can download a CSV file with your levels on a 30-minute interval below.
+      linkText: Download CSV
+    caffeineLevels7d:
+      title: Caffeine levels (last 7 hours)
+      body: Shows your caffeine levels in the last 7 hours. You can download a CSV file with your levels on a 30-minute interval below.
+      linkText: Download CSV
