@@ -9,3 +9,8 @@ module:
     actionLabel: Action
     action:
       requestMembership: Request Membership
+
+form:
+  create:
+    placeholder:
+      kitty: coffee kitty name

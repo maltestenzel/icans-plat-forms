@@ -10,19 +10,30 @@
 namespace Icans\Platforms\CoffeeKittyBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormBuilderInterface;
 
 /**
- * Implements the KittyType
+ * Implements a form for coffee kitties
  *
  * @author    Malte Stenzel (malte.stenzel@icans-gmbh.com)
  */
 class KittyType extends AbstractType
 {
+    /**
+     * {@inheritDoc}
+     */
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        $builder
+            ->add(
+            'name',
+            null,
+            array('placeholder' => 'form.create.placeholder.kitty')
+        );
+    }
 
     /**
-     * Returns the name of this type.
-     *
-     * @return string The name of this type
+     * {@inheritDoc}
      */
     public function getName()
     {
