@@ -26,13 +26,13 @@ use JMS\SecurityExtraBundle\Annotation\Secure;
 class CoffeeKittyController extends Controller
 {
     /**
-     * @Route("/list/{partialName}", name="coffeekitty_list")
+     * @Route("/search/{partialName}", name="coffeekitty_search")
      *
      * @Secure(roles="ROLE_USER")
      *
      * @Template()
      */
-    public function listAction($partialName = "")
+    public function searchAction($partialName = "")
     {
         /* @var $kittyService CoffeeKittyServiceInterface */
         $kittyService = $this->get('icans.platforms.coffee_kitty.service');

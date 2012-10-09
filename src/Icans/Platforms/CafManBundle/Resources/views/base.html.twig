@@ -4,8 +4,9 @@
 
     Author:    Sascha 's10z' Schulz
     origin:    M
-    copyright: ${date} ICANS GmbH
+    copyright: 2012 ICANS GmbH
  #}
+{#% trans_default_domain "IcansPlatformsCafManBundle" %#}
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -29,7 +30,7 @@
 
         {# footer definition; merged into base as it is actually static to reduce template count. #}
         <footer class="cafman-footer">
-            <p>&copy; ICANS GmbH 2012</p>
+            <p>&copy; {{ 'company.name'|trans }} 2012</p>
         </footer>
     </body>
 </html>
