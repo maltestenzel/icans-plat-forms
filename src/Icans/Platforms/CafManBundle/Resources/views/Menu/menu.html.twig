@@ -13,7 +13,7 @@
  #}
 {% macro renderMenuEntry(entry) %}
     <li>
-        <a href="{{ entry.url|default('#') }}">
+        <a href="{{ entry.url|default('#') }}" {% if entry.id is defined and entry.id is not null %}id="{{ entry.id }}"{% endif %}>
             {{ entry.linktext|default('unnamed') }}
         </a>
     </li>

@@ -19,6 +19,12 @@ body{
     @extend .container; // mimic twitter bootstrap container
 }
 
+.search-result-item-action {
+    @extend .btn-primary;
+    @extend .btn-mini;
+}
+
+
 /**
  * Mapp main menu onto bootstrap
  * =============================
@@ -37,12 +43,12 @@ body{
         @extend .nav-collapse;
         @extend .collapse;
     }
+    .additional-links {
+        @extend .nav;
+        @extend .pull-right;
+    }
 }
 
-.search-result-item-action {
-    @extend .btn-primary;
-    @extend .btn-mini;
-}
 
 /**
  * Abstract definition for the mapping of formbuilder generated source onto bootstrap
