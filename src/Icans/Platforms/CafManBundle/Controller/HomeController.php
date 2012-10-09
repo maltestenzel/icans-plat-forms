@@ -24,6 +24,7 @@ class HomeController extends Controller
      */
     public function indexAction()
     {
+        // @todo: redirect if already logged in
         return array();
     }
 }

@@ -17,11 +17,11 @@
     </div>
     <div class="row">
         <div class="span6">
-            {% use 'IcansPlatformsCafManBundle:Partials:signUp.html.twig' %}
+            {% render '/register/' %}
             {{ block('sign_up') }}
         </div>
         <div class="span6">
-            {% use 'IcansPlatformsCafManBundle:Partials:signIn.html.twig' %}
+            {% render '/login' %}
             {{ block('sign_in') }}
         </div>
     </div>
