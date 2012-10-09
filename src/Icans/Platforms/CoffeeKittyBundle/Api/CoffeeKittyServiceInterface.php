@@ -10,7 +10,8 @@
 namespace Icans\Platforms\CoffeeKittyBundle\Api;
 
 use Icans\Platforms\CoffeeKittyBundle\Exception\AlreadyExistsException;
-use Icans\Platforms\CoffeeKittyBundle\Document\Kitty;
+use Icans\Platforms\CoffeeKittyBundle\Exception\NotFoundException;
+use Icans\Platforms\CoffeeKittyBundle\Api\KittyInterface;
 
 /**
  * Implements the CoffeeKittyService interface
@@ -31,13 +32,22 @@ interface CoffeeKittyServiceInterface
     public function findByPartialName($partialName, $limit, $offset);
 
     /**
+     * Returns a kitty by id
+     *
+     * @param \MongoId $id
+     *
+     * @return KittyInterface
+     */
+    public function findById($id);
+
+    /**
      * Stores a new kitty in the database and returns the created kitty on success
      *
      * @throws AlreadyExistsException In case the kitty already exists (unique name)
      *
-     * @param Kitty $kitty
+     * @param KittyInterface $kitty
      *
-     * @return Kitty
+     * @return KittyInterface
      */
-    public function create(Kitty $kitty);
+    public function create(KittyInterface $kitty);
 }

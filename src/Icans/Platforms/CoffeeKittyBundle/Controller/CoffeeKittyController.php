@@ -11,7 +11,7 @@ namespace Icans\Platforms\CoffeeKittyBundle\Controller;
 
 use Icans\Platforms\CoffeeKittyBundle\Api\CoffeeKittyServiceInterface;
 use Icans\Platforms\CoffeeKittyBundle\Api\Exception\CoffeeKittyExceptionInterface;
-use Icans\Platforms\CoffeeKittyBundle\Model\Kitty;
+use Icans\Platforms\CoffeeKittyBundle\Document\Kitty;
 use Icans\Platforms\UserBundle\Document\User;
 use Icans\Platforms\CoffeeKittyBundle\Form\Type\KittyType;
 
@@ -62,43 +62,41 @@ class CoffeeKittyController extends Controller
 
             if ($form->isValid()) {
                 // user successfully submitted
+                /* @var $kitty Kitty */
+                $kitty = $form->getData();
                 /* @var $kittyService CoffeeKittyServiceInterface */
                 $kittyService = $this->get('icans.platforms.coffee_kitty.service');
                 try {
+                    /* @var $user User */
+                    $user = $this->getUser();
+                    $kitty->setOwner($user);
                     $kittyService->create($form->getData());
                 } catch (CoffeeKittyExceptionInterface $exception) {
+                    // @todo mast: wrong redirect, validator etc
                     $this->redirect($this->generateUrl('coffeekitty_create'));
                 }
 
-                return $this->redirect($this->generateUrl('coffeekitty_administrate'));
+                return $this->redirect(
+                    $this->generateUrl('coffeekitty_administrate', array('id' => $kitty->getId()))
+                );
             }
         }
 
-
-
-        /* @var $user User */
-        /*$user = $this->getUser();
-
-        $kitty = new Kitty();
-        $kitty->setPrice(1.0);
-        $kitty->setName($name);
-        $kitty->setOwner($user);
-
-        $kittyService->create($kitty);
-*/
-        return array();
+        return array('form' => $form->createView());
     }
 
     /**
-     * @Route("/administrate", name="coffeekitty_administrate")
+     * @Route("/administrate/{id}", name="coffeekitty_administrate")
      *
      * @Secure(roles="ROLE_USER")
      *
      * @Template()
      */
-    public function administrateAction()
+    public function administrateAction($id)
     {
-        // @todo: check if kitty belongs to user
-        return array();
+        /* @var $kittyService CoffeeKittyServiceInterface */
+        $kittyService = $this->get('icans.platforms.coffee_kitty.service');
+        // @todo exception handling!
+        return array('kitty' => $kittyService->findById($id));
     }
 }
