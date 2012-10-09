@@ -8,9 +8,9 @@
  * @author    Thorsten 'stepo' Hallwas
  * @copyright Oct 9, 2012 ICANS GmbH
  */
-namespace Icans\Platforms\UserBundle\Tests\Model;
+namespace Icans\Platforms\UserBundle\Tests\Document;
 
-use Icans\Platforms\UserBundle\Model\User;
+use Icans\Platforms\UserBundle\Document\User;
 
 use FOS\UserBundle\Tests\Model\UserTest as BaseUserTest;
 
