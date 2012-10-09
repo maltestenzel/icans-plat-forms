@@ -16,7 +16,7 @@ use Icans\Platforms\CoffeeKittyBundle\Api\KittyInterface;
 use Doctrine\ODM\MongoDB\DocumentManager;
 
 /**
- * Implements a service used to abstract the application logic from the database
+ * Implements a service used to abstract the database
  *
  * @author    Malte Stenzel (malte.stenzel@icans-gmbh.com)
  */
@@ -49,7 +49,8 @@ class CoffeeKittyService implements CoffeeKittyServiceInterface
         $queryBuilder = $this->documentManager->createQueryBuilder('Icans\Platforms\CoffeeKittyBundle\Document\Kitty')
             ->field('name')->equals(new \MongoRegex('/^' . $partialName . '.*/i'))
             ->limit($limit)
-            ->offset($offset);
+            ->skip($offset)
+            ->sort('id');
 
         return $queryBuilder->getQuery()->execute()->toArray();
     }
@@ -68,6 +69,5 @@ class CoffeeKittyService implements CoffeeKittyServiceInterface
         } catch (\Exception $exception) {
             throw new AlreadyExistsException('The kitty ' . $kitty->getName() . ' already exists.');
         }
-
     }
 }
