@@ -8,27 +8,29 @@
 <form action="{{ path("fos_user_security_check") }}" method="post" class="login-form">
     <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
     <div class="form-row">
-        <label for="username">{{ 'security.login.username'|trans({}, 'FOSUserBundle') }}</label>
+        <label for="signin-email">{{ 'form.email.label'|trans }}</label>
         <div class="form-controls">
-            <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
+            <input type="text" id="signin-email" name="_username" value="{{ last_username }}" required="required" />
         </div>
     </div>
 
     <div class="form-row">
-        <label for="password">{{ 'security.login.password'|trans({}, 'FOSUserBundle') }}</label>
+        <label for="signin-password">{{ 'form.password.label'|trans }}</label>
         <div class="form-controls">
-            <input type="password" id="password" name="_password" required="required" />
+            <input type="password" id="signin-password" name="_password" required="required" />
         </div>
     </div>
 
     <div class="form-row checkbox">
         <div class="form-controls">
             <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
-            <label for="remember_me">{{ 'security.login.remember_me'|trans({}, 'FOSUserBundle') }}</label>
+            <label for="remember_me">{{ 'form.remember_me.label'|trans }}</label>
         </div>
     </div>
     <div class="login-actions">
-        <input type="submit" id="_submit" name="_submit" class="login-primary-action" value="{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}" />
+        <button type="submit" id="signin-submit" name="_submit" class="login-primary-action">
+            {{ 'login.submit'|trans }}
+        </button>
     </div>
 </form>
 {% endblock fos_user_content %}

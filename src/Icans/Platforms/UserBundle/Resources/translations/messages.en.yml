@@ -7,32 +7,39 @@
 
 # Form field labels
 form:
-    email:
-      label: Email
-    password:
-      label: Password
-    password_confirmation:
-      label: Repeat Password
-    newpassword:
-      label: New Password
-    newpassword_confirmation:
-      label: Repeat New Password
-    oldpassword:
-      label: Old Password
-      explanation: Your old password must be given in order to confirm any changes.
-    username:
-      label: Display Name
-    fullname:
-      label: Full Name
-    statisticpublic:
-      label: Publish Statistics
-    selectkitty:
-      label: Select kitty
+  email:
+    label: Email
+  password:
+    label: Password
+  password_confirmation:
+    label: Repeat Password
+  newpassword:
+    label: New Password
+  newpassword_confirmation:
+    label: Repeat New Password
+  oldpassword:
+    label: Old Password
+    explanation: Your old password must be given in order to confirm any changes.
+  username:
+    label: Display Name
+  fullname:
+    label: Full Name
+  statisticpublic:
+    label: Publish Statistics
+  selectkitty:
+    label: Select kitty
+  remember_me:
+    label: Remember me
 
-    module:
-      accountDetails:
-        title: Account Details
-        primaryAction: Save Changes
-      defaultkitty:
-        title: Choose Default Kitty
-        primaryAction:
+module:
+  accountDetails:
+    title: Account Details
+    primaryAction: Save Changes
+  defaultkitty:
+    title: Choose Default Kitty
+    primaryAction:
+
+registration:
+  submit: Sign up
+login:
+  submit: Sign in
