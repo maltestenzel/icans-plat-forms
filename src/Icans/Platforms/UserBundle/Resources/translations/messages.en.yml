@@ -8,28 +8,31 @@
 # Form field labels
 form:
     email:
-      label: "Email"
+      label: Email
     password:
-      label: "Password"
+      label: Password
     password_confirmation:
-      label: "Repeat Password"
+      label: Repeat Password
     newpassword:
-      label: "New Password"
+      label: New Password
     newpassword_confirmation:
-      label: "Repeat New Password"
+      label: Repeat New Password
     oldpassword:
-      label: "Old Password"
-      explanation: "Your old password must be given in order to confirm any changes."
+      label: Old Password
+      explanation: Your old password must be given in order to confirm any changes.
     username:
-      label: "Display Name"
+      label: Display Name
     fullname:
-      label: "Full Name"
+      label: Full Name
     statisticpublic:
-      label: "Publish Statistics"
+      label: Publish Statistics
     selectkitty:
-      label: "Select kitty"
+      label: Select kitty
 
     module:
       accountDetails:
         title: Account Details
         primaryAction: Save Changes
+      defaultkitty:
+        title: Choose Default Kitty
+        primaryAction:
