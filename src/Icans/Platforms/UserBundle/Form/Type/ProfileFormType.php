@@ -29,7 +29,6 @@ class ProfileFormType extends FOSProfileFormType
                 'email',
                 array(
                     'label' => 'form.email.label',
-                    'attr' => array('id' => 'update-email'),
                 )
             )
             ->add(
@@ -39,11 +38,9 @@ class ProfileFormType extends FOSProfileFormType
                     'type' => 'password',
                     'first_options' => array(
                         'label' => 'form.newpassword.label',
-                        'attr' => array('id' => 'update-password'),
                     ),
                     'second_options' => array(
                         'label' => 'form.newpassword_confirmation.label',
-                        'attr' => array('id' => 'update-repeat-password'),
                     ),
                 )
             )
@@ -52,7 +49,6 @@ class ProfileFormType extends FOSProfileFormType
                 null,
                 array(
                     'label' => 'form.username.label',
-                    'attr' => array('id' => 'update-displayname'),
                 )
             )
             ->add(
@@ -60,7 +56,6 @@ class ProfileFormType extends FOSProfileFormType
                 null,
                 array(
                     'label' => 'form.fullname.label',
-                    'attr' => array('id' => 'update-fullname'),
                 )
             )
             ->add(
@@ -69,7 +64,6 @@ class ProfileFormType extends FOSProfileFormType
                 array(
                     'label' => 'form.statisticpublic.label',
                     'required' => false,
-                    'attr' => array('id' => 'update-publish'),
                 )
             )
             ->add(
@@ -80,7 +74,6 @@ class ProfileFormType extends FOSProfileFormType
                     'mapped' => false,
                     'constraints' => new UserPassword(),
                     'attr' => array(
-                        'id' => 'update-old-password',
                         'explanation' => 'form.oldpassword.explanation'
                     ),
 
