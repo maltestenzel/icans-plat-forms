@@ -7,7 +7,7 @@
  * @author    Malte Stenzel
  * @copyright 2007 - 2012 ICANS GmbH
  */
-namespace Icans\Platforms\CafManBundle\DependencyInjection;
+namespace Icans\Platforms\CoffeeKittyBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -25,7 +25,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('icans_platforms_caf_man');
+        $rootNode = $treeBuilder->root('icans_platforms_coffee_kitty');
 
         // Here you should define the parameters that are allowed to
         // configure your bundle. See the documentation linked above for

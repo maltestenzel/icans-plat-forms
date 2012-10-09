@@ -23,6 +23,7 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\MongoDBBundle\DoctrineMongoDBBundle(),
             new Icans\Platforms\UserBundle\IcansPlatformsUserBundle(),
             new Icans\Platforms\CafManBundle\IcansPlatformsCafManBundle(),
+            new Icans\Platforms\CoffeeKittyBundle\IcansPlatformsCoffeeKittyBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

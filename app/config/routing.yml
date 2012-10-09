@@ -1,3 +1,8 @@
+icans_platforms_coffee_kitty:
+    resource: "@IcansPlatformsCoffeeKittyBundle/Controller/"
+    type:     annotation
+    prefix:   /kitty
+
 icans_platforms_caf_man:
     resource: "@IcansPlatformsCafManBundle/Controller/"
     type:     annotation

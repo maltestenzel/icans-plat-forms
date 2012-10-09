@@ -1,0 +1,11 @@
+## Author: Sascha 's10z' Schulz
+## origin: m
+## Copyright: 2012 Icans GmbH
+
+module:
+  search:
+    title: 'Search results:'
+    entryLabel: Name
+    actionLabel: Action
+    action:
+      requestMembership: Request Membership

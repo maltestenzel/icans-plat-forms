@@ -1,13 +1,13 @@
 <?php
 /**
- * Declares the IcansPlatformsCafManExtension
+ * Declares the IcansPlatformsCoffeeKittyExtension
  *
  * origin: GM
  *
  * @author    Malte Stenzel
  * @copyright 2007 - 2012 ICANS GmbH
  */
-namespace Icans\Platforms\CafManBundle\DependencyInjection;
+namespace Icans\Platforms\CoffeeKittyBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
@@ -19,7 +19,7 @@ use Symfony\Component\DependencyInjection\Loader;
  *
  * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
  */
-class IcansPlatformsCafManExtension extends Extension
+class IcansPlatformsCoffeeKittyExtension extends Extension
 {
     /**
      * {@inheritDoc}

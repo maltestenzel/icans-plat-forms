@@ -115,7 +115,7 @@
 
     <target name="dumpassets" hidden="false">
         <echo message="Dump Assets" />
-        <exec command="php ${path.app}/console assets:install web"
+        <exec command="php ${path.app}/console assetic:dump"
               checkreturn="true"
               passthru="true"
         />

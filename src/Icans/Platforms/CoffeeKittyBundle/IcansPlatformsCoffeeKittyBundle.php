@@ -1,16 +1,16 @@
 <?php
 /**
- * Declares the IcansPlatformsCafManBundle
+ * Declares the IcansPlatformsCoffeeKittyBundle
  *
  * origin: GM
  *
  * @author    Malte Stenzel
  * @copyright 2007 - 2012 ICANS GmbH
  */
-namespace Icans\Platforms\CafManBundle;
+namespace Icans\Platforms\CoffeeKittyBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class IcansPlatformsCafManBundle extends Bundle
+class IcansPlatformsCoffeeKittyBundle extends Bundle
 {
 }
