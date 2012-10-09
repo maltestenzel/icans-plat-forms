@@ -1,6 +1,6 @@
 <?php
 /**
- * Declares the CoffeeKittyServiceInterface
+ * Declares the KittyServiceInterface
  *
  * origin: M
  *
@@ -14,11 +14,11 @@ use Icans\Platforms\CoffeeKittyBundle\Exception\NotFoundException;
 use Icans\Platforms\CoffeeKittyBundle\Api\KittyInterface;
 
 /**
- * Implements the CoffeeKittyService interface
+ * Implements the KittyService interface
  *
  * @author    Malte Stenzel (malte.stenzel@icans-gmbh.com)
  */
-interface CoffeeKittyServiceInterface
+interface KittyServiceInterface
 {
     /**
      * Returns array of kitties beginning with $partialName

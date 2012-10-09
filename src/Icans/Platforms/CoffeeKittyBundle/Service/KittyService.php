@@ -1,6 +1,6 @@
 <?php
 /**
- * Declares CoffeeKittyService
+ * Declares KittyService
  *
  * origin: M
  *
@@ -9,18 +9,18 @@
  */
 namespace Icans\Platforms\CoffeeKittyBundle\Service;
 
-use Icans\Platforms\CoffeeKittyBundle\Api\CoffeeKittyServiceInterface;
+use Icans\Platforms\CoffeeKittyBundle\Api\KittyServiceInterface;
 use Icans\Platforms\CoffeeKittyBundle\Exception\AlreadyExistsException;
 use Icans\Platforms\CoffeeKittyBundle\Api\KittyInterface;
 
 use Doctrine\ODM\MongoDB\DocumentManager;
 
 /**
- * Implements a service used to abstract the database
+ * Implements a service used to obtain, create and modify kitties
  *
  * @author    Malte Stenzel (malte.stenzel@icans-gmbh.com)
  */
-class CoffeeKittyService implements CoffeeKittyServiceInterface
+class KittyService implements KittyServiceInterface
 {
     /**
      * @var DocumentManager

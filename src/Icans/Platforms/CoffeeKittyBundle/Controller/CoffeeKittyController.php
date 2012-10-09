@@ -9,7 +9,7 @@
  */
 namespace Icans\Platforms\CoffeeKittyBundle\Controller;
 
-use Icans\Platforms\CoffeeKittyBundle\Api\CoffeeKittyServiceInterface;
+use Icans\Platforms\CoffeeKittyBundle\Api\KittyServiceInterface;
 use Icans\Platforms\CoffeeKittyBundle\Api\Exception\CoffeeKittyExceptionInterface;
 use Icans\Platforms\CoffeeKittyBundle\Document\Kitty;
 use Icans\Platforms\UserBundle\Document\User;
@@ -54,8 +54,8 @@ class CoffeeKittyController extends Controller
      */
     public function searchAction($partialName = "")
     {
-        /* @var $kittyService CoffeeKittyServiceInterface */
-        $kittyService = $this->get('icans.platforms.coffee_kitty.service');
+        /* @var $kittyService KittyServiceInterface */
+        $kittyService = $this->get('icans.platforms.kitty.service');
 
         return array('kitties' => $kittyService->findByPartialName($partialName, 10, 0));
     }
@@ -82,8 +82,8 @@ class CoffeeKittyController extends Controller
                 // user successfully submitted
                 /* @var $kitty Kitty */
                 $kitty = $form->getData();
-                /* @var $kittyService CoffeeKittyServiceInterface */
-                $kittyService = $this->get('icans.platforms.coffee_kitty.service');
+                /* @var $kittyService KittyServiceInterface */
+                $kittyService = $this->get('icans.platforms.kitty.service');
                 try {
                     /* @var $user User */
                     $user = $this->getUser();
@@ -115,8 +115,8 @@ class CoffeeKittyController extends Controller
      */
     public function administrateAction($id)
     {
-        /* @var $kittyService CoffeeKittyServiceInterface */
-        $kittyService = $this->get('icans.platforms.coffee_kitty.service');
+        /* @var $kittyService KittyServiceInterface */
+        $kittyService = $this->get('icans.platforms.kitty.service');
         // @todo exception handling!
         return array('kitty' => $kittyService->findById($id));
     }

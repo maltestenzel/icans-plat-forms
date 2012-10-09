@@ -35,33 +35,4 @@ class HomeController extends Controller
 
         return array();
     }
-
-    /**
-     * Renders the menu
-     *
-     * @Route("/", name="cafman_menu_display")
-     * @Template()
-     */
-    public function menuAction()
-    {
-        $menuEntries = array();
-        $user = $this->getUser();
-        $isSignedIn = !empty($user);
-        // @todo mast: use translation
-        // @todo mast: this implementation does not live up to our standards
-        $menuEntries['Home'] = $this->generateUrl('cafman_home_display');
-        if ($isSignedIn) {
-            $menuEntries['Caffeine Statistics'] = '#';
-        }
-        $menuEntries['Highscores'] = '#';
-        if ($isSignedIn) {
-            $menuEntries['Coffee Kitty'] = $this->generateUrl('coffeekitty_manage');
-            $menuEntries['Caffeine Statistics'] = '#';
-        }
-
-        return array(
-            'isSignedIn' => $isSignedIn,
-            'menuEntries' => $menuEntries,
-        );
-    }
 }

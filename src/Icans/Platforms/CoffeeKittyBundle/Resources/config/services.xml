@@ -5,11 +5,15 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="icans.platforms.coffee_kitty.service.class">Icans\Platforms\CoffeeKittyBundle\Service\CoffeeKittyService</parameter>
+        <parameter key="icans.platforms.kitty.service.class">Icans\Platforms\CoffeeKittyBundle\Service\KittyService</parameter>
+        <parameter key="icans.platforms.kitty_user.service.class">Icans\Platforms\CoffeeKittyBundle\Service\KittyUserService</parameter>
     </parameters>
 
     <services>
-        <service id="icans.platforms.coffee_kitty.service" class="%icans.platforms.coffee_kitty.service.class%">
+        <service id="icans.platforms.kitty.service" class="%icans.platforms.kitty.service.class%">
+            <argument type="service" id="doctrine.odm.mongodb.document_manager" />
+        </service>
+        <service id="icans.platforms.kitty_user.service" class="%icans.platforms.kitty_user.service.class%">
             <argument type="service" id="doctrine.odm.mongodb.document_manager" />
         </service>
     </services>

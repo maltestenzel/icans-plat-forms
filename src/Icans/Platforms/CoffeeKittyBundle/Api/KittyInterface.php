@@ -9,9 +9,7 @@
  */
 namespace Icans\Platforms\CoffeeKittyBundle\Api;
 
-use Icans\Platforms\UserBundle\Document\User;
-
-use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
+use Icans\Platforms\UserBundle\Api\UserInterface;
 
 /**
  * Declares the interface for our coffee kitty
@@ -29,7 +27,7 @@ interface KittyInterface
      * Set name
      *
      * @param string $name
-     * @return Kitty
+     * @return KittyInterface
      */
     public function setName($name);
 
@@ -43,15 +41,15 @@ interface KittyInterface
     /**
      * Set owner
      *
-     * @param User $owner
-     * @return Kitty
+     * @param UserInterface $owner
+     * @return KittyInterface
      */
-    public function setOwner(User $owner);
+    public function setOwner(UserInterface $owner);
 
     /**
      * Get owner
      *
-     * @return User $owner
+     * @return UserInterface $owner
      */
     public function getOwner();
 
@@ -59,7 +57,7 @@ interface KittyInterface
      * Set price
      *
      * @param float $price
-     * @return Kitty
+     * @return KittyInterface
      */
     public function setPrice($price);
 
