@@ -26,7 +26,7 @@ twig:
 assetic:
     debug:          %kernel.debug%
     use_controller: false
-    bundles:        ['AcmeDemoBundle', 'IcansPlatformsUserBundle' ]
+    bundles:        ['IcansPlatformsCafManBundle', 'IcansPlatformsUserBundle' ]
     sass:           /usr/local/bin/sass
     ruby:           /usr/bin/ruby
     #java: /usr/bin/java
