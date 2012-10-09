@@ -10,7 +10,7 @@
  */
 namespace Icans\Platforms\UserBundle\Controller;
 
-use Icans\Platforms\UserBundle\Model\User;
+use Icans\Platforms\UserBundle\Document\User;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;

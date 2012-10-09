@@ -20,13 +20,16 @@
 
     <services>
         <service id="icans.platform.form.type.profileform" class="Icans\Platforms\UserBundle\Form\Type\ProfileFormType">
-            <argument>Icans\Platforms\UserBundle\Model\User</argument>
+            <argument>Icans\Platforms\UserBundle\Document\User</argument>
+            <tag name="form.type" alias="icans_platforms_user_profile" />
         </service>
         <service id="icans.platform.form.type.registrationform" class="Icans\Platforms\UserBundle\Form\Type\RegistrationFormType">
-            <argument>Icans\Platforms\UserBundle\Model\User</argument>
+            <argument>Icans\Platforms\UserBundle\Document\User</argument>
+            <tag name="form.type" alias="icans_platforms_user_registration" />
         </service>
         <service id="icans.platform.form.type.defaultkittyform" class="Icans\Platforms\UserBundle\Form\Type\DefaultKittyFormType">
-            <argument>Icans\Platforms\UserBundle\Model\User</argument>
+            <argument>Icans\Platforms\UserBundle\Document\User</argument>
+            <tag name="form.type" alias="icans_platforms_user_defaultkitty" />
         </service>
     </services>
 

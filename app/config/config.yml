@@ -80,3 +80,11 @@ fos_user:
     db_driver: mongodb # other valid values are 'orm', 'couchdb' and 'propel'
     firewall_name: main
     user_class: Icans\Platforms\UserBundle\Document\User
+    profile:
+        form:
+          type: icans_platforms_user_profile
+#          name: icans_platform_user_profile
+    registration:
+        form:
+            type: icans_platforms_user_registration
+#            name:               fos_user_registration_form
