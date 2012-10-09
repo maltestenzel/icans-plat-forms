@@ -73,6 +73,6 @@ class ProfileFormType extends FOSProfileFormType
      */
     public function getName()
     {
-        return 'icansplatforms_user_profile';
+        return 'icans_platforms_user_profile';
     }
 }

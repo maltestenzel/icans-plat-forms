@@ -68,6 +68,6 @@ class DefaultKittyType extends AbstractType
      */
     public function getName()
     {
-        return 'icansplatforms_user_defaultkitty';
+        return 'icans_platforms_user_defaultkitty';
     }
 }

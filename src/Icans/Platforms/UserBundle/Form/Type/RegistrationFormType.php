@@ -64,6 +64,6 @@ class RegistrationFormType extends FOSRegistrationFormType
      */
     public function getName()
     {
-        return 'icansplatforms_user_registration';
+        return 'icans_platforms_user_registration';
     }
 }
