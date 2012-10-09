@@ -19,11 +19,35 @@ body{
     @extend .container; // mimic twitter bootstrap container
 }
 
+/**
+ * Mapp main menu onto bootstrap
+ * =============================
+ */
+.header {
+    @extend .navbar;
+    @extend .navbar-fixed-top;
+    @extend .navbar-inverse;
+
+    .header-inside {
+        @extend .navbar-inner;
+    }
+
+    .primary-navigation {
+        @extend .nav;
+        @extend .nav-collapse;
+        @extend .collapse;
+    }
+}
+
 .search-result-item-action {
     @extend .btn-primary;
     @extend .btn-mini;
 }
 
+/**
+ * Abstract definition for the mapping of formbuilder generated source onto bootstrap
+ * ==================================================================================
+ */
 %formbuilder-horizontal-form {
     @extend .form-horizontal;
 
@@ -35,7 +59,6 @@ body{
             @extend .control-label;
         }
     }
-
     .form-controls {
         @extend .controls;
     }
@@ -44,11 +67,13 @@ body{
     }
 }
 
+/**
+ * User Account Edit Form
+ * ======================
+ */
 .user-account-edit-form {
     @extend %formbuilder-horizontal-form;
 }
-
-
 .user-account-edit-actions {
      @extend .controls;
 }
@@ -66,7 +91,7 @@ body{
     div {
         display: inline-block; // collapse all rendered divs
     }
-    
+
     input {
         @extend .input-xlarge;
         display: inline-block;

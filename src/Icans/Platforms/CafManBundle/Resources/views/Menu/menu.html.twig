@@ -1,0 +1,44 @@
+{#
+ # Render the main menu.
+ #
+ # @TODO: add the link to the highscore. Keep in mind that this contains an ID in the prototype.
+ # @TODO: mark the relevant menu entry as active.
+ #
+ # Author: Sascha 's10z' Schulz
+ # Copyright: 2012 ICANS GmbH
+ #}
+
+{#
+ # Macro to reuse the definition how a list entry is rendered.
+ #}
+{% macro renderMenuEntry(entry) %}
+    <li>
+        <a href="{{ entry.url|default('#') }}">
+            {{ entry.linktext|default('unnamed') }}
+        </a>
+    </li>
+{% endmacro %}
+
+<nav class="header">
+    <div class="header-inside">
+        <div class="container">
+            <a class="brand" href="/">{{ 'module.navPrimary.brand'|trans({'%company.name%': 'company.name'|trans}) }}</a>
+            {% if menuEntries is not empty %}
+                <ul class="primary-navigation">
+                    {% for entry in menuEntries %}
+                        {# call macro declared above #}
+                        {{ _self.renderMenuEntry(entry) }}
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            {% if userEntries|default(null) is not empty  %}
+                <ul class="additional-links">
+                    {% for entry in userEntries  %}
+                        {# call macro declared above #}
+                        {{ _self.renderMenuEntry(entry) }}
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+    </div>
+</nav>
