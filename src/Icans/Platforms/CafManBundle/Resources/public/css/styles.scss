@@ -1,0 +1,19 @@
+/*
+    Author:    Sascha 's10z' Schulz
+    origin:    M
+    copyright: 09.10.2012 ICANS GmbH
+*/
+@import 'lib/bootstrap.scss';
+@import 'lib/responsive.scss'; // @TODO: look up if nessecary
+
+body{
+
+}
+
+.stage { // @TODO: use ID for stage?
+    @extend .container; // mimic twitter bootstrap container
+}
+
+.cafman-footer { // @TODO: use ID for footer?
+    @extend .container; // mimic twitter bootstrap container
+}
