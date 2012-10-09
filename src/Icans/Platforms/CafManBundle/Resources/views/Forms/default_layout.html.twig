@@ -1,0 +1,67 @@
+{#
+    Author:    Sascha 's10z' Schulz
+    origin:    M
+    copyright:2012 ICANS GmbH
+ #}
+
+{% block widget_attributes %}
+{% spaceless %}
+    {# logic injected so that a custom ID can be set by the FormType #}
+    {% if attr.id is defined and attr.id is not empty %}
+        {% set id = attr.id %}
+    {% endif %}
+    id="{{ id }}" name="{{ full_name }}"{% if read_only %} readonly="readonly"{% endif %}{% if disabled %} disabled="disabled"{% endif %}{% if required %} required="required"{% endif %}{% if max_length %} maxlength="{{ max_length }}"{% endif %}{% if pattern %} pattern="{{ pattern }}"{% endif %}
+    {% for attrname, attrvalue in attr if attrname not in ['explanation'] %}{% if attrname in ['placeholder', 'title'] %}{{ attrname }}="{{ attrvalue|trans({}, translation_domain) }}" {% else %}{{ attrname }}="{{ attrvalue }}" {% endif %}{% endfor %}
+{% endspaceless %}
+{% endblock widget_attributes %}
+
+{% block form_label %}
+{% spaceless %}
+    {# logic injected so that a custom ID can be set by the FormType #}
+    {% if form.vars.attr.id is defined and attr.id is not empty %}
+        {% set id = form.vars.attr.id %}
+    {% endif %}
+    {% if not compound %}
+        {% set label_attr = label_attr|merge({'for': id}) %}
+    {% endif %}
+    {% if required %}
+        {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' required')|trim}) %}
+    {% endif %}
+    {% if label is empty %}
+        {% set label = name|humanize %}
+    {% endif %}
+    <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>{{ label|trans({}, translation_domain) }}</label>
+{% endspaceless %}
+{% endblock form_label %}
+
+{% block form_row %}
+{% spaceless %}
+    {% set rowType = form.vars.block_prefixes.2 %}
+    {# added class name for better CSS selectors #}
+    <div class="form-row {{ rowType }}">
+        {% if rowType == 'checkbox' %}
+            {{ form_errors(form) }}
+            <div class="form-controls">
+                {{ form_widget(form) }}
+                {{ form_label(form) }}
+                {{ block('form_explanation') }}
+            </div>
+        {% else %}
+            {{ form_label(form) }}
+            {{ form_errors(form) }}
+            <div class="form-controls">
+                {{ form_widget(form) }}
+                {{ block('form_explanation') }}
+            </div>
+       {% endif %}
+    </div>
+{% endspaceless %}
+{% endblock form_row %}
+
+{% block form_explanation %}
+    {% if form.vars.attr.explanation is defined and form.vars.attr.explanation is not empty %}
+        <div class="form-explanation">
+            {{ form.vars.attr.explanation|trans }}
+        </div>
+    {% endif %}
+{% endblock %}
