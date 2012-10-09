@@ -1,0 +1,13 @@
+## This file will map the original form field IDs to the custom IDs required by the customer.
+##
+## Author: Sascha 's10z' Schulz
+## origin: m
+## Copyright: 2012 Icans GmbH
+
+# IDs for the registration form fields
+fos_user_registration_form_email: signup-email
+fos_user_registration_form_plainPassword_first: signup-password
+fos_user_registration_form_plainPassword_second: signup-repeat-password
+fos_user_registration_form_username: signup-displayname
+fos_user_registration_form_fullName: signup-fullname
+fos_user_registration_form_statisticPublic: signup-publish

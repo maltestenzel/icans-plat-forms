@@ -27,10 +27,7 @@ class RegistrationFormType extends FOSRegistrationFormType
                 'email',
                 'email',
                 array(
-                    'label' => 'form.email.label',
-                    'attr' => array(
-                        'id' => 'signup-email',
-                    ),
+                    'label' => 'form.email.label'
                 )
             )
             ->add(
@@ -40,15 +37,9 @@ class RegistrationFormType extends FOSRegistrationFormType
                     'type' => 'password',
                     'first_options' => array(
                         'label' => 'form.password.label',
-                        'attr' => array(
-                            'id' => 'signup-password',
-                        ),
                     ),
                     'second_options' => array(
                         'label' => 'form.password_confirmation.label',
-                        'attr' => array(
-                            'id' => 'signup-repeat-password',
-                        ),
                     ),
                 )
             )
@@ -57,9 +48,6 @@ class RegistrationFormType extends FOSRegistrationFormType
                 null,
                 array(
                     'label' => 'form.username.label',
-                    'attr' => array(
-                        'id' => 'signup-displayname',
-                    ),
                 )
             )
             ->add(
@@ -67,9 +55,6 @@ class RegistrationFormType extends FOSRegistrationFormType
                 null,
                 array(
                     'label' => 'form.fullname.label',
-                    'attr' => array(
-                        'id' => 'signup-fullname',
-                    ),
                 )
             )
             ->add(
@@ -78,9 +63,6 @@ class RegistrationFormType extends FOSRegistrationFormType
                 array(
                     'label' => 'form.statisticpublic.label',
                     'required' => false,
-                    'attr' => array(
-                        'id' => 'signup-publish',
-                    ),
                 )
             );
     }
