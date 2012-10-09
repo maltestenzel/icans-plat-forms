@@ -1,6 +1,9 @@
 ## Author: Sascha 's10z' Schulz
 ## origin: m
 ## Copyright: 2012 Icans GmbH
+page:
+  manageCoffeKittys:
+    title: Manage Your Coffee Kittys
 
 module:
   search:
@@ -10,9 +13,12 @@ module:
     action:
       requestMembership: Request Membership
   createKitty:
-    title: or start a new coffee kitty
+    title: start a new coffee kitty
 
 form:
   create:
     placeholder:
       kitty: coffee kitty name
+
+createKitty:
+  submit: Create Kitty

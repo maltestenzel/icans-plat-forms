@@ -1,36 +1,42 @@
-{% extends "FOSUserBundle::layout.html.twig" %}
-
+{#
+ # Renders the login form.
+ # Overlays the original file of the FOSUserBundle.
+ #
+ # Author: Sascha 's10z' Schulz
+ # origin: RM
+ # originalFile: /vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/views/Security/login.html.twig
+ #}
 {% block fos_user_content %}
-{% if error %}
-    <div>{{ error|trans({}, 'FOSUserBundle') }}</div>
-{% endif %}
+    {% if error %}
+        <div>{{ error|trans({}, 'FOSUserBundle') }}</div>
+    {% endif %}
 
-<form action="{{ path("fos_user_security_check") }}" method="post" class="login-form">
-    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
-    <div class="form-row">
-        <label for="signin-email">{{ 'form.email.label'|trans }}</label>
-        <div class="form-controls">
-            <input type="text" id="signin-email" name="_username" value="{{ last_username }}" required="required" />
+    <form action="{{ path("fos_user_security_check") }}" method="post" class="login-form">
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+        <div class="form-row">
+            <label for="signin-email">{{ 'form.email.label'|trans }}</label>
+            <div class="form-controls">
+                <input type="text" id="signin-email" name="_username" value="{{ last_username }}" required="required" />
+            </div>
         </div>
-    </div>
 
-    <div class="form-row">
-        <label for="signin-password">{{ 'form.password.label'|trans }}</label>
-        <div class="form-controls">
-            <input type="password" id="signin-password" name="_password" required="required" />
+        <div class="form-row">
+            <label for="signin-password">{{ 'form.password.label'|trans }}</label>
+            <div class="form-controls">
+                <input type="password" id="signin-password" name="_password" required="required" />
+            </div>
         </div>
-    </div>
 
-    <div class="form-row checkbox">
-        <div class="form-controls">
-            <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
-            <label for="remember_me">{{ 'form.remember_me.label'|trans }}</label>
+        <div class="form-row checkbox">
+            <div class="form-controls">
+                <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+                <label for="remember_me">{{ 'form.remember_me.label'|trans }}</label>
+            </div>
         </div>
-    </div>
-    <div class="login-actions">
-        <button type="submit" id="signin-submit" name="_submit" class="login-primary-action">
-            {{ 'login.submit'|trans }}
-        </button>
-    </div>
-</form>
+        <div class="login-actions">
+            <button type="submit" id="signin-submit" name="_submit" class="login-primary-action">
+                {{ 'login.submit'|trans }}
+            </button>
+        </div>
+    </form>
 {% endblock fos_user_content %}

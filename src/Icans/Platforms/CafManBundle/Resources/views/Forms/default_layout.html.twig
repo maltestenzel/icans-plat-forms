@@ -1,16 +1,17 @@
 {#
-    Author:    Sascha 's10z' Schulz
-    origin:    M
-    copyright:2012 ICANS GmbH
+ # Overlays the default file of the form builder in order to customize renderings.
+ #
+ # Author:    Sascha 's10z' Schulz
+ # origin:    RM
+ # originalFile: /vendor/symfony/symfony/src/Symfony/Bridge/Twig/Resources/views/Form/form_div_layout.html.twig
  #}
-
 {% block widget_attributes %}
 {% spaceless %}
     {# logic injected so that a custom ID can be set by the FormType #}
-    {% if attr.id is defined and attr.id is not empty %}
+    {#% if attr.id is defined and attr.id is not empty %}
         {% set id = attr.id %}
-    {% endif %}
-    id="{{ id }}" name="{{ full_name }}"{% if read_only %} readonly="readonly"{% endif %}{% if disabled %} disabled="disabled"{% endif %}{% if required %} required="required"{% endif %}{% if max_length %} maxlength="{{ max_length }}"{% endif %}{% if pattern %} pattern="{{ pattern }}"{% endif %}
+    {% endif %#}
+    id="{{ id|trans({}, 'customFormIds') }}" name="{{ full_name }}"{% if read_only %} readonly="readonly"{% endif %}{% if disabled %} disabled="disabled"{% endif %}{% if required %} required="required"{% endif %}{% if max_length %} maxlength="{{ max_length }}"{% endif %}{% if pattern %} pattern="{{ pattern }}"{% endif %}
     {% for attrname, attrvalue in attr if attrname not in ['explanation'] %}{% if attrname in ['placeholder', 'title'] %}{{ attrname }}="{{ attrvalue|trans({}, translation_domain) }}" {% else %}{{ attrname }}="{{ attrvalue }}" {% endif %}{% endfor %}
 {% endspaceless %}
 {% endblock widget_attributes %}
@@ -18,11 +19,11 @@
 {% block form_label %}
 {% spaceless %}
     {# logic injected so that a custom ID can be set by the FormType #}
-    {% if form.vars.attr.id is defined and attr.id is not empty %}
+    {#% if form.vars.attr.id is defined and attr.id is not empty %}
         {% set id = form.vars.attr.id %}
-    {% endif %}
+    {% endif %#}
     {% if not compound %}
-        {% set label_attr = label_attr|merge({'for': id}) %}
+        {% set label_attr = label_attr|merge({'for': id|trans({}, 'customFormIds')}) %}
     {% endif %}
     {% if required %}
         {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' required')|trim}) %}

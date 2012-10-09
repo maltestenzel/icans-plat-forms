@@ -1,10 +1,10 @@
 {#
-    Abstract definition of the core layout.
-    This will be extended by individual pages.
-
-    Author:    Sascha 's10z' Schulz
-    origin:    M
-    copyright: 2012 ICANS GmbH
+ #  Abstract definition of the core layout.
+ #  This will be extended by individual pages.
+ #
+ #  Author:    Sascha 's10z' Schulz
+ #  origin:    M
+ #  copyright: 2012 ICANS GmbH
  #}
 <!DOCTYPE html>
 <html lang="en">
@@ -19,6 +19,7 @@
     </head>
     <body>
         {# render the primary navigation #}
+        {% render "IcansPlatformsCafManBundle:Home:menu" %}
         {% use 'IcansPlatformsCafManBundle:Partials:navPrimary.html.twig' %}
         {{ block('nav_primary') }}
 
