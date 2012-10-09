@@ -1,0 +1,10 @@
+# Language variables for the IcansPlatforms Bundle.
+#
+# origin: M
+#
+# @author    Thorsten 'stepo' Hallwas
+# @copyright Oct 9, 2012 ICANS GmbH
+
+# Form field labels
+form:
+    statisticpublic: "Publish Statistics"
