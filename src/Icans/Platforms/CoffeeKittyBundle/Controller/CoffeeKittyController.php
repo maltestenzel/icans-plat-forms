@@ -29,6 +29,22 @@ use JMS\SecurityExtraBundle\Annotation\Secure;
 class CoffeeKittyController extends Controller
 {
     /**
+     * Shows the main manage kitty page
+     *
+     * @Route("/manage/", name="coffeekitty_manage")
+     *
+     * @Secure(roles="ROLE_USER")
+     *
+     * @Template()
+     */
+    public function manageAction()
+    {
+        return array();
+    }
+
+    /**
+     * Shows the search box and search results
+     *
      * @Route("/search/{partialName}/", name="coffeekitty_search")
      * @Route("/search/", name="coffeekitty_search_empty")
      *
@@ -45,6 +61,7 @@ class CoffeeKittyController extends Controller
     }
 
     /**
+     * Shows the start new kitty form
      * @Route("/create/", name="coffeekitty_create")
      *
      * @Secure(roles="ROLE_USER")
@@ -88,6 +105,8 @@ class CoffeeKittyController extends Controller
     }
 
     /**
+     * Shows the administrate kitty page
+     *
      * @Route("/administrate/{id}/", name="coffeekitty_administrate")
      *
      * @Secure(roles="ROLE_USER")
@@ -100,17 +119,5 @@ class CoffeeKittyController extends Controller
         $kittyService = $this->get('icans.platforms.coffee_kitty.service');
         // @todo exception handling!
         return array('kitty' => $kittyService->findById($id));
-    }
-
-    /**
-     * @Route("/overview/", name="coffeekitty_overview")
-     *
-     * @Secure(roles="ROLE_USER")
-     *
-     * @Template()
-     */
-    public function overviewAction()
-    {
-        return array();
     }
 }
