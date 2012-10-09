@@ -1,7 +1,61 @@
-{% for name, url in menuEntries %}
-    <li>{{ name }} {{ url }}</li>
-{% endfor %}
-
 {%  if isSignedIn %}
     Eingeloggt!
 {% endif %}
+
+{% macro renderMenuEntry(entry) %}
+    <li>
+        <a href="{{ entry.href|default('#') }}">
+            {{ entry.linktext|default('unnamed') }}
+        </a>
+    </li>
+{% endmacro %}
+
+<nav id="header">
+    <div class="container">
+        <a class="brand" href="/">{{ 'module.navPrimary.brand'|trans({'%company.name%': 'company.name'|trans}) }}</a>
+        {% if menuEnries is not empty %}
+            <ul class="primary-navigation">
+                {% for entry in menuEntries %}
+                    {{ _self.renderMenuEntry(entry) }}
+                {% endfor %}
+            </ul>
+        {% endif %}
+        {% if userEntries is not empty  %}
+            <ul class="additional-links">
+                {% for entry in userEntries  %}
+                    {{ _self.renderMenuEntry(entry) }}
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+</nav>
+
+
+{% block nav_primary %}
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+
+          <div class="nav-collapse collapse">
+            <ul class="nav">
+            <li class="dropdown active">
+                <a id="home-link" href="#" class="dropdown-toggle" data-toggle="dropdown">Home <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li class="active"><a id="home-link" href="index.html">Home - anonymous user</a></li>
+                  <li><a href="index-authd-no-kitty.html">Home - logged in but not member of any kitty</a></li>
+                  <li><a href="index-authd.html">Home - logged in and member of at least one kitty</a></li>
+                  <li><a href="index-admin.html">Home - logged in as the admin user</a></li>
+                </ul>
+              </li>
+              <li><a id="highscores-link" href="highscore-anon.html">Highscores</a></li>
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
+      </div>
+    </div>
+{% endblock nav_primary %}
