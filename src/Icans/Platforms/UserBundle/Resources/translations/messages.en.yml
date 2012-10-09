@@ -7,4 +7,13 @@
 
 # Form field labels
 form:
+    email: "Email"
+    password: "Password"
+    password_confirmation: "Repeat Password"
+    newpassword: "New Password"
+    newpassword_confirmation: "Repeat New Password"
+    oldpassword: "Old Password"
+    username: "Display Name"
+    fullname: "Full Name"
     statisticpublic: "Publish Statistics"
+    selectkitty: "Select kitty"

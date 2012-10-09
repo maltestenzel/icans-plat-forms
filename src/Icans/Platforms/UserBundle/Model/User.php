@@ -39,9 +39,39 @@ class User extends BaseUser
     protected $statisticPublic = false;
 
     /**
+     * @MongoDb\String
+     * @var string|null
+     */
+    protected $fullName = null;
+
+    /**
+     * Get the full name of the user.
+     * 
+     * @return string|null
+     */
+    public function getFullName()
+    {
+        return $this->fullName;
+    }
+
+    /**
+     * Sets the full name of the user.
+     *
+     * @param string $fullName
+     *
+     * @return User
+     */
+    public function setFullName($fullName)
+    {
+        $this->fullName = $fullName;
+
+        return $this;
+    }
+
+    /**
      * Returns the users default kitty identifier.
      *
-     * @return string
+     * @return string|null
      */
     public function getDefaultKittyId()
     {
