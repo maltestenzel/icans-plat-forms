@@ -30,6 +30,7 @@ class CoffeeKittyController extends Controller
 {
     /**
      * @Route("/search/{partialName}/", name="coffeekitty_search")
+     * @Route("/search/", name="coffeekitty_search_empty")
      *
      * @Secure(roles="ROLE_USER")
      *
@@ -40,7 +41,7 @@ class CoffeeKittyController extends Controller
         /* @var $kittyService CoffeeKittyServiceInterface */
         $kittyService = $this->get('icans.platforms.coffee_kitty.service');
 
-        return array('kitties' => $kittyService->findByPartialName($partialName, 0, 10));
+        return array('kitties' => $kittyService->findByPartialName($partialName, 10, 0));
     }
 
     /**
@@ -72,8 +73,9 @@ class CoffeeKittyController extends Controller
                     $kitty->setOwner($user);
                     $kittyService->create($form->getData());
                 } catch (CoffeeKittyExceptionInterface $exception) {
-                    // @todo mast: wrong redirect, validator etc
-                    $this->redirect($this->generateUrl('coffeekitty_create'));
+                    // @todo mast: write validator instead on form -> present different error message
+                    $form->addError(new \Symfony\Component\Form\FormError('Coffee kitty already exists. [Database error occured]'));
+                    return array('form' => $form->createView());
                 }
 
                 return $this->redirect(

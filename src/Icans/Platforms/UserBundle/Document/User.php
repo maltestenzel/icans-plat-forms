@@ -12,6 +12,7 @@
 namespace Icans\Platforms\UserBundle\Document;
 
 use FOS\UserBundle\Document\User as BaseUser;
+use Icans\Platforms\UserBundle\Api\UserInterface;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
 
 /**
@@ -20,7 +21,7 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
  * @codeCoverageIgnore Model class with getter and setters.
  * @MongoDB\Document
  */
-class User extends BaseUser
+class User extends BaseUser implements UserInterface
 {
     /**
      * @MongoDB\Id(strategy="auto")
@@ -46,9 +47,7 @@ class User extends BaseUser
     protected $fullName = null;
 
     /**
-     * Get the full name of the user.
-     *
-     * @return string|null
+     * {@inheritDoc}
      */
     public function getFullName()
     {
@@ -56,11 +55,7 @@ class User extends BaseUser
     }
 
     /**
-     * Sets the full name of the user.
-     *
-     * @param string $fullName
-     *
-     * @return User
+     * {@inheritDoc}
      */
     public function setFullName($fullName)
     {
@@ -70,9 +65,7 @@ class User extends BaseUser
     }
 
     /**
-     * Returns the users default kitty identifier.
-     *
-     * @return string|null
+     * {@inheritDoc}
      */
     public function getDefaultKittyId()
     {
@@ -80,11 +73,7 @@ class User extends BaseUser
     }
 
     /**
-     * Set the users default kitty identifier.
-     *
-     * @param string $defaultKittyId
-     *
-     * @return User
+     * {@inheritDoc}
      */
     public function setDefaultKittyId($defaultKittyId)
     {
@@ -94,9 +83,7 @@ class User extends BaseUser
     }
 
     /**
-     * Returns whether the statistic of the user is publically visible.
-     *
-     * @return boolean
+     * {@inheritDoc}
      */
     public function isStatisticPublic()
     {
@@ -104,11 +91,7 @@ class User extends BaseUser
     }
 
     /**
-     * Sets whether the statistic of the user is publically visible.
-     *
-     * @param boolean $isStatisticPublic
-     *
-     * @return User
+     * {@inheritDoc}
      */
     public function setStatisticPublic($isStatisticPublic)
     {
