@@ -11,12 +11,13 @@
 namespace Icans\Platforms\UserBundle\Controller;
 
 use Icans\Platforms\UserBundle\Document\User;
+use Icans\Platforms\UserBundle\Form\Type\DefaultKittyFormType;
 
 use FOS\UserBundle\Controller\ProfileController as BaseController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
-use Icans\Platforms\UserBundle\Form\Type\DefaultKittyFormType;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * Controller handling the profile display and editing functionality for users.
@@ -30,9 +31,14 @@ class ProfileController extends BaseController
      */
     public function showUserAction($username)
     {
+        $userManager = $this->container->get('fos_user.user_manager');
+        $user = $userManager->findUserByUsername($username);
+        if (null === $user) {
+            throw new NotFoundHttpException("No User with the name '{$username}' could be found");
+        }
 
         return array(
-            'user' => array('username' => $username),
+            'user' => $user,
         );
     }
 
