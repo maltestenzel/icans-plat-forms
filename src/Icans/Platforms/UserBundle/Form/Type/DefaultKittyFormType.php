@@ -1,6 +1,6 @@
 <?php
 /**
- * Declares DefaultKittyType
+ * Declares DefaultKittyFormType
  *
  * origin: M
  *
@@ -13,10 +13,15 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 /**
- * Description of DefaultKittyType
+ * Form to edit the default kitty for a user.
  */
-class DefaultKittyType extends AbstractType
+class DefaultKittyFormType extends AbstractType
 {
+    /**
+     * @var string
+     */
+    protected $dataClass;
+
     /**
      * @var array
      */
@@ -30,12 +35,14 @@ class DefaultKittyType extends AbstractType
     /**
      * Constructor.
      *
-     * @param array  $userKitties  array of kities the user can choose his default from.
+     * @param string      $dataClass    class holding the user data
+     * @param array       $userKitties  array of kities the user can choose his default from.
      * @param string|null $defaultKitty the id of the current default kitty
      */
-    public function __construct(array $userKitties, $defaultKitty)
+    public function __construct($dataClass, array $userKitties, $defaultKitty)
     {
-        $this->userKitties = $userKitties;
+        $this->dataClass    = $dataClass;
+        $this->userKitties  = $userKitties;
         $this->defaultKitty = $defaultKitty;
     }
 

@@ -11,6 +11,7 @@ namespace Icans\Platforms\UserBundle\Form\Type;
 
 use FOS\UserBundle\Form\Type\ProfileFormType as FOSProfileFormType;
 use Symfony\Component\Security\Core\Validator\Constraint\UserPassword;
+use Symfony\Component\Form\FormBuilderInterface;
 
 /**
  * Extension of the FOS profile form with the full user profile and a reorder of the items.
