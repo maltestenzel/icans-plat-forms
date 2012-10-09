@@ -1,3 +1,11 @@
+{#
+ # Renders the registration form.
+ # Overlays the original file of the FOSUserBundle.
+ #
+ # Author: Sascha 's10z' Schulz
+ # origin: RM
+ # originalFile: /vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/views/Registration/register_content.html.twig
+ #}
 <form action="{{ path('fos_user_registration_register') }}" {{ form_enctype(form) }} method="POST" class="user-registration-form">
     {{ form_widget(form) }}
     <div class="user-registration-actions">
