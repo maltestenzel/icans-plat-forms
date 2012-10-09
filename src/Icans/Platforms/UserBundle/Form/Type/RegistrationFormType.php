@@ -43,7 +43,7 @@ class RegistrationFormType extends FOSRegistrationFormType
                 array('label' => 'form.username')
             )
             ->add(
-                'fullname',
+                'fullName',
                 null,
                 array(
                     'label' => 'form.fullname',

@@ -29,7 +29,7 @@ use JMS\SecurityExtraBundle\Annotation\Secure;
 class CoffeeKittyController extends Controller
 {
     /**
-     * @Route("/search/{partialName}", name="coffeekitty_search")
+     * @Route("/search/{partialName}/", name="coffeekitty_search")
      *
      * @Secure(roles="ROLE_USER")
      *
@@ -44,7 +44,7 @@ class CoffeeKittyController extends Controller
     }
 
     /**
-     * @Route("/create", name="coffeekitty_create")
+     * @Route("/create/", name="coffeekitty_create")
      *
      * @Secure(roles="ROLE_USER")
      *
@@ -86,7 +86,7 @@ class CoffeeKittyController extends Controller
     }
 
     /**
-     * @Route("/administrate/{id}", name="coffeekitty_administrate")
+     * @Route("/administrate/{id}/", name="coffeekitty_administrate")
      *
      * @Secure(roles="ROLE_USER")
      *
@@ -98,5 +98,17 @@ class CoffeeKittyController extends Controller
         $kittyService = $this->get('icans.platforms.coffee_kitty.service');
         // @todo exception handling!
         return array('kitty' => $kittyService->findById($id));
+    }
+
+    /**
+     * @Route("/overview/", name="coffeekitty_overview")
+     *
+     * @Secure(roles="ROLE_USER")
+     *
+     * @Template()
+     */
+    public function overview()
+    {
+        return array();
     }
 }

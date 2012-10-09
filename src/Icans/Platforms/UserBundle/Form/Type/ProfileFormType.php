@@ -44,7 +44,7 @@ class ProfileFormType extends FOSProfileFormType
                 array('label' => 'form.username')
             )
             ->add(
-                'fullname',
+                'fullName',
                 null,
                 array(
                     'label' => 'form.fullname',
