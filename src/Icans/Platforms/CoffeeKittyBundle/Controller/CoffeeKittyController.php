@@ -107,7 +107,7 @@ class CoffeeKittyController extends Controller
      *
      * @Template()
      */
-    public function overview()
+    public function overviewAction()
     {
         return array();
     }
