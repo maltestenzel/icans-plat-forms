@@ -1,0 +1,5 @@
+<ul>
+{% for kitty in kitties %}
+    <li>{{ kitty.name }} (created by: {{ kitty.owner.username }})</li>
+{% endfor %}
+</ul>
