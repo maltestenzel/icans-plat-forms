@@ -33,6 +33,19 @@ class UserTest extends BaseUserTest
     }
 
     /**
+     * Tests the full name value. It has to be null at initialisation of the object. After setting it to "Name"
+     * the value is expected to be returned.
+     */
+    public function testFullName()
+    {
+        $user = $this->getUser();
+        $this->assertNull($user->getFullName());
+        $userReturned = $user->setFullName('Name');
+        $this->assertSame($userReturned, $user);
+        $this->assertEquals('Name', $user->getFullName());
+    }
+
+    /**
      * Tests the statisticPublic value. It has to be fals at initialisation of the object. After setting it to true we
      * expect it to be returned through "isStatisticPublic"
      */

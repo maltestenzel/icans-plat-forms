@@ -17,4 +17,17 @@
         </service>
     </services>
     -->
+
+    <services>
+        <service id="icans.platform.form.type.profileform" class="Icans\Platforms\UserBundle\Form\Type\ProfileFormType">
+            <argument>Icans\Platforms\UserBundle\Model\User</argument>
+        </service>
+        <service id="icans.platform.form.type.registrationform" class="Icans\Platforms\UserBundle\Form\Type\RegistrationFormType">
+            <argument>Icans\Platforms\UserBundle\Model\User</argument>
+        </service>
+        <service id="icans.platform.form.type.defaultkittyform" class="Icans\Platforms\UserBundle\Form\Type\DefaultKittyFormType">
+            <argument>Icans\Platforms\UserBundle\Model\User</argument>
+        </service>
+    </services>
+
 </container>

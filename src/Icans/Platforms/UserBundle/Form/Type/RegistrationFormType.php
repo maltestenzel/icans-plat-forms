@@ -13,7 +13,7 @@ use FOS\UserBundle\Form\Type\RegistrationFormType as FOSRegistrationFormType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 /**
- * Extension of the FOS Registration form with the added option to publish statistics.
+ * Extension of the FOS Registration form with the added fullname and the option to publish statistics. Also
  */
 class RegistrationFormType extends FOSRegistrationFormType
 {
@@ -22,8 +22,33 @@ class RegistrationFormType extends FOSRegistrationFormType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        parent::buildForm();
         $builder
+            ->add(
+                'email',
+                'email',
+                array('label' => 'form.email')
+            )
+            ->add(
+                'plainPassword',
+                'repeated',
+                array(
+                    'type' => 'password',
+                    'first_options' => array('label' => 'form.password'),
+                    'second_options' => array('label' => 'form.password_confirmation'),
+                )
+            )
+            ->add(
+                'username',
+                null,
+                array('label' => 'form.username')
+            )
+            ->add(
+                'fullname',
+                null,
+                array(
+                    'label' => 'form.fullname',
+                )
+            )
             ->add(
                 'statisticPublic',
                 'checkbox',
@@ -39,6 +64,6 @@ class RegistrationFormType extends FOSRegistrationFormType
      */
     public function getName()
     {
-        return 'icansplatforms_user_registration';
+        return 'icans_platforms_user_registration';
     }
 }
