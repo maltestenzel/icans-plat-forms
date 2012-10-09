@@ -23,3 +23,30 @@ body{
     @extend .btn-primary;
     @extend .btn-mini;
 }
+
+.user-account-edit-form {
+    @extend .form-horizontal;
+
+    .form-row {
+        @extend .control-group;
+
+        // use child combinator as key element shall behave differently if descendent only
+        & > label {
+            @extend .control-label;
+        }
+    }
+
+    .form-controls {
+        @extend .controls;
+    }
+    .form-explanation {
+        display: inline;
+    }
+}
+.user-account-edit-actions {
+     @extend .controls;
+}
+.user-account-edit-primary-action {
+    @extend .btn;
+    @extend .btn-primary;
+}
