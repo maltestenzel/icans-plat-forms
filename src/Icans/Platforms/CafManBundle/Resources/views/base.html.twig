@@ -1,0 +1,36 @@
+{#
+    Abstract definition of the core layout.
+    This will be extended by individual pages.
+
+    Author:    Sascha 's10z' Schulz
+    origin:    M
+    copyright: ${date} ICANS GmbH
+ #}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}CafMan{% endblock %}</title>
+        {% stylesheets filter="scss" output="combined.css"
+            '@IcansPlatformsCafManBundle/Resources/public/css/styles.css'
+        %}
+            <link rel="stylesheet" href="{{ asset_url }}" />
+        {% endstylesheets %}
+    </head>
+    <body>
+        {# render the primary navigation #}
+        {% use 'IcansPlatformsCafManBundle:Partials:navPrimary.html.twig' %}
+        {{ block('nav_primary') }}
+
+
+        <div class="stage">
+            {# stage content block will be declared by pages #}
+            {{ block('stage') }}
+        </div>
+
+        {# footer definition; merged into base as it is actually static to reduce template count. #}
+        <footer class="cafman-footer">
+            <p>&copy; ICANS GmbH 2012</p>
+        </footer>
+    </body>
+</html>
