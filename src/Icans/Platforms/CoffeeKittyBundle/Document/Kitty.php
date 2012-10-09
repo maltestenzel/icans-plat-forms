@@ -11,6 +11,7 @@ namespace Icans\Platforms\CoffeeKittyBundle\Document;
 
 use Icans\Platforms\CoffeeKittyBundle\Api\KittyInterface;
 use Icans\Platforms\UserBundle\Document\User;
+use Icans\Platforms\UserBundle\Api\UserInterface;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
 
@@ -74,7 +75,7 @@ class Kitty implements KittyInterface
     /**
      * {@inheritDoc}
      */
-    public function setOwner(User $owner)
+    public function setOwner(UserInterface $owner)
     {
         $this->owner = $owner;
         return $this;
