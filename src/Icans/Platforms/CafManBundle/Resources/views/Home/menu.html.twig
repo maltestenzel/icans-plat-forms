@@ -20,23 +20,25 @@
 {% endmacro %}
 
 <nav class="header">
-    <div class="container">
-        <a class="brand" href="/">{{ 'module.navPrimary.brand'|trans({'%company.name%': 'company.name'|trans}) }}</a>
-        {% if menuEntries is not empty %}
-            <ul class="primary-navigation">
-                {% for entry in menuEntries %}
-                    {# call macro declared above #}
-                    {{ _self.renderMenuEntry(entry) }}
-                {% endfor %}
-            </ul>
-        {% endif %}
-        {% if userEntries|default(null) is not empty  %}
-            <ul class="additional-links">
-                {% for entry in userEntries  %}
-                    {# call macro declared above #}
-                    {{ _self.renderMenuEntry(entry) }}
-                {% endfor %}
-            </ul>
-        {% endif %}
+    <div class="header-inside">
+        <div class="container">
+            <a class="brand" href="/">{{ 'module.navPrimary.brand'|trans({'%company.name%': 'company.name'|trans}) }}</a>
+            {% if menuEntries is not empty %}
+                <ul class="primary-navigation">
+                    {% for entry in menuEntries %}
+                        {# call macro declared above #}
+                        {{ _self.renderMenuEntry(entry) }}
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            {% if userEntries|default(null) is not empty  %}
+                <ul class="additional-links">
+                    {% for entry in userEntries  %}
+                        {# call macro declared above #}
+                        {{ _self.renderMenuEntry(entry) }}
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
     </div>
 </nav>
