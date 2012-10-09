@@ -1,5 +1,6 @@
-<h2>{{ 'module.createKitty.title'|trans }}</h2>
 <form action="{{ path('coffeekitty_create') }}" method="post" {{ form_enctype(form) }} class="create-kitty-form">
     {{ form_widget(form) }}
-    <input type="submit" />
+    <button type="submit" class="create-kitty-primary-action">
+        {{ 'createKitty.submit'|trans }}
+    </button>
 </form>

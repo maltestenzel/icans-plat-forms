@@ -57,8 +57,27 @@ body{
     @extend .btn-primary;
 }
 
+/**
+ * Create Kittys Form
+ * ==================
+ */
 .create-kitty-form {
     @extend .form-inline;
+    div {
+        display: inline-block; // collapse all rendered divs
+    }
+    
+    input {
+        @extend .input-xlarge;
+        display: inline-block;
+    }
+
+    label {
+        display: none;
+    }
+}
+.create-kitty-primary-action {
+    @extend .btn;
 }
 
 /**
