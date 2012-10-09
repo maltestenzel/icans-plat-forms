@@ -1,6 +1,6 @@
 <?php
 /**
- * Declares the DefaultController
+ * Declares the IcansPlatformsCoffeeKittyBundle
  *
  * origin: GM
  *

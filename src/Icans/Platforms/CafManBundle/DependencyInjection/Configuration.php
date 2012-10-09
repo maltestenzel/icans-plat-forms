@@ -1,6 +1,6 @@
 <?php
 /**
- * Declares the DefaultController
+ * Declares the Configuration
  *
  * origin: GM
  *
