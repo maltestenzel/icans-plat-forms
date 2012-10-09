@@ -9,6 +9,10 @@ page:
   home:
     title: Welcome to CafMan by %company.name%!
     subTitle: CafMan is your all-purpose Caffeine Manager. It allows you to manage your team's coffee kitty, and plan and monitor your caffeine intoxication.
+    register:
+      title: Sign up
+    login:
+      title: ... or sign in
 
 module:
   navPrimary:
