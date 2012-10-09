@@ -1,3 +1,8 @@
+icans_platforms_caf_man:
+    resource: "@IcansPlatformsCafManBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 _welcome:
     pattern:  /
     defaults: { _controller: AcmeDemoBundle:Welcome:index }
