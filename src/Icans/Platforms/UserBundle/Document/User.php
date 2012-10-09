@@ -17,6 +17,7 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
 /**
  * Document extending the default FOS User with the attributes needed for the CafMan Application.
  *
+ * @codeCoverageIgnore Model class with getter and setters.
  * @MongoDB\Document
  */
 class User extends BaseUser
