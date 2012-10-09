@@ -4,7 +4,11 @@
         <meta charset="UTF-8" />
         <title>{% block title %}Demo Bundle{% endblock %}</title>
         <link rel="icon" sizes="16x16" href="{{ asset('favicon.ico') }}" />
-        <link rel="stylesheet" href="{{ asset('bundles/acmedemo/css/demo.css') }}" />
+        {% stylesheets filter="scss" output="combined.css"
+            '@AcmeDemoBundle/Resources/public/css/demo.css'
+        %}
+            <link rel="stylesheet" href="{{ asset_url }}" />
+        {% endstylesheets %}
     </head>
     <body>
         <div id="symfony-wrapper">
