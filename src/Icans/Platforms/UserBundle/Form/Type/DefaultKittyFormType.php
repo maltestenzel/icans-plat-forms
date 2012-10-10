@@ -58,11 +58,9 @@ class DefaultKittyFormType extends AbstractType
         $defaultKittyOptions = array(
             'choices' => $kitties,
             'label' => 'form.selectkitty.label',
-            'required' => false
+            'required' => false,
+            'data' => $this->defaultKittyId,
         );
-        if (null !== $this->defaultKittyId) {
-            $defaultKittyOptions['prefered_choices'] = array($this->defaultKittyId);
-        }
         $builder
             ->add(
                 'defaultKittyId',

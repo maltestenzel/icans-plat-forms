@@ -53,6 +53,31 @@ class ProfileController extends BaseController
      */
     public function editSelfAction($username)
     {
+        /* @var $multiFormService MultiFormServiceInterface */
+        $multiFormService = $this->container->get('icans.platforms.caf_man.multi_form.service');
+
+        $options = array('username' => $username);
+        $subForms = array(
+            'editself_form' => $multiFormService->renderSubForm('IcansPlatformsUserBundle:Profile:editSelfForm', $options),
+            'defaultkitty_form' => $multiFormService->renderSubForm('IcansPlatformsUserBundle:Profile:defaultkitty', $options),
+
+        );
+        // If one of the sub forms contains a redirect (=> success), we want to execute the redirect
+        if(null !== ($redirect = $multiFormService->extractRedirectFromResponses(array_values($subForms)))) {
+            return $redirect;
+        }
+
+        return $subForms;
+    }
+
+    /**
+     * Edit the user, added security check for his own profile after moving to new route.
+     *
+     * @Route("/profile/{$username}/editForm/", name="user_profile_editform")
+     * @Template("FOSUserBundle:Profile:editSelfForm.html.twig")
+     */
+    public function editSelfFormAction($username)
+    {
         $user = $this->container->get('security.context')->getToken()->getUser();
         if (!is_object($user) || !$user instanceof UserInterface || $user->getUserName() != $username) {
             throw new AccessDeniedException('This user does not have access to this section.');
@@ -73,6 +98,7 @@ class ProfileController extends BaseController
         );
     }
 
+
     /**
      * Displays the form to edit the defaultkitty.
      *
@@ -82,28 +108,31 @@ class ProfileController extends BaseController
     public function defaultkittyAction()
     {
         // reenable to secure
-        /*$user = $this->container->get('security.context')->getToken()->getUser();
+        $user = $this->container->get('security.context')->getToken()->getUser();
         if (!is_object($user) || !$user instanceof UserInterface) {
             throw new AccessDeniedException('This user does not have access to this section.');
-        }*/
+        }
 
-        // @todo replace with service
-        $kitties = array();
-        $defaultKitty = null;
-
-
+        /* @var $kittyUserService \Icans\Platforms\CoffeeKittyBundle\Api\KittyUserServiceInterface */
+        $kittyUserService = $this->container->get('icans.platforms.kitty_user.service');
+        $userKittiesFromDb = $kittyUserService->findAllForUser($user);
+        $userKitties = array();
+        foreach($userKittiesFromDb as $userKitty)
+        {
+            $userKitties[$userKitty->getKitty()->getId()] = $userKitty->getKitty()->getName();
+        }
+        
         $defaultKittyType = new DefaultKittyFormType(
             'Icans\Platforms\UserBundle\Document\User',
-            $kitties,
-            $defaultKitty
+            $userKitties,
+            $user->getDefaultKittyId()
         );
 
-        $profile = new User();
         $formFactory = $this->container->get('form.factory');
 
         $defaultkittyForm = $formFactory->create(
             $defaultKittyType,
-            $profile,
+            $user,
             array()
         );
 
