@@ -19,6 +19,9 @@ use Icans\Platforms\CoffeeKittyBundle\Form\Type\KittyType;
 use Icans\Platforms\CoffeeKittyBundle\Form\Type\KittySearchType;
 use Icans\Platforms\CoffeeKittyBundle\Form\Type\KittyPriceType;
 use Icans\Platforms\CafManBundle\Api\MultiFormServiceInterface;
+use Icans\Platforms\CoffeeKittyBundle\Entity\UserBalance;
+use Icans\Platforms\CoffeeKittyBundle\Entity\UserBalancesForKitty;
+use Icans\Platforms\CoffeeKittyBundle\Form\Type\UserBalancesForKittyType;
 
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -28,9 +31,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use JMS\SecurityExtraBundle\Annotation\Secure;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Doctrine\Common\Collections\ArrayCollection;
-use Icans\Platforms\CoffeeKittyBundle\Entity\UserBalance;
-use Icans\Platforms\CoffeeKittyBundle\Entity\UserBalancesForKitty;
-use Icans\Platforms\CoffeeKittyBundle\Form\Type\UserBalancesForKittyType;
 
 /**
  * Implements the CoffeeKittyController
@@ -53,8 +53,25 @@ class CoffeeKittyController extends Controller
         /* @var $multiFormService MultiFormServiceInterface */
         $multiFormService = $this->get('icans.platforms.caf_man.multi_form.service');
 
+        /* @var $kittyService KittyUserServiceInterface */
+        $kittyUserService = $this->get('icans.platforms.kittyuser.service');
+        $userKittiesFromDb = $kittyUserService->findAllForUser($this->getUser());
+
+        $returnedKitties = array();
+        foreach ($userKittiesFromDb as $userKitty) {
+            $returnedKitty = array(
+                'name' => $userKitty->getKitty()->getName(),
+                'balance' => $userKitty->getBalance(),
+                'pending' => $userKitty->getPending(),
+                'kittyId' => $userKitty->getKitty()->getId(),
+                'isOwner' => ($userKitty->getUser()->getId() === $this->getUser()->getId())
+            );
+            $returnedKitties[] = $returnedKitty;
+        }
+
         // Create sub forms, will forward the post if neccessary
         $subForms = array(
+            'userkitties' => $returnedKitties,
             'overview_form' => $multiFormService->renderSubForm('IcansPlatformsCoffeeKittyBundle:CoffeeKitty:overview'),
             'create_form' => $multiFormService->renderSubForm('IcansPlatformsCoffeeKittyBundle:CoffeeKitty:create'),
             'search_form' => $multiFormService->renderSubForm('IcansPlatformsCoffeeKittyBundle:CoffeeKitty:search'),
@@ -81,6 +98,9 @@ class CoffeeKittyController extends Controller
      */
     public function searchAction(Request $request, $partialName = "")
     {
+        $user = $this->getUser();
+        /* @var $kittyUserService KittyUserServiceInterface */
+        $kittyUserService = $this->get('icans.platforms.kittyuser.service');
         /* @var $kittyService KittyServiceInterface */
         $kittyService = $this->get('icans.platforms.kitty.service');
         $kitty = new KittySearch();
@@ -91,9 +111,16 @@ class CoffeeKittyController extends Controller
             $partialName = $kitty->getName();
         }
 
+        $kittiesJoined = array();
+        foreach (array_merge($kittyUserService->findAllForUser($user, true), $kittyUserService->findAllForUser($user, false)) as $userKitty) {
+            $kittiesJoined[] = $userKitty->getKitty()->getId();
+        }
+
         return array(
             'form' => $form->createView(),
             'kitties' => $kittyService->findByPartialName($partialName, 10, 0),
+            // Pending and non-pending kitties
+            'kittiesJoined' => $kittiesJoined,
         );
     }
 
@@ -317,6 +344,30 @@ class CoffeeKittyController extends Controller
         // @TODO implementation required
         return array();
     }
+
+    /**
+     * Request to join a kitty
+     *
+     * @Route("/startKittyJoinRequestByUser/{kittyId}/", name="coffeekitty_start_join")
+     *
+     * @Secure(roles="ROLE_USER")
+     */
+    public function  startKittyJoinRequestAction($kittyId) {
+        /* @var $kittyService KittyServiceInterface */
+        $kittyService = $this->get('icans.platforms.kitty.service');
+        try {
+            $kitty = $kittyService->findById($kittyId);
+
+            /* @var $kittyUserService KittyUserServiceInterface */
+            $kittyUserService = $this->get('icans.platforms.kittyuser.service');
+            $kittyUserService->requestMembership($kitty, $this->getUser());
+        } catch (CoffeeKittyExceptionInterface $exception) {
+            // Ignore already exists on join
+        }
+
+        return $this->redirect($this->getRequest()->headers->get('referer'));
+    }
+
 
     /**
      * Accept a user request to join a coffee kitty

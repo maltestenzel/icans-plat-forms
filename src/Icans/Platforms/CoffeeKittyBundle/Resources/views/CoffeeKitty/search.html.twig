@@ -34,9 +34,11 @@
                 <td>{{ kitty.name }}</td>
                 {# @TODO implement href to request membership #}
                 <td>
-                    <button href="#" class="search-result-item-action member-request">
-                        {{ 'module.search.action.requestMembership'|trans }}
-                    </button>
+                    {% if kitty.id not in kittiesJoined %}
+                        <a href="{{ path('coffeekitty_start_join', {'kittyId': kitty.id}) }}" class="search-result-item-action member-request">
+                            {{ 'module.search.action.requestMembership'|trans }}
+                        </a>
+                    {% endif %}
                 </td>
             </tr>
         {% endfor %}

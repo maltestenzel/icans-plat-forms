@@ -73,10 +73,16 @@ class KittyUserService implements KittyUserServiceInterface
             ->setPending(true)
             ->setBalance(0.0);
 
-        $this->documentManager->persist($kittyUser);
-        try {
+        $numberOfRelations = $this->documentManager->createQueryBuilder('Icans\Platforms\CoffeeKittyBundle\Document\KittyUser')
+            ->field('user.$id')->equals(new \MongoId($user->getId()))
+            ->field('kitty.$id')->equals(new \MongoId($kitty->getId()))
+            ->getQuery()->count();
+
+        if($numberOfRelations == 0) {
+            // @todo race conditions apply here, need unique index in db
+            $this->documentManager->persist($kittyUser);
             $this->documentManager->flush();
-        } catch (\Exception $exception) {
+        } else {
             throw new AlreadyExistsException(
                 'The kitty->user ' . $kitty->getName() . ' -> ' . $user->getUsername() . ' already exists.'
             );
