@@ -8,7 +8,7 @@
  * @author    Thorsten 'stepo' Hallwas
  * @copyright Oct 9, 2012 ICANS GmbH
  */
-namespace Icans\Platforms\CoffeeKittyBundle\Tests;
+namespace Icans\Platforms\CoffeeKittyBundle\Document\Tests;
 
 use Icans\Platforms\CoffeeKittyBundle\Document\Consumption;
 
