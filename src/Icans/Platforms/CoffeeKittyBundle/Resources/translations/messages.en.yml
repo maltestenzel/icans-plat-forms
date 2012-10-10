@@ -25,6 +25,12 @@ module:
     title: start a new coffee kitty
   kittyOverview:
     title: Overview
+    kittyNames: Coffee Kitty
+    accountBalance: Account Balance
+    actions: ''
+    balanceCurrency: €
+    action:
+      linkText: Administer
   editPayments:
     description: Name (Display Name)
     balance: Balance

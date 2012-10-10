@@ -30,6 +30,12 @@ body{
 .form-field-unit {
     @extend .add-on;
 }
+.below-quota {
+    @extend .text-error;
+}
+.above-quota {
+    @extend .text-success;
+}
 
 /**
  * Styling of form errors
@@ -306,12 +312,6 @@ body{
     .editpayments-balance { // needs to be scoped in order to receive specifity
         text-align: right;
     }
-    .below-quota {
-        @extend .text-warning;
-    }
-    .above-quota {
-        @extend .text-success;
-    }
     .contains-user {
         @extend .info;
     }
@@ -345,4 +345,17 @@ body{
     @extend .btn;
     @extend .btn-primary;
     @extend .btn-large;
+}
+
+/**
+ * Kitty Overview
+ * ===================
+ */
+.kitty-overview {
+    @extend .table;
+    @extend .table-condensed;
+
+    .kitty-overview-balance { // needs to be descendant for specifity
+        text-align: right;
+    }
 }
