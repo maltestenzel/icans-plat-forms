@@ -4,7 +4,7 @@
     copyright: ${date} ICANS GmbH
  #}
 {% form_theme form.price 'IcansPlatformsCoffeeKittyBundle:CoffeeKitty:editPriceFormTheme.html.twig' %}
-<form action="{{ path('coffeekitty_editprice', {'kittyId' : kittyId}) }}" method="post" {{ form_enctype(form) }} class="editprice-kitty-form">
+<form action="{{ path('coffeekitty_administrate', {'kittyId' : kittyId}) }}" method="post" {{ form_enctype(form) }} class="editprice-kitty-form">
     {{ form_widget(form) }}
     <div class="editprice-kitty-actions">
         <button type="submit" class="editprice-kitty-primary-action" id="price-submit">

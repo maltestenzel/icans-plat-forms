@@ -171,8 +171,8 @@ class CoffeeKittyController extends Controller
         $form = $this->createForm(new KittyPriceType(), $kitty);
         if ($request->isMethod('POST')) {
             $form->bind($request);
-            $kitty->setPrice($form->getData()->getPrice());
             if ($form->isValid()) {
+                $kitty->setPrice($form->getData()->getPrice());
                 $kittyService->updateKitty($kitty);
             }
         }
@@ -204,8 +204,21 @@ class CoffeeKittyController extends Controller
         } catch (CoffeeKittyExceptionInterface $exception) {
             throw new NotFoundHttpException($exception->getMessage());
         }
-        // @todo exception handling!
-        return array('kitty' => $kitty);
+
+        /* @var $multiFormService MultiFormServiceInterface */
+        $multiFormService = $this->get('icans.platforms.caf_man.multi_form.service');
+
+        // Create sub forms, will forward the post if neccessary
+        $subForms = array(
+            'price_form' => $multiFormService->renderSubForm('IcansPlatformsCoffeeKittyBundle:CoffeeKitty:editPrice'),
+        );
+
+        // If one of the sub forms contains a redirect (=> success), we want to execute the redirect
+        if(null !== ($redirect = $multiFormService->extractRedirectFromResponses(array_values($subForms)))) {
+            return $redirect;
+        }
+
+        return array_merge($subForms, array('kitty' => $kitty));
     }
 
     /**

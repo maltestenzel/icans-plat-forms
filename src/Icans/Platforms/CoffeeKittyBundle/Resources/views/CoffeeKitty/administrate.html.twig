@@ -16,7 +16,7 @@
         </div>
         <div class="span5">
             <h2>{{ 'page.administrateKitty.price.title'|trans }}</h2>
-            {% render 'IcansPlatformsCoffeeKittyBundle:CoffeeKitty:editPrice' with {kittyId: kitty.id} %}
+            {{ price_form.content|raw }}
         </div>
     </div>
     {{ kitty.name }}
