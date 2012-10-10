@@ -23,9 +23,10 @@ interface MultiFormServiceInterface
      * Render sub form for given controller as sub request while pertaining POST
      *
      * @param string $controller
+     * @param srray $options
      * @return Response
      */
-    public function renderSubForm($controller);
+    public function renderSubForm($controller, array $options = array());
 
     /**
      * Tries to extract the first redirect response found in an array of response. Will return null if no
