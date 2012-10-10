@@ -50,4 +50,12 @@ interface KittyServiceInterface
      * @return KittyInterface
      */
     public function create(KittyInterface $kitty);
+
+    /**
+     * Update the Kitty in the database.
+     *
+     * @param KittyInterface $kitty
+     * @return KittyInterface
+     */
+    public function updateKitty(KittyInterface $kitty);
 }

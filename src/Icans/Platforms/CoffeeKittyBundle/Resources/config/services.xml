@@ -29,5 +29,13 @@
             <argument>%icans.platforms.user.document.class%</argument>
             <tag name="form.type" alias="icans_coffeekitty_consumecoffee" />
         </service>
+        <service id="icans.platform.form.type.kittyform" class="Icans\Platforms\CoffeeKittyBundle\Form\Type\KittyType">
+            <argument>%icans.platforms.user.document.class%</argument>
+            <tag name="form.type" alias="icans_platforms_coffeekitty_kittyprice" />
+        </service>
+        <service id="icans.platform.form.type.kittypriceform" class="Icans\Platforms\CoffeeKittyBundle\Form\Type\KittyPriceType">
+            <argument>%icans.platforms.user.document.class%</argument>
+            <tag name="form.type" alias="icans_platforms_coffeekitty_kitty" />
+        </service>
     </services>
 </container>

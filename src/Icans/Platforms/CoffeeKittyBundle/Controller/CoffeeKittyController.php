@@ -15,7 +15,9 @@ use Icans\Platforms\CoffeeKittyBundle\Api\Exception\CoffeeKittyExceptionInterfac
 use Icans\Platforms\CoffeeKittyBundle\Document\Kitty;
 use Icans\Platforms\UserBundle\Document\User;
 use Icans\Platforms\CoffeeKittyBundle\Form\Type\KittyType;
+use Icans\Platforms\CoffeeKittyBundle\Form\Type\KittyPriceType;
 
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -111,20 +113,69 @@ class CoffeeKittyController extends Controller
     }
 
     /**
-     * Shows the administrate kitty page
-     *
-     * @Route("/administrate/{id}/", name="coffeekitty_administrate")
-     *
+     * Shows the start new kitty form.
+     * 
+     * @param Request $request
+     * @param string  $kittyId
+     * 
+     * @return array
+     * 
+     * @Route("/editprice/{kittyId}/", name="coffeekitty_editprice")
      * @Secure(roles="ROLE_USER")
-     *
      * @Template()
      */
-    public function administrateAction($id)
+    public function editPriceAction(Request $request, $kittyId)
     {
         /* @var $kittyService KittyServiceInterface */
         $kittyService = $this->get('icans.platforms.kitty.service');
+        try {
+            $kitty = $kittyService->findById($kittyId);
+        } catch (CoffeeKittyExceptionInterface $exception) {
+            throw new NotFoundHttpException($exception->getMessage());
+        }
+
+        if ($kitty->getOwner()->getId() != $this->getUser()->getId()) {
+            throw new AccessDeniedHttpException('You are not owner of this coffee kitty.');
+        }
+
+        $form = $this->createForm(new KittyPriceType(), $kitty);
+        if ($request->isMethod('POST')) {
+            $form->bind($request);
+            $kitty->setPrice($form->getData()->getPrice());
+            if ($form->isValid()) {
+                $kittyService->updateKitty($kitty);
+            }
+        }
+
+        return array(
+            'form' => $form->createView(),
+            'kittyId' => $kittyId,
+        );
+    }
+
+    /**
+     * Shows the administrate kitty page
+     *
+     * @param Request $request
+     * @param string  $kittyId
+     *
+     * @return array
+     *
+     * @Route("/administrate/{kittyId}/", name="coffeekitty_administrate")
+     * @Secure(roles="ROLE_USER")
+     * @Template()
+     */
+    public function administrateAction($kittyId)
+    {
+        /* @var $kittyService KittyServiceInterface */
+        $kittyService = $this->get('icans.platforms.kitty.service');
+        try {
+            $kitty = $kittyService->findById($kittyId);
+        } catch (CoffeeKittyExceptionInterface $exception) {
+            throw new NotFoundHttpException($exception->getMessage());
+        }
         // @todo exception handling!
-        return array('kitty' => $kittyService->findById($id));
+        return array('kitty' => $kitty);
     }
 
     /**

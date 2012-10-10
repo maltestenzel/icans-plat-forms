@@ -14,6 +14,7 @@ use Icans\Platforms\UserBundle\Document\User;
 use Icans\Platforms\UserBundle\Api\UserInterface;
 
 use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Implements a model representing our coffeekitty
@@ -30,6 +31,7 @@ class Kitty implements KittyInterface
     /**
      * @MongoDB\String
      * @MongoDB\UniqueIndex(safe="true")
+     * @Assert\MinLength(3)
      *
      * @var string
      */
@@ -44,6 +46,7 @@ class Kitty implements KittyInterface
     /**
      * @MongoDB\Float
      * @var float
+     * @Assert\Type(type="float", message="Must be a float.")
      */
     protected $price;
 

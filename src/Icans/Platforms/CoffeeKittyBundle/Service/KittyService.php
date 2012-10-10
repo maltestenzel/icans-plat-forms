@@ -74,4 +74,15 @@ class KittyService implements KittyServiceInterface
 
         return $kitty;
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function updateKitty(KittyInterface $kitty)
+    {
+        $this->documentManager->persist($kitty);
+        $this->documentManager->flush();
+
+        return $kitty;
+    }
 }
