@@ -1,0 +1,21 @@
+{#
+ #   Render the dialogue to set a threshold for ones caffein level to get an alarm.
+ #
+ #   Author:    Sascha 's10z' Schulz
+ #   origin:    M
+ #   copyright: 2012 ICANS GmbH
+ #}
+{# attach a custom form theme in order to inject the unit to the form field #}
+{% form_theme form.caffeinThreshold 'IcansPlatformsUserBundle:Profile:caffeinThresholdAlertForm.html.twig' %}
+
+<h2>{{ 'module.caffeinThresholdAlert.title'|trans }}</h2>
+<p>{{ 'module.caffeinThresholdAlert.description'|trans }}</p>
+
+<form action="" class="caffein-threshold-alert-form" {{ form_enctype(form) }}>
+    {{ form_widget(form) }}
+    <div class="caffein-threshold-alert-actions">
+        <button type="submit" class="caffein-threshold-alert-primary-action" id="alert-submit">
+            {{ 'module.caffeinThresholdAlert.primaryAction'|trans }}
+        </button>
+    </div>
+</form>

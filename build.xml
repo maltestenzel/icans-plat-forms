@@ -17,6 +17,7 @@
         dumpassets,
         clearcache,
         warmupcache,
+        fixtures,
         unittest,
         functionaltest"
 
@@ -139,6 +140,19 @@
     <target name="updateschema" hidden="false">
         <echo message="Updating schema" />
         <exec command="php ${path.app}/console doctrine:mongodb:schema:update"
+              checkreturn="true"
+              passthru="true"
+                />
+    </target>
+
+    <target name="fixtures" hidden="false" depends="createschema">
+        <echo message="Creating system admin" />
+        <exec command="php ${path.app}/console fos:user:create admin organizers@plat-forms.org admin"
+              checkreturn="true"
+              passthru="true"
+                />
+        <echo message="Promoting system admin" />
+        <exec command="php ${path.app}/console  fos:user:promote admin --super"
               checkreturn="true"
               passthru="true"
                 />

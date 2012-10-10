@@ -61,4 +61,14 @@ interface KittyUserServiceInterface
      * @throws NotFoundException In case the kitty to user relation document cannot be found.
      */
     public function addBalance(KittyInterface $kitty, UserInterface $user, $balance);
+
+
+    /**
+     * Find all KittyUser relations for the given user.
+     *
+     * @param UserInterface $user
+     *
+     * @return array
+     */
+    public function findAllForUser(UserInterface $user);
 }
