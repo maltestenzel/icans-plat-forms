@@ -1,0 +1,32 @@
+{#
+ #  Abstract definition how a highscore shall be rendered
+ #
+ #  Author:    Sascha 's10z' Schulz
+ #  origin:    M
+ #  copyright: ${date} ICANS GmbH
+ #}
+<h2>{{ highscoreTitle }}</h2>
+<table class="table hero-unit">
+    <thead>
+        <tr>
+            <th>{{ 'page.highscore.rank'|trans }}</th>
+            <th>{{ 'page.highscore.name'|trans }}</th>
+            <th>{{ 'page.highscore.level'|trans}}</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for entry in highscoreList %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>
+                    {% if entry.user.publicStatistic is defined and entry.user.publicStatistic == true %}
+                        <a href="{{ entry.user.url }}">{{ entry.user.displayname }}</a>
+                    {% else %}
+                        {{ 'highscore.anonUserName'|trans }}
+                    {% endif %}
+                </td>
+                <td>{{ entry.level }}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
