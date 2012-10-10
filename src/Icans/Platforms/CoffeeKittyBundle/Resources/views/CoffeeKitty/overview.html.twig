@@ -1,1 +1,29 @@
-To be implemented, Stub provided.
+<table class="kitty-overview">
+    <thead>
+        <tr>
+            <th>{{ 'module.kittyOverview.kittyNames'|trans }}</th>
+            <th>{{ 'module.kittyOverview.accountBalance'|trans }}</th>
+            <th>{{ 'module.kittyOverview.actions'|trans }}</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for kitty in userkitties %}
+            <tr>
+                <td class="kitty-overview-name">
+                    {{ kitty.name }}
+                </td>
+                <td class="kitty-overview-balance {{ kitty.balance < 0 ? 'below' : 'above' }}-quota">
+                    {{ 'module.kittyOverview.balanceCurrency'|trans }}
+                    {{ kitty.balance }}
+                </td>
+                <td class="kitty-overview-actions">
+                    {% if kitty.isOwner %}
+                        <a href="{{ path('coffeekitty_administrate', {kittyId: kitty.kittyId}) }}" class="administer-link">
+                            {{ 'module.kittyOverview.action.linkText'|trans }}
+                        </a>
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
