@@ -36,11 +36,11 @@ class MenuController extends Controller
         $menuEntries[] = $this->generateMenuEntry('Home', 'cafman_home_display_visitor', 'home-link');
 
         if ($isSignedIn) {
-            $menuEntries[] = $this->generateMenuEntry('Caffeine Statistics');
+            $menuEntries[] = $this->generateMenuEntry('Caffeine Statistics', null, 'caffeine-link');
         }
-        $menuEntries[] = $this->generateMenuEntry('Highscores', 'cafman_highscore');
+        $menuEntries[] = $this->generateMenuEntry('Highscores', 'cafman_highscore', 'highscores-link');
         if ($isSignedIn) {
-            $menuEntries[] = $this->generateMenuEntry('Coffee Kitty', 'coffeekitty_manage');
+            $menuEntries[] = $this->generateMenuEntry('Coffee Kitty', 'coffeekitty_manage', 'kitty-link');
         }
 
         // Create user entries (link to profile, signout)
