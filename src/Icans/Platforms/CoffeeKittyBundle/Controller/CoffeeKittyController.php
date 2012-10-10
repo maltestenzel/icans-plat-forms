@@ -18,6 +18,7 @@ use Icans\Platforms\UserBundle\Document\User;
 use Icans\Platforms\CoffeeKittyBundle\Form\Type\KittyType;
 use Icans\Platforms\CoffeeKittyBundle\Form\Type\KittySearchType;
 use Icans\Platforms\CoffeeKittyBundle\Form\Type\KittyPriceType;
+use Icans\Platforms\CafManBundle\Api\MultiFormServiceInterface;
 
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -45,7 +46,22 @@ class CoffeeKittyController extends Controller
      */
     public function manageAction()
     {
-        return array();
+        /* @var $multiFormService MultiFormServiceInterface */
+        $multiFormService = $this->get('icans.platforms.caf_man.multi_form.service');
+
+        // Create sub forms, will forward the post if neccessary
+        $subForms = array(
+            'overview_form' => $multiFormService->renderSubForm('IcansPlatformsCoffeeKittyBundle:CoffeeKitty:overview'),
+            'create_form' => $multiFormService->renderSubForm('IcansPlatformsCoffeeKittyBundle:CoffeeKitty:create'),
+            'search_form' => $multiFormService->renderSubForm('IcansPlatformsCoffeeKittyBundle:CoffeeKitty:search'),
+        );
+
+        // If one of the sub forms contains a redirect (=> success), we want to execute the redirect
+        if(null !== ($redirect = $multiFormService->extractRedirectFromResponses(array_values($subForms)))) {
+            return $redirect;
+        }
+
+        return $subForms;
     }
 
     /**
@@ -113,7 +129,7 @@ class CoffeeKittyController extends Controller
                     $kittyUserService->acknowledgeMembership($kitty, $user);
                 } catch (CoffeeKittyExceptionInterface $exception) {
                     // @todo mast: write validator instead on form -> present different error message
-                    $form->addError(new \Symfony\Component\Form\FormError('Coffee kitty already exists. [Database error occured]'));
+                    $form->addError(new \Symfony\Component\Form\FormError('Coffee kitty already exists.'));
                     return array('form' => $form->createView());
                 }
 
