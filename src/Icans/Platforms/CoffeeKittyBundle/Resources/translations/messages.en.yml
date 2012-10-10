@@ -14,6 +14,8 @@ module:
       requestMembership: Request Membership
   createKitty:
     title: start a new coffee kitty
+  kittyOverview:
+    title: Overview
 
 form:
   create:
