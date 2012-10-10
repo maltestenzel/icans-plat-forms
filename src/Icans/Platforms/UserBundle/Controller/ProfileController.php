@@ -90,7 +90,10 @@ class ProfileController extends BaseController
         if ($process) {
             $this->setFlash('fos_user_success', 'profile.flash.updated');
 
-            return new RedirectResponse($this->getRedirectionUrl($user));
+            return new RedirectResponse($this->container->get('router')->generate(
+                'user_profile_display',
+                array('username' => $user->getUsername())
+            ));
         }
 
         return array(
