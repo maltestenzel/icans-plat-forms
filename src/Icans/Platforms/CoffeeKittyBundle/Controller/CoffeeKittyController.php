@@ -118,7 +118,7 @@ class CoffeeKittyController extends Controller
                 }
 
                 return $this->redirect(
-                    $this->generateUrl('coffeekitty_administrate', array('id' => $kitty->getId()))
+                    $this->generateUrl('coffeekitty_administrate', array('kittyId' => $kitty->getId()))
                 );
             }
         }
@@ -128,12 +128,12 @@ class CoffeeKittyController extends Controller
 
     /**
      * Shows the start new kitty form.
-     * 
+     *
      * @param Request $request
      * @param string  $kittyId
-     * 
+     *
      * @return array
-     * 
+     *
      * @Route("/editprice/{kittyId}/", name="coffeekitty_editprice")
      * @Secure(roles="ROLE_USER")
      * @Template()
