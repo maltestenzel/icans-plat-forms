@@ -4,7 +4,7 @@
     copyright: 09.10.2012 ICANS GmbH
 */
 @import 'lib/bootstrap.scss';
-@import 'lib/responsive.scss'; // @TODO: look up if nessecary
+//@import 'lib/responsive.scss'; // @TODO: look up if nessecary. Temporarily disables as broken in IE9
 
 body{
     padding-bottom: 40px;
@@ -188,8 +188,8 @@ body{
  * =============
  */
 .notification-list {
-    list-style-type: none;
     margin: 0;
+    list-style: none;
 }
 .notification-item {
     @extend .alert;
@@ -202,7 +202,6 @@ body{
 .notification-control {
     @extend .btn;
     @extend .btn-mini;
-    @extend button;
 
     &.accept-member {
         @extend .btn-success;
