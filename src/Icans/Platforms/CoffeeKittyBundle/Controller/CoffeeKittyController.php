@@ -23,6 +23,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use JMS\SecurityExtraBundle\Annotation\Secure;
+use Doctrine\Common\Collections\ArrayCollection;
+use Icans\Platforms\CoffeeKittyBundle\Entity\UserBalance;
+use Icans\Platforms\CoffeeKittyBundle\Entity\UserBalancesForKitty;
+use Icans\Platforms\CoffeeKittyBundle\Form\Type\UserBalancesForKittyType;
 
 /**
  * Implements the CoffeeKittyController
@@ -141,11 +145,80 @@ class CoffeeKittyController extends Controller
         $form = $this->createForm(new KittyPriceType(), $kitty);
         if ($request->isMethod('POST')) {
             $form->bind($request);
-            $kitty->setPrice($form->getData()->getPrice());
             if ($form->isValid()) {
+                $kitty->setPrice($form->getData()->getPrice());
                 $kittyService->updateKitty($kitty);
             }
         }
+
+        return array(
+            'form' => $form->createView(),
+            'kittyId' => $kittyId,
+        );
+    }
+
+    /**
+     * Shows the start new kitty form.
+     *
+     * @param Request $request
+     * @param string  $kittyId
+     *
+     * @return array
+     *
+     * @Route("/editpayments/{kittyId}/", name="coffeekitty_editpayments")
+     * @Secure(roles="ROLE_USER")
+     * @Template()
+     */
+    public function editPaymentsAction(Request $request, $kittyId)
+    {
+        /* @var $kittyService KittyServiceInterface */
+        $kittyService = $this->get('icans.platforms.kitty.service');
+        try {
+            $kitty = $kittyService->findById($kittyId);
+        } catch (CoffeeKittyExceptionInterface $exception) {
+            throw new NotFoundHttpException($exception->getMessage());
+        }
+
+        if ($kitty->getOwner()->getId() != $this->getUser()->getId()) {
+            throw new AccessDeniedHttpException('You are not owner of this coffee kitty.');
+        }
+
+        /* @var $kittyService KittyUserServiceInterface */
+        $kittyUserService = $this->get('icans.platforms.kittyuser.service');
+        $userKittiesFromDb = $kittyUserService->findAllForKitty($kitty);
+
+        $userBalances = new ArrayCollection();
+        foreach($userKittiesFromDb as $userKitty)
+        {
+            $userBalance = new UserBalance();
+            $userBalance->setUserName($userKitty->getUser()->getUsername());
+            $description = $userKitty->getUser()->getFullName()
+                . ' (' . $userKitty->getUser()->getUsername() . ')';
+            if ($userKitty->getUser()->getId() == $this->getUser()->getId()) {
+                $description .= ' (You)';
+            }
+            $userBalance->setDescription($description);
+            $userBalance->setBalance($userKitty->getBalance());
+            $userBalances->add($userBalance);
+        }
+        $userBalancesForKitty = new UserBalancesForKitty();
+        $userBalancesForKitty->setCoffeeKittyId($kittyId);
+        $userBalancesForKitty->setUserBalances($userBalances);
+
+        $form = $this->createForm(new UserBalancesForKittyType(), $userBalancesForKitty);
+        if ($request->isMethod('POST')) {
+            $form->bind($request);
+            if ($form->isValid()) {
+                $userManager = $this->container->get('fos_user.user_manager');
+
+                $userBalancesForKitty = $form->getData();
+                foreach($userBalancesForKitty->getUserBalances() as $userBalance) {
+                    $user = $userManager->findUserByUsername($userBalance->getUsername());
+                    $kittyUserService->addBalance($kitty, $user, $userBalance->getPayment());
+                }
+            }
+        }
+
 
         return array(
             'form' => $form->createView(),
