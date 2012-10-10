@@ -32,6 +32,10 @@ class KittyUserService implements KittyUserServiceInterface
      */
     protected $documentManager;
 
+    /**
+     * Constructor.
+     * @param \Doctrine\ODM\MongoDB\DocumentManager $documentManager
+     */
     public function __construct(DocumentManager $documentManager)
     {
         $this->documentManager = $documentManager;
@@ -42,22 +46,19 @@ class KittyUserService implements KittyUserServiceInterface
      */
     public function acknowledgeMembership(KittyInterface $kitty, UserInterface $user)
     {
-        $queryBuilder = $this->documentManager->createQueryBuilder('Icans\Platforms\CoffeeKittyBundle\Document\Kitty')
-            ->field('kitty')->equals($kitty->getId())
-            ->field('user')->equals($user->getId())
-            ->find();
-
-        /* @var $kittyUser KittyUserInterface */
-        $kittyUser = current($queryBuilder->getQuery()->execute()->toArray());
-
-        if (empty($kittyUser)) {
-            throw new NotFoundException(
-                'The kitty->user ' . $kittyUser->getKitty()->getName() . ' -> ' . $kittyUser->getUser()->getUsername() . ' was not found.'
-            );
-        }
-
+        $kittyUser = $this->getKittyUser($kitty, $user);
         $kittyUser->setPending(false);
         $this->documentManager->persist($kittyUser);
+        $this->documentManager->flush();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function declineMembership(KittyInterface $kitty, UserInterface $user)
+    {
+        $kittyUser = $this->getKittyUser($kitty, $user);
+        $this->documentManager->remove($kittyUser);
         $this->documentManager->flush();
     }
 
@@ -80,5 +81,46 @@ class KittyUserService implements KittyUserServiceInterface
                 'The kitty->user ' . $kittyUser->getKitty()->getName() . ' -> ' . $kittyUser->getUser()->getUsername() . ' already exists.'
             );
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function addBalance(KittyInterface $kitty, UserInterface $user, $balance)
+    {
+        $kittyUser = $this->getKittyUser($kitty, $user);
+        $newBalance = $kittyUser->getBalance() + $balance;
+        $kittyUser->setBalance($newBalance);
+        $this->documentManager->persist($kittyUser);
+        $this->documentManager->flush();
+    }
+
+    /**
+     * Loads the Kitty User from the database.
+     *
+     * @param KittyInterface $kitty
+     * @param UserInterface $user
+     *
+     * @return KittyUserInterface
+     *
+     * @throws NotFoundException In case the kitty to user relation document cannot be found.
+     */
+    protected function getKittyUser(KittyInterface $kitty, UserInterface $user, $balance)
+    {
+        $queryBuilder = $this->documentManager->createQueryBuilder('Icans\Platforms\CoffeeKittyBundle\Document\Kitty')
+            ->field('kitty')->equals($kitty->getId())
+            ->field('user')->equals($user->getId())
+            ->find();
+
+        /* @var $kittyUser KittyUserInterface */
+        $kittyUser = current($queryBuilder->getQuery()->execute()->toArray());
+
+        if (empty($kittyUser)) {
+            throw new NotFoundException(
+                'The kitty->user ' . $kittyUser->getKitty()->getName() . ' -> ' . $kittyUser->getUser()->getUsername() . ' was not found.'
+            );
+        }
+
+        return $kittyUser;
     }
 }
