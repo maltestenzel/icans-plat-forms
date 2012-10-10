@@ -17,16 +17,20 @@ use Icans\Platforms\CoffeeKittyBundle\Document\Kitty;
 class KittyTest extends \PHPUnit_Framework_TestCase
 {
     /**
+     * @var Kitty
+     */
+    protected $kitty;
+
+    /**
      * Tests the user which should be null first. After setting it to a mock we expect it to be returned again.
      */
     public function testOwner()
     {
-        $kitty = $this->getKitty();
-        $this->assertNull($kitty->getOwner());
+        $this->assertNull($this->kitty->getOwner());
         $userMock = $this->getMockBuilder('\Icans\Platforms\UserBundle\Document\User')->getMock();
-        $returnedKitty = $kitty->setOwner($userMock);
-        $this->assertInstanceOf('\Icans\Platforms\CoffeeKittyBundle\Api\KittyInterface', $returnedKitty);
-        $this->assertSame($userMock, $kitty->getOwner());
+        $returnedKitty = $this->kitty->setOwner($userMock);
+        $this->assertSame($this->kitty, $returnedKitty);
+        $this->assertSame($userMock, $this->kitty->getOwner());
     }
 
     /**
@@ -35,11 +39,10 @@ class KittyTest extends \PHPUnit_Framework_TestCase
      */
     public function testPrice()
     {
-        $kitty = $this->getKitty();
-        $this->assertNull($kitty->getPrice());
-        $returnedKitty = $kitty->setPrice(13.37);
-        $this->assertInstanceOf('\Icans\Platforms\CoffeeKittyBundle\Api\KittyInterface', $returnedKitty);
-        $this->assertEquals(13.37, $kitty->getPrice());
+        $this->assertNull($this->kitty->getPrice());
+        $returnedKitty = $this->kitty->setPrice(13.37);
+        $this->assertSame($this->kitty, $returnedKitty);
+        $this->assertEquals(13.37, $this->kitty->getPrice());
     }
 
     /**
@@ -48,18 +51,17 @@ class KittyTest extends \PHPUnit_Framework_TestCase
      */
     public function testPending()
     {
-        $kitty = $this->getKitty();
-        $this->assertNull($kitty->getName());
-        $returnedKitty = $kitty->setName('Test Kitty');
-        $this->assertInstanceOf('\Icans\Platforms\CoffeeKittyBundle\Api\KittyInterface', $returnedKitty);
-        $this->assertEquals('Test Kitty', $kitty->getName());
+        $this->assertNull($this->kitty->getName());
+        $returnedKitty = $this->kitty->setName('Test Kitty');
+        $this->assertSame($this->kitty, $returnedKitty);
+        $this->assertEquals('Test Kitty', $this->kitty->getName());
     }
 
     /**
-     * @return Kitty
+     * Set up for the model to test.
      */
-    protected function getKitty()
+    protected function setUp()
     {
-        return new Kitty();
+        $this->kitty = new Kitty();
     }
 }

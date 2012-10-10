@@ -17,16 +17,20 @@ use Icans\Platforms\CoffeeKittyBundle\Document\KittyUser;
 class KittyUserTest extends \PHPUnit_Framework_TestCase
 {
     /**
+     * @var KittyUser
+     */
+    protected $kittyUser;
+
+    /**
      * Tests the user which should be null first. After setting it to a mock we expect it to be returned again.
      */
     public function testUser()
     {
-        $kittyUser = $this->getKittyUser();
-        $this->assertNull($kittyUser->getUser());
+        $this->assertNull($this->kittyUser->getUser());
         $userMock = $this->getMockBuilder('\Icans\Platforms\UserBundle\Api\UserInterface')->getMock();
-        $returnedKittyUser = $kittyUser->setUser($userMock);
-        $this->assertInstanceOf('\Icans\Platforms\CoffeeKittyBundle\Api\KittyUserInterface', $returnedKittyUser);
-        $this->assertSame($userMock, $kittyUser->getUser());
+        $returnedKittyUser = $this->kittyUser->setUser($userMock);
+        $this->assertSame($this->kittyUser, $returnedKittyUser);
+        $this->assertSame($userMock, $this->kittyUser->getUser());
     }
 
     /**
@@ -34,12 +38,11 @@ class KittyUserTest extends \PHPUnit_Framework_TestCase
      */
     public function testKitty()
     {
-        $kittyUser = $this->getKittyUser();
-        $this->assertNull($kittyUser->getKitty());
+        $this->assertNull($this->kittyUser->getKitty());
         $kittyMock = $this->getMockBuilder('\Icans\Platforms\CoffeeKittyBundle\Api\KittyInterface')->getMock();
-        $returnedKittyUser = $kittyUser->setKitty($kittyMock);
-        $this->assertInstanceOf('\Icans\Platforms\CoffeeKittyBundle\Api\KittyUserInterface', $returnedKittyUser);
-        $this->assertSame($kittyMock, $kittyUser->getKitty());
+        $returnedKittyUser = $this->kittyUser->setKitty($kittyMock);
+        $this->assertSame($this->kittyUser, $returnedKittyUser);
+        $this->assertSame($kittyMock, $this->kittyUser->getKitty());
     }
 
     /**
@@ -48,11 +51,10 @@ class KittyUserTest extends \PHPUnit_Framework_TestCase
      */
     public function testPending()
     {
-        $kittyUser = $this->getKittyUser();
-        $this->assertTrue($kittyUser->isPending());
-        $returnedKittyUser = $kittyUser->setPending(false);
-        $this->assertInstanceOf('\Icans\Platforms\CoffeeKittyBundle\Api\KittyUserInterface', $returnedKittyUser);
-        $this->assertFalse($kittyUser->isPending());
+        $this->assertTrue($this->kittyUser->isPending());
+        $returnedKittyUser = $this->kittyUser->setPending(false);
+        $this->assertSame($this->kittyUser, $returnedKittyUser);
+        $this->assertFalse($this->kittyUser->isPending());
     }
 
     /**
@@ -61,19 +63,18 @@ class KittyUserTest extends \PHPUnit_Framework_TestCase
      */
     public function testBalance()
     {
-        $kittyUser = $this->getKittyUser();
-        $this->assertInternalType('float', $kittyUser->getBalance());
-        $this->assertEquals(0.00, $kittyUser->getBalance());
-        $returnedKittyUser = $kittyUser->setBalance(13.37);
-        $this->assertInstanceOf('\Icans\Platforms\CoffeeKittyBundle\Api\KittyUserInterface', $returnedKittyUser);
-        $this->assertEquals(13.37, $kittyUser->getBalance());
+        $this->assertInternalType('float', $this->kittyUser->getBalance());
+        $this->assertEquals(0.00, $this->kittyUser->getBalance());
+        $returnedKittyUser = $this->kittyUser->setBalance(13.37);
+        $this->assertSame($this->kittyUser, $returnedKittyUser);
+        $this->assertEquals(13.37, $this->kittyUser->getBalance());
     }
 
     /**
-     * @return KittyUser
+     * Set up the model for the test.
      */
-    protected function getKittyUser()
+    protected function setUp()
     {
-        return new KittyUser();
+        $this->kittyUser =  new KittyUser();
     }
 }

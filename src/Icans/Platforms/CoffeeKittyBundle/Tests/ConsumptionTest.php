@@ -30,7 +30,7 @@ class ConsumptionTest extends \PHPUnit_Framework_TestCase
         $this->assertNull($this->consumption->getUser());
         $userMock = $this->getMockBuilder('\Icans\Platforms\UserBundle\Document\User')->getMock();
         $returnedConsumption = $this->consumption->setUser($userMock);
-        $this->assertInstanceOf('Icans\Platforms\CoffeeKittyBundle\Api\ConsumptionInterface', $returnedConsumption);
+        $this->assertSame($this->consumption, $returnedConsumption);
         $this->assertSame($userMock, $this->consumption->getUser());
     }
 
@@ -42,7 +42,7 @@ class ConsumptionTest extends \PHPUnit_Framework_TestCase
         $this->assertNull($this->consumption->getTimestamp());
         $dateTime = new \DateTime();
         $returnedConsumption = $this->consumption->setTimestamp($dateTime);
-        $this->assertInstanceOf('Icans\Platforms\CoffeeKittyBundle\Api\ConsumptionInterface', $returnedConsumption);
+        $this->assertSame($this->consumption, $returnedConsumption);
         $this->assertSame($dateTime, $this->consumption->getTimestamp());
     }
 
