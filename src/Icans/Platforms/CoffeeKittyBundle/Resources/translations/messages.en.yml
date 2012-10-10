@@ -41,6 +41,8 @@ form:
     label: Search
     placeholder:
       kitty: coffee kitty name
+  selectkitty:
+    label: Choose your kitty
 
 createKitty:
   submit: Create Kitty
@@ -50,6 +52,9 @@ searchKitty:
   submit: Search
 editpaymentsKitty:
   submit: Save payments
+consume:
+  submit: Enough already! Give it to me!
+  explanation: Add coffee price to your debt with the selected coffee kitty and adjust your caffeine level.
 
 kitty_owner_indicator: (You)
 

@@ -4,6 +4,9 @@
     copyright: 09.10.2012 ICANS GmbH
 */
 
+// @TODO For the moment, the whole twitter bootstrap sass port is included.
+//       As this brings in plently classes and not all of them are used in the application,
+//       check which one can be abadoned.
 @import 'lib/bootstrap.scss';
 @import 'lib/responsive.scss';
 
@@ -321,4 +324,25 @@ body{
 .editpayments-kitty-primary-action {
     @extend .btn;
     @extend .btn-primary;
+}
+
+/**
+ * Consume Coffee Form
+ * ===================
+ */
+.consume-form {
+    @extend %formbuilder-horizontal-form;
+
+    .explanation {
+        @extend .help-inline;
+    }
+}
+.consume-actions {
+    @extend .control-group;
+    @extend .controls;
+}
+.consume-primary-action {
+    @extend .btn;
+    @extend .btn-primary;
+    @extend .btn-large;
 }
