@@ -10,8 +10,9 @@
     <property name="path.app" value="${path.base}/app" />
 
     <target name="build" depends="
-	updatesrc,
-	updatevendor,
+        updatesrc,
+        updatevendor,
+        createschema,
         installassets,
         dumpassets,
         clearcache,
@@ -24,6 +25,7 @@
 
     <target name="update" depends="
         updatesrc,
+        updateschema,
         installassets,
         dumpassets,
         clearcache,
@@ -119,5 +121,26 @@
               checkreturn="true"
               passthru="true"
         />
+    </target>
+
+    <target name="createschema" hidden="false">
+        <echo message="Dropping existing data" />
+        <exec command="php ${path.app}/console doctrine:mongodb:schema:drop"
+              checkreturn="true"
+              passthru="true"
+                />
+        <echo message="Creating schema" />
+        <exec command="php ${path.app}/console doctrine:mongodb:schema:create"
+              checkreturn="true"
+              passthru="true"
+                />
+    </target>
+
+    <target name="updateschema" hidden="false">
+        <echo message="Updating schema" />
+        <exec command="php ${path.app}/console doctrine:mongodb:schema:update"
+              checkreturn="true"
+              passthru="true"
+                />
     </target>
 </project>
