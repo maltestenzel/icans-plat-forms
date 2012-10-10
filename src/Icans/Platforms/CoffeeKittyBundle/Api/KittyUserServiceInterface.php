@@ -72,4 +72,15 @@ interface KittyUserServiceInterface
      * @return array
      */
     public function findAllForUser(UserInterface $user, $pending = false);
+
+    /**
+     * Find all KittyUser relations for the given Kitty.
+     *
+     * @param KittyInterface $user
+     * @param boolean       $pending
+     *
+     * @return array
+     */
+    public function findAllForKitty(KittyInterface $kitty, $pending = false);
+
 }

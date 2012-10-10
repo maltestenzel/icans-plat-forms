@@ -108,6 +108,18 @@ class KittyUserService implements KittyUserServiceInterface
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public function findAllForKitty(KittyInterface $kitty, $pending = false)
+    {
+        $queryBuilder = $this->documentManager->createQueryBuilder('Icans\Platforms\CoffeeKittyBundle\Document\KittyUser')
+            ->field('kitty.$id')->equals(new \MongoId($kitty->getId()))
+            ->field('pending')->equals($pending);
+
+       return $queryBuilder->getQuery()->execute()->toArray();
+    }
+
+    /**
      * Loads the Kitty User from the database.
      *
      * @param KittyInterface $kitty
