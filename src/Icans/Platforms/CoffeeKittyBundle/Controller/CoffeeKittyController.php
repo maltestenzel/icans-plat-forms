@@ -72,7 +72,6 @@ class CoffeeKittyController extends Controller
         // Create sub forms, will forward the post if neccessary
         $subForms = array(
             'userkitties' => $returnedKitties,
-            'overview_form' => $multiFormService->renderSubForm('IcansPlatformsCoffeeKittyBundle:CoffeeKitty:overview'),
             'create_form' => $multiFormService->renderSubForm('IcansPlatformsCoffeeKittyBundle:CoffeeKitty:create'),
             'search_form' => $multiFormService->renderSubForm('IcansPlatformsCoffeeKittyBundle:CoffeeKitty:search'),
         );
@@ -329,20 +328,6 @@ class CoffeeKittyController extends Controller
         }
 
         return array_merge($subForms, array('kitty' => $kitty));
-    }
-
-    /**
-     * Lists all kitties the user is related with
-     *
-     * @Route("/overview/", name="coffeekitty_overview")
-     *
-     * @Secure(roles="ROLE_USER")
-     *
-     * @Template()
-     */
-    public function overviewAction(){
-        // @TODO implementation required
-        return array();
     }
 
     /**
