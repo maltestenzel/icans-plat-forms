@@ -1,0 +1,16 @@
+{#
+    Author:    Thorsten 'stepo' Hallwas
+    origin:    M
+    copyright: ${date} ICANS GmbH
+ #}
+{% extends 'IcansPlatformsCafManBundle::base.html.twig' %}
+{% block stage %}
+
+    <div class="row">
+        <div class="span6">
+            {{ consume_form.content|raw }}
+        </div>
+    </div>
+
+    <hr />
+{% endblock stage %}
