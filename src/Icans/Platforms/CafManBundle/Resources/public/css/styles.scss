@@ -3,8 +3,9 @@
     origin:    M
     copyright: 09.10.2012 ICANS GmbH
 */
+
 @import 'lib/bootstrap.scss';
-//@import 'lib/responsive.scss'; // @TODO: look up if nessecary. Temporarily disables as broken in IE9
+@import 'lib/responsive.scss';
 
 body{
     padding-bottom: 40px;
@@ -231,4 +232,14 @@ body{
 .caffein-threshold-alert-primary-action {
     @extend .btn;
     @extend .btn-primary;
+}
+
+/**
+ * Application rest
+ * ================
+ */
+#reset{
+    @extend .btn;
+    @extend .btn-primary;
+    @extend .btn-large;
 }

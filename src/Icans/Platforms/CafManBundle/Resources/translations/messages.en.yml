@@ -46,4 +46,7 @@ module:
     action:
       acceptUserRequest: Accept
       declineUserRequest: Decline
+  reset:
+    title: Reset the application
+    primaryAction: Reset!
 

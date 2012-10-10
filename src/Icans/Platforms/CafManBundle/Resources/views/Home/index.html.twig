@@ -15,14 +15,16 @@
         <h1>{{ 'page.home.title'|trans({'%company.name%': 'company.name'|trans }) }}</h1>
         <p>{{ 'page.home.subTitle'|trans}}</p>
     </div>
-    <div class="row">
-        <div class="span6">
-            <h2>{{ 'page.home.register.title'|trans }}</h2>
-            {{ register_form.content|raw }}
+    {% block bodytext %}
+        <div class="row">
+            <div class="span6">
+                <h2>{{ 'page.home.register.title'|trans }}</h2>
+                {{ register_form.content|raw }}
+            </div>
+            <div class="span6">
+                <h2>{{ 'page.home.login.title'|trans }}</h2>
+                {{ login_form.content|raw }}
+            </div>
         </div>
-        <div class="span6">
-            <h2>{{ 'page.home.login.title'|trans }}</h2>
-            {{ login_form.content|raw }}
-        </div>
-    </div>
+    {% endblock bodytext %}
 {% endblock stage %}

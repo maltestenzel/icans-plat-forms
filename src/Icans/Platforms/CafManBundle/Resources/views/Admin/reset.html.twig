@@ -1,5 +1,21 @@
-<form action="{{ path('cafman_admin_reset') }}" method="POST">
-    <div>
-        <input type="submit" value="Reset!" />
+{#
+    Author:    Sascha 's10z' Schulz
+    origin:    M
+    copyright: ${date} ICANS GmbH
+ #}
+{% extends 'IcansPlatformsCafManBundle:Home:index.html.twig' %}
+
+{# define the content to be displayed in the stage #}
+{% block bodytext %}
+    <div class="row">
+        <div class="span12">
+            <h2>{{ 'module.reset.title'|trans }}</h2>
+            <a href="{{ path('cafman_admin_reset') }}" id="reset">
+                {{ 'module.reset.primaryAction'|trans }}
+            </a>
+        </div>
     </div>
-</form>
+    <hr />
+{% endblock bodytext %}
+
+
