@@ -1,0 +1,41 @@
+{#
+ # Renders the Highscore page
+ #
+ #  Author:    Sascha 's10z' Schulz
+ #  origin:    M
+ #  copyright: ${date} ICANS GmbH
+ #}
+{% extends 'IcansPlatformsCafManBundle::base.html.twig' %}
+
+{# define the content to be displayed in the stage #}
+{% block stage %}
+    <div class="page-header">
+        <h1>{{ 'page.highscore.title'|trans }}</h1>
+    </div>
+    <div class="row">
+        <div class="span4">
+            {% include 'IcansPlatformsCafManBundle:Highscore:highscoreSkeleton.html.twig'
+                with {
+                    highscoreTitle: 'page.highscore.overall.title'|trans,
+                    highscoreList: highscores.overall
+                }
+            %}
+        </div>
+        <div class="span4">
+            {% include 'IcansPlatformsCafManBundle:Highscore:highscoreSkeleton.html.twig'
+                with {
+                    highscoreTitle: 'page.highscore.weekly.title'|trans,
+                    highscoreList: highscores.weekly
+                }
+            %}
+        </div>
+        <div class="span4">
+            {% include 'IcansPlatformsCafManBundle:Highscore:highscoreSkeleton.html.twig'
+                with {
+                    highscoreTitle: 'page.highscore.daily.title'|trans,
+                    highscoreList: highscores.daily
+                }
+            %}
+        </div>
+    </div>
+{% endblock stage %}
