@@ -12,6 +12,7 @@ namespace Icans\Platforms\UserBundle\Controller;
 
 use Icans\Platforms\UserBundle\Document\User;
 use Icans\Platforms\UserBundle\Form\Type\DefaultKittyFormType;
+use Icans\Platforms\UserBundle\Form\Type\CaffeinThresholdAlertType;
 use Icans\Platforms\UserBundle\Api\UserInterface;
 
 use FOS\UserBundle\Controller\ProfileController as BaseController;
@@ -111,4 +112,19 @@ class ProfileController extends BaseController
         );
     }
 
+    /**
+     * Dialogue to set a coffein threashold that shall trigger an email alert.
+     *
+     * @Route("/profile/caffeinThresholdAlert/", name="user_profile_caffein_threshold")
+     * @Template()
+     */
+    public function caffeinThresholdAlertAction()
+    {
+        $formFactory = $this->container->get('form.factory');
+        $caffeinThreasholdAlertForm = $formFactory->create(new CaffeinThresholdAlertType());
+
+        return array(
+            'form' => $caffeinThreasholdAlertForm->createView(),
+        );
+    }
 }

@@ -28,3 +28,6 @@ fos_user_profile_form_current_password: update-old-password
 
 # IDs for the default kitty form field
 icans_platforms_user_defaultkitty_defaultKittyId: kitty-select
+
+# Ids for the caffein threashold alert form field
+icans_platforms_coffein_threshold_alert_caffeinThreshold: alert-amount
