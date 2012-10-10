@@ -24,6 +24,20 @@ body{
     @extend .btn-mini;
 }
 
+/**
+ * Styling of form errors
+ * ======================
+ */
+.form-error-list {
+    margin: 0;
+    list-style-type: none;
+}
+.form-error-item {
+    @extend .alert;
+    @extend .alert-error;
+    margin: 0 0 4px;
+}
+
 
 /**
  * Mapp main menu onto bootstrap
@@ -137,6 +151,9 @@ body{
 }
 .login-primary-action {
     @extend .btn;
+}
+.login-error {
+    @extend .form-error-item;
 }
 
 /**
