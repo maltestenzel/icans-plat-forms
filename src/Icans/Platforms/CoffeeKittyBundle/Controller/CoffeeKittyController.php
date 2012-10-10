@@ -134,4 +134,30 @@ class CoffeeKittyController extends Controller
         // @TODO implementation required
         return array();
     }
+
+    /**
+     * Accept a user request to join a coffee kitty
+     *
+     * @Route("/acceptKittyJoinRequestByUser/{kittyId}/{userId}/", name="coffeekitty_accept_join")
+     *
+     * @Secure(roles="ROLE_USER")
+     */
+    public function acceptKittyJoinRequestByUserAction($kittyId, $userId)
+    {
+        // @TODO implementation
+        return $this->redirect($this->getReqest()->headers->get('referer'));
+    }
+
+    /**
+     * Decline a user request to join a coffee kitty
+     *
+     * @Route("/declineKittyJoinRequestByUser/{kittyId}/{userId}/", name="coffeekitty_decline_join")
+     *
+     * @Secure(roles="ROLE_USER")
+     */
+    public function declineKittyJoinRequestByUserAction($kittyId, $userId)
+    {
+        // @TODO implementation
+        return $this->redirect($this->getReqest()->headers->get('referer'));
+    }
 }

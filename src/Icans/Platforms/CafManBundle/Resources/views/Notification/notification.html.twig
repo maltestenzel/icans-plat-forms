@@ -1,32 +1,42 @@
 {#
-    Template to render Notifications.
-
-    Author:    Sascha 's10z' Schulz
-    origin:    M
-    copyright: ${date} ICANS GmbH
+ #  Template to render Notifications.
+ #
+ #  Author:    Sascha 's10z' Schulz
+ #  origin:    M
+ #  copyright: 2012 ICANS GmbH
  #}
 {% block notifications %}
     {% if notifications is not empty %}
-        <div class="page-header notifications">
+        <div class="page-header">
             <h1>{{ 'module.notifications.title'|trans }}</h1>
-            {% for notification in notifications %}
-                <div class="alert alert-info">
-                    {{ 'module.notifications.joinKittenRequest'|trans({
-                        '%user.name%': notification.user.fullname,
-                        '%user.screenname%': notification.user.displayname,
-                        '%kitten.name%': notification.kitty.name
-                        })
-                    }}
-                    <div class="pull-right alert-controls">
-                        <button type="submit" class="btn btn-success btn-mini accept-member" data-dismiss="alert">
-                            {{ 'module.notifications.action.acceptUserRequest'|trans }}
-                        </button>
-                        <button type="submit" class="btn btn-danger btn-mini decline-member" data-dismiss="alert">
-                            {{ 'module.notifications.action.declineUserRequest'|trans }}
-                        </button>
-                    </div>
-                </div>
-            {% endfor %}
+            <ul class="notification-list">
+                {% for notification in notifications %}
+                    <li class="notification-item">
+                        {{ 'module.notifications.joinKittenRequest'|trans({
+                            '%user.name%': notification.user.fullname,
+                            '%user.screenname%': notification.user.displayname,
+                            '%kitten.name%': notification.kitty.name
+                            })
+                        }}
+                        <div class="notification-controls">
+                            <a href="{{ path('coffeekitty_accept_join', {
+                                    'userId': notification.user.id,
+                                    'kittyId': notification.kitty.id,
+                                }) }}"
+                               class="notification-control accept-member">
+                                {{ 'module.notifications.action.acceptUserRequest'|trans }}
+                            </a>
+                            <a href="{{ path('coffeekitty_decline_join', {
+                                    'userId': notification.user.id,
+                                    'kittyId': notification.kitty.id,
+                                }) }}"
+                               class="notification-control decline-member">
+                                {{ 'module.notifications.action.declineUserRequest'|trans }}
+                            </a>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
         </div>
     {% endif %}
 {% endblock notifications %}
