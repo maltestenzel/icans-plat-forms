@@ -17,7 +17,7 @@ use Icans\Platforms\UserBundle\Api\UserInterface;
 use Doctrine\ODM\MongoDB\DocumentManager;
 
 /**
- * Description of ConsumptionService
+ * Service to track a users coffee consumption.
  */
 class ConsumptionService implements ConsumptionServiceInterface
 {

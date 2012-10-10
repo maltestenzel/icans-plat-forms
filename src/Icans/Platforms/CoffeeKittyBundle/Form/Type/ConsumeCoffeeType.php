@@ -7,7 +7,7 @@
  * @author    Thorsten 'stepo' Hallwas
  * @copyright Oct 9, 2012 ICANS GmbH
  */
-namespace Icans\Platforms\UserBundle\Form\Type;
+namespace Icans\Platforms\CoffeeKittyBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -76,6 +76,6 @@ class ConsumeCoffeeType extends AbstractType
      */
     public function getName()
     {
-        return 'icans_platforms_user_defaultkitty';
+        return 'icans_coffeekitty_consumecoffee';
     }
 }

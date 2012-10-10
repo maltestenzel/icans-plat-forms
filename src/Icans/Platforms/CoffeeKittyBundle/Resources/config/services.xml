@@ -7,6 +7,8 @@
     <parameters>
         <parameter key="icans.platforms.kitty.service.class">Icans\Platforms\CoffeeKittyBundle\Service\KittyService</parameter>
         <parameter key="icans.platforms.kitty_user.service.class">Icans\Platforms\CoffeeKittyBundle\Service\KittyUserService</parameter>
+        <parameter key="icans.platforms.consumption.service.class">Icans\Platforms\CoffeeKittyBundle\Service\Consumption</parameter>
+        <parameter key="icans.platforms.userpeak.service.class">Icans\Platforms\CoffeeKittyBundle\Service\UserPeakService</parameter>
     </parameters>
 
     <services>
@@ -15,6 +17,17 @@
         </service>
         <service id="icans.platforms.kitty_user.service" class="%icans.platforms.kitty_user.service.class%">
             <argument type="service" id="doctrine.odm.mongodb.document_manager" />
+        </service>
+        <service id="icans.platforms.consumption.service" class="%icans.platforms.consumption.service.class%">
+            <argument type="service" id="doctrine.odm.mongodb.document_manager" />
+        </service>
+        <service id="icans.platforms.userpeak.service" class="%icans.platforms.userpeak.service.class%">
+            <argument type="service" id="doctrine.odm.mongodb.document_manager" />
+        </service>
+
+        <service id="icans.platform.form.type.consumecoffeeform" class="Icans\Platforms\CoffeeKittyBundle\Form\Type\ConsumeCoffeeType">
+            <argument>%icans.platforms.user.document.class%</argument>
+            <tag name="form.type" alias="icans_coffeekitty_consumecoffee" />
         </service>
     </services>
 </container>

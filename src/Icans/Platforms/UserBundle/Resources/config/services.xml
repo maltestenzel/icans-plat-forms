@@ -4,31 +4,23 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <!--
+
     <parameters>
-        <parameter key="icans_platforms_user.example.class">Icans\Platforms\UserBundle\Example</parameter>
+        <parameter key="icans.platforms.user.document.class">Icans\Platforms\UserBundle\Document\User</parameter>
     </parameters>
 
-    <services>
-        <service id="icans_platforms_user.example" class="%icans_platforms_user.example.class%">
-            <argument type="service" id="service_id" />
-            <argument>plain_value</argument>
-            <argument>%parameter_name%</argument>
-        </service>
-    </services>
-    -->
 
     <services>
         <service id="icans.platform.form.type.profileform" class="Icans\Platforms\UserBundle\Form\Type\ProfileFormType">
-            <argument>Icans\Platforms\UserBundle\Document\User</argument>
+            <argument>%icans.platforms.user.document.class%</argument>
             <tag name="form.type" alias="icans_platforms_user_profile" />
         </service>
         <service id="icans.platform.form.type.registrationform" class="Icans\Platforms\UserBundle\Form\Type\RegistrationFormType">
-            <argument>Icans\Platforms\UserBundle\Document\User</argument>
+            <argument>%icans.platforms.user.document.class%</argument>
             <tag name="form.type" alias="icans_platforms_user_registration" />
         </service>
         <service id="icans.platform.form.type.defaultkittyform" class="Icans\Platforms\UserBundle\Form\Type\DefaultKittyFormType">
-            <argument>Icans\Platforms\UserBundle\Document\User</argument>
+            <argument>%icans.platforms.user.document.class%</argument>
             <tag name="form.type" alias="icans_platforms_user_defaultkitty" />
         </service>
     </services>
