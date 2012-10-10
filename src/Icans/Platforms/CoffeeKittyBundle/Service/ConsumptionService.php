@@ -13,6 +13,8 @@ namespace Icans\Platforms\CoffeeKittyBundle\Service;
 use Icans\Platforms\CoffeeKittyBundle\Api\ConsumptionServiceInterface;
 use Icans\Platforms\CoffeeKittyBundle\Api\ConsumptionInterface;
 use Icans\Platforms\UserBundle\Api\UserInterface;
+use Icans\Platforms\CoffeeKittyBundle\Document\Consumption;
+use Icans\Platforms\CoffeeKittyBundle\Exception\AlreadyExistsException;
 
 use Doctrine\ODM\MongoDB\DocumentManager;
 
@@ -40,7 +42,7 @@ class ConsumptionService implements ConsumptionServiceInterface
      */
     public function findById($id)
     {
-        return $this->documentManager->find('\Icans\Platforms\CoffeeKittyBundle\Document\Consumption', $id);
+        return $this->documentManager->find('Icans\Platforms\CoffeeKittyBundle\Document\Consumption', $id);
     }
 
     /**
@@ -56,9 +58,22 @@ class ConsumptionService implements ConsumptionServiceInterface
             $this->documentManager->flush();
         } catch (\Exception $exception) {
             throw new AlreadyExistsException(
-                'Error persisting consumption (' . $exception->getMessage . ').'
+                'Error persisting consumption (' . $exception->getMessage() . ').'
             );
         }
+
+        return $consumption;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function createForUserNow(UserInterface $user)
+    {
+        $newConsumption = new Consumption();
+        $newConsumption->setUser($user);
+        $newConsumption->setTimestamp(new \DateTime());
+        return $this->create($newConsumption);
     }
 
     /**
@@ -66,8 +81,8 @@ class ConsumptionService implements ConsumptionServiceInterface
      */
     public function findAllForUserSince(UserInterface $user, \DateTime $since)
     {
-        $queryBuilder = $this->documentManager->createQueryBuilder('\Icans\Platforms\CoffeeKittyBundle\Document\Consumption')
-            ->field('user')->equals($user->getId())
+        $queryBuilder = $this->documentManager->createQueryBuilder('Icans\Platforms\CoffeeKittyBundle\Document\Consumption')
+            ->field('user.$id')->equals(new \MongoId($user->getId()))
             ->field('timestamp')->gt($since)
             ->sort('timestamp');
 

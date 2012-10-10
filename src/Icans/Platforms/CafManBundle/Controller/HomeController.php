@@ -37,8 +37,12 @@ class HomeController extends Controller
         // Redirect already logged in users
         $user = $this->getUser();
         if(!empty($user)) {
-            // @todo: this is not the correct behaviour, implement different home pages
-            return $this->forward('IcansPlatformsCafManBundle:Home:home');
+            if ($this->get('security.context')->isGranted('ROLE_SUPER_ADMIN')) {
+                return $this->forward('IcansPlatformsCafManBundle:Admin:reset');
+            } else {
+                // @todo: this is not the correct behaviour, implement different home pages
+                return $this->forward('IcansPlatformsCafManBundle:Home:home');
+            }
         }
 
         // Create sub forms, will forward the post if neccessary

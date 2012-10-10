@@ -71,5 +71,7 @@ class KittyService implements KittyServiceInterface
                 'The kitty ' . $kitty->getName() . ' already exists. (' . $exception->getMessage . ')'
             );
         }
+
+        return $kitty;
     }
 }

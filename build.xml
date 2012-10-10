@@ -152,7 +152,7 @@
               passthru="true"
                 />
         <echo message="Promoting system admin" />
-        <exec command="php ${path.app}/console  fos:user:promote admin --super"
+        <exec command="php ${path.app}/console fos:user:promote admin --super"
               checkreturn="true"
               passthru="true"
                 />

@@ -18,11 +18,6 @@ use Symfony\Component\Form\FormBuilderInterface;
 class ConsumeCoffeeType extends AbstractType
 {
     /**
-     * @var string
-     */
-    protected $dataClass;
-
-    /**
      * @var array
      */
     protected $userKitties;
@@ -30,20 +25,18 @@ class ConsumeCoffeeType extends AbstractType
     /**
      * @var string|null
      */
-    protected $defaultKittyId;
+    protected $coffeeKittyId;
 
     /**
      * Constructor.
      *
-     * @param string      $dataClass      class holding the user data
      * @param array       $userKitties    array of kities the user can choose his default from.
      * @param string|null $defaultKittyId the id of the current default kitty
      */
-    public function __construct($dataClass, array $userKitties, $defaultKittyId)
+    public function __construct(array $userKitties, $defaultKittyId)
     {
-        $this->dataClass    = $dataClass;
         $this->userKitties  = $userKitties;
-        $this->defaultKittyId = $defaultKittyId;
+        $this->coffeeKittyId = $defaultKittyId;
     }
 
     /**
@@ -60,12 +53,12 @@ class ConsumeCoffeeType extends AbstractType
             'label' => 'form.selectkitty.label',
             'required' => false
         );
-        if (null !== $this->defaultKittyId) {
-            $defaultKittyOptions['prefered_choices'] = array($this->defaultKittyId);
+        if (null !== $this->coffeeKittyId) {
+            $defaultKittyOptions['prefered_choices'] = array($this->coffeeKittyId);
         }
         $builder
             ->add(
-                'coffeeKitty',
+                'coffeeKittyId',
                 'choice',
                 $defaultKittyOptions
             );
