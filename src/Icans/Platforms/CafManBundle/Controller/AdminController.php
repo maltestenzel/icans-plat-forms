@@ -45,7 +45,7 @@ class AdminController extends Controller
      *
      * @Template()
      */
-    public function resetAction()
+    public function resetExecuteAction()
     {
         // Reset the application
         /* @var $kernel KernelInterface */
