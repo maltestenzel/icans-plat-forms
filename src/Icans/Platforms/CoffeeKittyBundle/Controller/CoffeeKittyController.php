@@ -120,4 +120,18 @@ class CoffeeKittyController extends Controller
         // @todo exception handling!
         return array('kitty' => $kittyService->findById($id));
     }
+
+    /**
+     * Lists all kitties the user is related with
+     *
+     * @Route("/overview/", name="coffeekitty_overview")
+     *
+     * @Secure(roles="ROLE_USER")
+     *
+     * @Template()
+     */
+    public function overviewAction(){
+        // @TODO implementation required
+        return array();
+    }
 }

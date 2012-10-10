@@ -4,6 +4,12 @@
 page:
   manageCoffeKittys:
     title: Manage Your Coffee Kittys
+  administrateKitty:
+    title: Manage "%kitty.name%"
+    members:
+      title: Members
+    price:
+      title: Coffee Price
 
 module:
   search:
@@ -14,6 +20,8 @@ module:
       requestMembership: Request Membership
   createKitty:
     title: start a new coffee kitty
+  kittyOverview:
+    title: Overview
 
 form:
   create:
