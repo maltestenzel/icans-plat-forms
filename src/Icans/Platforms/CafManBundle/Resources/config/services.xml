@@ -4,17 +4,13 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <!--
     <parameters>
-        <parameter key="icans_platforms_caf_man.example.class">Icans\Platforms\CafManBundle\Example</parameter>
+        <parameter key="icans.platforms.caf_man.multi_form.service.class">Icans\Platforms\CafManBundle\Service\MultiFormService</parameter>
     </parameters>
 
     <services>
-        <service id="icans_platforms_caf_man.example" class="%icans_platforms_caf_man.example.class%">
-            <argument type="service" id="service_id" />
-            <argument>plain_value</argument>
-            <argument>%parameter_name%</argument>
+        <service id="icans.platforms.caf_man.multi_form.service" class="%icans.platforms.caf_man.multi_form.service.class%">
+            <argument type="service" id="service_container" />
         </service>
     </services>
-    -->
 </container>

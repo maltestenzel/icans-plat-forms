@@ -33,7 +33,7 @@ class MenuController extends Controller
         $isSignedIn = !empty($user);
         // @todo mast: use translation
         // @todo mast: this implementation does not live up to our standards
-        $menuEntries[] = $this->generateMenuEntry('Home', 'cafman_home_display', 'home-link');
+        $menuEntries[] = $this->generateMenuEntry('Home', 'cafman_home_display_visitor', 'home-link');
 
         if ($isSignedIn) {
             $menuEntries[] = $this->generateMenuEntry('Caffeine Statistics');
