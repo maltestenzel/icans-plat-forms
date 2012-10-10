@@ -41,7 +41,7 @@ class HomeController extends Controller
                 return $this->forward('IcansPlatformsCafManBundle:Admin:reset');
             } else {
                 // @todo: this is not the correct behaviour, implement different home pages
-                return $this->forward('IcansPlatformsCafManBundle:Home:home');
+                return $this->forward('IcansPlatformsCafManBundle:Home:authed');
             }
         }
 
@@ -60,13 +60,26 @@ class HomeController extends Controller
     }
 
     /**
-     * @Route("/Home", name="cafman_home_display")
+     * @Route("/", name="cafman_home_display")
      * @Secure(roles="ROLE_USER")
-     *
+     * @Template()
      */
-    public function homeAction()
+    public function authedAction()
     {
-        // @todo mast: this forward is incorrect behaviour
-        return $this->forward('IcansPlatformsCoffeeKittyBundle:CoffeeKitty:manage');
+        /* @var $multiFormService MultiFormServiceInterface */
+        $multiFormService = $this->get('icans.platforms.caf_man.multi_form.service');
+
+        // Create sub forms, will forward the post if neccessary
+        $subForms = array(
+            'search_form' => $multiFormService->renderSubForm('IcansPlatformsCoffeeKittyBundle:CoffeeKitty:search'),
+            'create_form' => $multiFormService->renderSubForm('IcansPlatformsCoffeeKittyBundle:CoffeeKitty:create'),
+        );
+
+        // If one of the sub forms contains a redirect (=> success), we want to execute the redirect
+        if(null !== ($redirect = $multiFormService->extractRedirectFromResponses(array_values($subForms)))) {
+            return $redirect;
+        }
+
+        return $subForms;
     }
 }
