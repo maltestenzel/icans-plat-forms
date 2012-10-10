@@ -53,6 +53,7 @@ class MultiFormService implements MultiFormServiceInterface
                 $this->cloneRequestWithPost($request, $controller),
                 HttpKernelInterface::SUB_REQUEST
             );
+
         } catch (\Symfony\Component\Form\Exception\AlreadyBoundException $boundException) {
             // ignore already bound exception, in that case just render the form
         }
@@ -61,7 +62,7 @@ class MultiFormService implements MultiFormServiceInterface
         // and those that were not submitted will cause a CSRF error that we use right now.
         // With more time, a nice solution can be added here - i.e. hidden field indicating which form to post,
         // or looking at the submitted formType
-        if (empty($response) || stripos($response->getContent(), 'csrf') !== false) {
+        if (empty($response) || stripos($response->getContent(), ' csrf ') !== false) {
             $response = new Response($kernel->render($controller));
         }
 
