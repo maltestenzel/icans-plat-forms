@@ -23,6 +23,9 @@ body{
     @extend .btn-primary;
     @extend .btn-mini;
 }
+.form-field-unit {
+    @extend .add-on;
+}
 
 /**
  * Styling of form errors
@@ -86,6 +89,17 @@ body{
         display: inline;
     }
 }
+%formbuilder-inline-form {
+    @extend .form-inline;
+
+    div {
+        display: inline-block; // collapse all rendered divs
+    }
+
+    input {
+        display: inline-block;
+    }
+}
 
 /**
  * User Account Edit Form
@@ -107,14 +121,10 @@ body{
  * ==================
  */
 .create-kitty-form {
-    @extend .form-inline;
-    div {
-        display: inline-block; // collapse all rendered divs
-    }
+    @extend %formbuilder-inline-form;
 
     input {
         @extend .input-xlarge;
-        display: inline-block;
     }
 
     label {
@@ -200,4 +210,26 @@ body{
     &.decline-member {
         @extend .btn-danger;
     }
+}
+
+/**
+ * Caffeine Threshold Alert
+ * ========================
+ */
+.caffein-threshold-alert-form {
+    @extend %formbuilder-inline-form;
+
+    label {
+        display: none;
+    }
+    input {
+        @extend .input-mini;
+    }
+    .form-controls {
+        @extend .input-append;
+    }
+}
+.caffein-threshold-alert-primary-action {
+    @extend .btn;
+    @extend .btn-primary;
 }

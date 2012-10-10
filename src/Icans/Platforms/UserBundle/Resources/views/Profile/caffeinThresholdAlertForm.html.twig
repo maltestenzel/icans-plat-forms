@@ -1,0 +1,12 @@
+{#
+    Author:    Sascha 's10z' Schulz
+    origin:    M
+    copyright: ${date} ICANS GmbH
+ #}
+{% block form_widget_simple %}
+{% spaceless %}
+    {% set type = type|default('text') %}
+    <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
+    <span class="form-field-unit">{{ (id ~ '_unit')|trans }}</span>
+{% endspaceless %}
+{% endblock form_widget_simple %}
