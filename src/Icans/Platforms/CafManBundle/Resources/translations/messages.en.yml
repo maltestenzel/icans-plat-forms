@@ -13,6 +13,17 @@ page:
       title: Sign up
     login:
       title: ... or sign in
+  highscore:
+    title: Caffeine Highscores Top 10
+    overall:
+      title: All time
+    weekly:
+      title: This week
+    daily:
+      title: Today
+    rank: Rank
+    name: Name
+    level: Level
 
 module:
   navPrimary:

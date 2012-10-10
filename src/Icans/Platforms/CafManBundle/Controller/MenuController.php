@@ -38,7 +38,7 @@ class MenuController extends Controller
         if ($isSignedIn) {
             $menuEntries[] = $this->generateMenuEntry('Caffeine Statistics');
         }
-        $menuEntries[] = $this->generateMenuEntry('Highscores');
+        $menuEntries[] = $this->generateMenuEntry('Highscores', 'cafman_highscore');
         if ($isSignedIn) {
             $menuEntries[] = $this->generateMenuEntry('Coffee Kitty', 'coffeekitty_manage');
         }

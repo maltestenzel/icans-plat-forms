@@ -1,6 +1,6 @@
 <?php
 /**
- * Declares the MenuController
+ * Declares the NotificationController
  *
  * origin: GM
  *
