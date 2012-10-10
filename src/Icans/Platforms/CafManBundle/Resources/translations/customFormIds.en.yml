@@ -37,3 +37,6 @@ icans_platforms_coffeesearch_search_name: search-name
 
 #IDs for the coffee price form field
 icans_platforms_coffeekitty_kittyprice_price: price
+
+#IDs for the coffee consume form field
+icans_coffeekitty_consumecoffee_coffeeKittyId: kitty-select

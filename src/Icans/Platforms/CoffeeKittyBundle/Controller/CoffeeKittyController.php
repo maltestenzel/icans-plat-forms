@@ -139,6 +139,14 @@ class CoffeeKittyController extends Controller
                     // now sign up automatically to ones own coffee kitty
                     /* @var $kittyUserService \Icans\Platforms\CoffeeKittyBundle\Api\KittyUserServiceInterface */
                     $kittyUserService = $this->get('icans.platforms.kittyuser.service');
+                    $userKittiesFromDb = $kittyUserService->findAllForUser($this->getUser());
+                    if (count($userKittiesFromDb) === 0) {
+                        $user = $this->getUser();
+                        $user->setDefaultKittyId($kitty->getId());
+                        $userManager = $this->container->get('fos_user.user_manager');
+                        $userManager->updateUser($user);
+                    }
+
                     $kittyUserService->requestMembership($kitty, $user);
                     $kittyUserService->acknowledgeMembership($kitty, $user);
                 } catch (CoffeeKittyExceptionInterface $exception) {
@@ -235,7 +243,7 @@ class CoffeeKittyController extends Controller
             $description = $userKitty->getUser()->getFullName()
                 . ' (' . $userKitty->getUser()->getUsername() . ')';
             if ($userKitty->getUser()->getId() == $this->getUser()->getId()) {
-                $description .= ' (You)';
+                $description .= ' ' . $this->get('translator')->trans('kitty_owner_indicator');
             }
             $userBalance->setDescription($description);
             $userBalance->setBalance($userKitty->getBalance());

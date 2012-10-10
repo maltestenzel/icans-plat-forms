@@ -51,11 +51,9 @@ class ConsumeCoffeeType extends AbstractType
         $defaultKittyOptions = array(
             'choices' => $kitties,
             'label' => 'form.selectkitty.label',
-            'required' => false
+            'required' => false,
+            'data' =>  $this->coffeeKittyId,
         );
-        if (null !== $this->coffeeKittyId) {
-            $defaultKittyOptions['prefered_choices'] = array($this->coffeeKittyId);
-        }
         $builder
             ->add(
                 'coffeeKittyId',

@@ -19,7 +19,7 @@
     </route>
 
     <route id="fos_user_registration_confirmed" pattern="/confirmed">
-        <default key="_controller">IcansPlatformsCafManBundle:Home:home</default>
+        <default key="_controller">IcansPlatformsCafManBundle:Home:authedNoKitty</default>
         <requirement key="_method">GET</requirement>
     </route>
 
