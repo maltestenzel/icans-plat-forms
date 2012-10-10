@@ -3,14 +3,12 @@
     origin:    M
     copyright: ${date} ICANS GmbH
  #}
-{% extends 'IcansPlatformsCafManBundle::base.html.twig' %}
-{% block stage %}
-
+{% extends 'IcansPlatformsCafManBundle:Home:index.html.twig' %}
+{% block bodytext %}
     <div class="row">
         <div class="span12">
             <h2>{{ 'page.home.consumeCoffee'|trans }}</h2>
             {{ consume_form.content|raw }}
         </div>
     </div>
-    <hr />
-{% endblock stage %}
+{% endblock bodytext %}
