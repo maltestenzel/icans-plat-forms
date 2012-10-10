@@ -9,6 +9,12 @@
     copyright: 2012 ICANS GmbH
  #}
 <h2>{{ 'module.search.title'|trans }}</h2>
+<form action="{{ path('coffeekitty_manage') }}" method="post" {{ form_enctype(form) }} class="search-kitty-form">
+    {{ form_widget(form) }}
+    <button type="submit" class="search-kitty-primary-action">
+        {{ 'searchKitty.submit'|trans }}
+    </button>
+</form>
 <table class="table">
     <thead>
         <tr>

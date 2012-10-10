@@ -29,6 +29,9 @@ form:
       kitty: coffee kitty name
   price:
     label: Price for one cup
+  search:
+    placeholder:
+      kitty: coffee kitty name
 
 createKitty:
   submit: Create Kitty
