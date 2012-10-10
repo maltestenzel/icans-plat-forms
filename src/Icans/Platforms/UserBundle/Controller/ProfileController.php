@@ -14,6 +14,7 @@ use Icans\Platforms\UserBundle\Document\User;
 use Icans\Platforms\UserBundle\Form\Type\DefaultKittyFormType;
 use Icans\Platforms\UserBundle\Form\Type\CaffeinThresholdAlertType;
 use Icans\Platforms\UserBundle\Api\UserInterface;
+use Icans\Platforms\CafManBundle\Api\MultiFormServiceInterface;
 
 use FOS\UserBundle\Controller\ProfileController as BaseController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -21,6 +22,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Request;
+use \Symfony\Component\HttpFoundation\Response;
 
 /**
  * Controller handling the profile display and editing functionality for users.
@@ -51,17 +54,24 @@ class ProfileController extends BaseController
      * @Route("/profile/{username}/edit/", name="fos_user_profile_edit")
      * @Template("FOSUserBundle:Profile:edit.html.twig")
      */
-    public function editSelfAction($username)
+    public function editSelfAction(Request $request, $username)
     {
         /* @var $multiFormService MultiFormServiceInterface */
         $multiFormService = $this->container->get('icans.platforms.caf_man.multi_form.service');
 
         $options = array('username' => $username);
-        $subForms = array(
-            'editself_form' => $multiFormService->renderSubForm('IcansPlatformsUserBundle:Profile:editSelfForm', $options),
-            'defaultkitty_form' => $multiFormService->renderSubForm('IcansPlatformsUserBundle:Profile:defaultkitty', $options),
+        $subForms = array();
 
-        );
+        // @todo mast Attention, this is a hide for a bug due to time constraints -
+        if(null === $request->get('icans_platforms_user_defaultkitty')) {
+            $subForms['editself_form'] = $multiFormService->renderSubForm('IcansPlatformsUserBundle:Profile:editSelfForm', $options);
+        } else {
+            $subForms['editself_form'] = new Response(
+                $this->container->get('http_kernel')->render('IcansPlatformsUserBundle:Profile:editSelfForm')
+            );
+        }
+        $subForms['defaultkitty_form'] = $multiFormService->renderSubForm('IcansPlatformsUserBundle:Profile:defaultkitty', $options);
+
         // If one of the sub forms contains a redirect (=> success), we want to execute the redirect
         if(null !== ($redirect = $multiFormService->extractRedirectFromResponses(array_values($subForms)))) {
             return $redirect;
@@ -76,10 +86,10 @@ class ProfileController extends BaseController
      * @Route("/profile/{$username}/editForm/", name="user_profile_editform")
      * @Template("FOSUserBundle:Profile:editSelfForm.html.twig")
      */
-    public function editSelfFormAction($username)
+    public function editSelfFormAction($username = null)
     {
         $user = $this->container->get('security.context')->getToken()->getUser();
-        if (!is_object($user) || !$user instanceof UserInterface || $user->getUserName() != $username) {
+        if (!is_object($user) || !$user instanceof UserInterface) {
             throw new AccessDeniedException('This user does not have access to this section.');
         }
 
