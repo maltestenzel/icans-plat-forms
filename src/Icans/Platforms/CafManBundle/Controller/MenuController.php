@@ -45,7 +45,7 @@ class MenuController extends Controller
 
         // Create user entries (link to profile, signout)
         if ($isSignedIn) {
-            $userEntries[] = $this->generateMenuEntry($user->getUsername() . ' (' . $user->getEmail() . ')', 'fos_user_profile_show', 'profile-link');
+            $userEntries[] = $this->generateMenuEntry($user->getUsername() . ' (' . $user->getEmail() . ')', 'user_profile_display_self', 'profile-link');
             $userEntries[] = $this->generateMenuEntry('Sign out', 'fos_user_security_logout', 'logout');
         }
 
