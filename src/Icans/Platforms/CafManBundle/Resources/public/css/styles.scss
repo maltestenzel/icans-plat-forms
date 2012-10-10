@@ -291,3 +291,34 @@ body{
 .search-kitty-primary-action{
     @extend .btn;
 }
+
+/**
+ * Kitty Payment Form
+ * ==================
+ */
+.editpayments-kitty-form{
+    input {
+        @extend .input-small
+    }
+    .editpayments-balance { // needs to be scoped in order to receive specifity
+        text-align: right;
+    }
+    .below-quota {
+        @extend .text-warning;
+    }
+    .above-quota {
+        @extend .text-success;
+    }
+    .contains-user {
+        @extend .info;
+    }
+}
+
+.editpayments-payment {
+    @extend .input-prepend;
+    display: table-cell;
+}
+.editpayments-kitty-primary-action {
+    @extend .btn;
+    @extend .btn-primary;
+}

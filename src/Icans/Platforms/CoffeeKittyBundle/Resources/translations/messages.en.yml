@@ -25,6 +25,11 @@ module:
     title: start a new coffee kitty
   kittyOverview:
     title: Overview
+  editPayments:
+    description: Name (Display Name)
+    balance: Balance
+    payment: Payment
+    balanceCurrency: €
 
 form:
   create:
@@ -43,6 +48,11 @@ editpriceKitty:
   submit: Save price
 searchKitty:
   submit: Search
+editpaymentsKitty:
+  submit: Save payments
+
+kitty_owner_indicator: (You)
 
 # custom handling in order to inject a form field prefix value
-icans_platforms_coffeekitty_kittyprice_price_unit: €
+unit_for_icans_platforms_coffeekitty_kittyprice_price: €
+unit_for_icans_platforms_coffeekitty_userbalancesforkitty_userbalances_entry_payment: €
