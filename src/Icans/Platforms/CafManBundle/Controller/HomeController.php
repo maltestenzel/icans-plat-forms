@@ -40,8 +40,14 @@ class HomeController extends Controller
             if ($this->get('security.context')->isGranted('ROLE_SUPER_ADMIN')) {
                 return $this->forward('IcansPlatformsCafManBundle:Admin:reset');
             } else {
-                // @todo: this is not the correct behaviour, implement different home pages
-                return $this->forward('IcansPlatformsCafManBundle:Home:home');
+                /* @var $kittyService KittyUserServiceInterface */
+                $kittyUserService = $this->get('icans.platforms.kittyuser.service');
+                $userKittiesFromDb = $kittyUserService->findAllForUser($this->getUser());
+                if (count($userKittiesFromDb)) {
+                    return $this->forward('IcansPlatformsCafManBundle:Home:authedWithKitty');
+                } else {
+                    return $this->forward('IcansPlatformsCafManBundle:Home:authedNoKitty');
+                }
             }
         }
 
@@ -60,13 +66,47 @@ class HomeController extends Controller
     }
 
     /**
-     * @Route("/Home", name="cafman_home_display")
+     * @Route("/", name="cafman_authedwithkitty")
      * @Secure(roles="ROLE_USER")
-     *
+     * @Template()
      */
-    public function homeAction()
+    public function authedWithKittyAction()
     {
-        // @todo mast: this forward is incorrect behaviour
-        return $this->forward('IcansPlatformsCoffeeKittyBundle:CoffeeKitty:manage');
+        /* @var $multiFormService MultiFormServiceInterface */
+        $multiFormService = $this->get('icans.platforms.caf_man.multi_form.service');
+
+        $subForms = array(
+           'consume_form' => $multiFormService->renderSubForm('IcansPlatformsCoffeeKittyBundle:Consume:consume'),
+        );
+        // If one of the sub forms contains a redirect (=> success), we want to execute the redirect
+        if(null !== ($redirect = $multiFormService->extractRedirectFromResponses(array_values($subForms)))) {
+            return $redirect;
+        }
+
+        return $subForms;
+    }
+
+    /**
+     * @Route("/", name="cafman_authednokitty")
+     * @Secure(roles="ROLE_USER")
+     * @Template()
+     */
+    public function authedNoKittyAction()
+    {
+        /* @var $multiFormService MultiFormServiceInterface */
+        $multiFormService = $this->get('icans.platforms.caf_man.multi_form.service');
+
+        // Create sub forms, will forward the post if neccessary
+         $subForms = array(
+             'search_form' => $multiFormService->renderSubForm('IcansPlatformsCoffeeKittyBundle:CoffeeKitty:search'),
+             'create_form' => $multiFormService->renderSubForm('IcansPlatformsCoffeeKittyBundle:CoffeeKitty:create'),
+         );
+
+        // If one of the sub forms contains a redirect (=> success), we want to execute the redirect
+        if(null !== ($redirect = $multiFormService->extractRedirectFromResponses(array_values($subForms)))) {
+            return $redirect;
+        }
+
+        return $subForms;
     }
 }

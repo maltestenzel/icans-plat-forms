@@ -41,7 +41,7 @@ class MultiFormService implements MultiFormServiceInterface
     /**
      * {@inheritDoc}
      */
-    public function renderSubForm($controller)
+    public function renderSubForm($controller, array $options = array())
     {
         /* @var $kernel HttpKernel */
         $kernel = $this->container->get('http_kernel');
@@ -50,7 +50,7 @@ class MultiFormService implements MultiFormServiceInterface
 
         try {
             $response = $kernel->handle(
-                $this->cloneRequestWithPost($request, $controller),
+                $this->cloneRequestWithPost($request, $controller, $options),
                 HttpKernelInterface::SUB_REQUEST
             );
 
@@ -63,7 +63,12 @@ class MultiFormService implements MultiFormServiceInterface
         // With more time, a nice solution can be added here - i.e. hidden field indicating which form to post,
         // or looking at the submitted formType
         if (empty($response) || stripos($response->getContent(), ' csrf ') !== false) {
-            $response = new Response($kernel->render($controller));
+            $subRequest = $this->cloneRequestWithPost($request, $controller, $options);
+            $subRequest->setMethod('GET');
+            return $kernel->handle(
+                $subRequest,
+                HttpKernelInterface::SUB_REQUEST
+            );
         }
 
         return $response;
@@ -87,13 +92,15 @@ class MultiFormService implements MultiFormServiceInterface
      * Creates a clone for the given request while preserving POST parameters and method.
      *
      * @param Request $request
-     * @param $targetController
+     * @param string $targetController
+     * @param array $options
      * @return Request
      */
-    private function cloneRequestWithPost(Request $request, $targetController)
+    private function cloneRequestWithPost(Request $request, $targetController, array $options)
     {
         $attributes = $request->attributes->all();
         $attributes['_controller'] = $targetController;
+        $attributes = array_merge($attributes, $options);
         // Need to unset template so that the correct one is extracted for the sub request
         unset($attributes['_template']);
         /* @var $subRequest Request */

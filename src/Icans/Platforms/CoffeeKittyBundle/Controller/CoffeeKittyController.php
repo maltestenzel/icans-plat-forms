@@ -281,10 +281,11 @@ class CoffeeKittyController extends Controller
         /* @var $multiFormService MultiFormServiceInterface */
         $multiFormService = $this->get('icans.platforms.caf_man.multi_form.service');
 
+        $options = array('kittyId' => $kitty->getId());
         // Create sub forms, will forward the post if neccessary
         $subForms = array(
-            'price_form' => $multiFormService->renderSubForm('IcansPlatformsCoffeeKittyBundle:CoffeeKitty:editPrice'),
-            'editPayments_form' => $multiFormService->renderSubForm('IcansPlatformsCoffeeKittyBundle:CoffeeKitty:editPayments'),
+            'price_form' => $multiFormService->renderSubForm('IcansPlatformsCoffeeKittyBundle:CoffeeKitty:editPrice', $options),
+            'editPayments_form' => $multiFormService->renderSubForm('IcansPlatformsCoffeeKittyBundle:CoffeeKitty:editPayments', $options),
         );
 
         // If one of the sub forms contains a redirect (=> success), we want to execute the redirect
