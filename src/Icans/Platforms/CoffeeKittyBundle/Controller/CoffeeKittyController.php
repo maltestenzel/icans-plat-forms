@@ -53,8 +53,25 @@ class CoffeeKittyController extends Controller
         /* @var $multiFormService MultiFormServiceInterface */
         $multiFormService = $this->get('icans.platforms.caf_man.multi_form.service');
 
+        /* @var $kittyService KittyUserServiceInterface */
+        $kittyUserService = $this->get('icans.platforms.kittyuser.service');
+        $userKittiesFromDb = $kittyUserService->findAllForUser($this->getUser());
+
+        $returnedKitties = array();
+        foreach ($userKittiesFromDb as $userKitty) {
+            $returnedKitty = array(
+                'name' => $userKitty->getKitty()->getName(),
+                'balance' => $userKitty->getBalance(),
+                'pending' => $userKitty->getPending(),
+                'kittyId' => $userKitty->getKitty()->getId(),
+                'isOwner' => ($userKitty->getUser()->getId() === $this->getUser()->getId())
+            );
+            $returnedKitties[] = $returnedKitty;
+        }
+
         // Create sub forms, will forward the post if neccessary
         $subForms = array(
+            'userkitties' => $returnedKitties,
             'overview_form' => $multiFormService->renderSubForm('IcansPlatformsCoffeeKittyBundle:CoffeeKitty:overview'),
             'create_form' => $multiFormService->renderSubForm('IcansPlatformsCoffeeKittyBundle:CoffeeKitty:create'),
             'search_form' => $multiFormService->renderSubForm('IcansPlatformsCoffeeKittyBundle:CoffeeKitty:search'),
