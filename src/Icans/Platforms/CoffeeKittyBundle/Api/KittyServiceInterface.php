@@ -12,6 +12,7 @@ namespace Icans\Platforms\CoffeeKittyBundle\Api;
 use Icans\Platforms\CoffeeKittyBundle\Exception\AlreadyExistsException;
 use Icans\Platforms\CoffeeKittyBundle\Exception\NotFoundException;
 use Icans\Platforms\CoffeeKittyBundle\Api\KittyInterface;
+use Icans\Platforms\UserBundle\Api\UserInterface;
 
 /**
  * Implements the KittyService interface
@@ -58,4 +59,13 @@ interface KittyServiceInterface
      * @return KittyInterface
      */
     public function updateKitty(KittyInterface $kitty);
+
+    /**
+     * Find all Kitties where the given user is owner.
+     *
+     * @param UserInterface $user
+     *
+     * @return array
+     */
+    public function findAllForUserAsOwner(UserInterface $user);
 }

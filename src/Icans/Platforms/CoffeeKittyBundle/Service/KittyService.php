@@ -12,6 +12,7 @@ namespace Icans\Platforms\CoffeeKittyBundle\Service;
 use Icans\Platforms\CoffeeKittyBundle\Api\KittyServiceInterface;
 use Icans\Platforms\CoffeeKittyBundle\Exception\AlreadyExistsException;
 use Icans\Platforms\CoffeeKittyBundle\Api\KittyInterface;
+use Icans\Platforms\UserBundle\Api\UserInterface;
 
 use Doctrine\ODM\MongoDB\DocumentManager;
 
@@ -73,6 +74,17 @@ class KittyService implements KittyServiceInterface
         }
 
         return $kitty;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function findAllForUserAsOwner(UserInterface $user)
+    {
+        $queryBuilder = $this->documentManager->createQueryBuilder('Icans\Platforms\CoffeeKittyBundle\Document\Kitty')
+            ->field('owner.$id')->equals(new \MongoId($user->getId()));
+
+       return $queryBuilder->getQuery()->execute()->toArray();
     }
 
     /**

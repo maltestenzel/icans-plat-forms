@@ -357,26 +357,54 @@ class CoffeeKittyController extends Controller
     /**
      * Accept a user request to join a coffee kitty
      *
-     * @Route("/acceptKittyJoinRequestByUser/{kittyId}/{userId}/", name="coffeekitty_accept_join")
+     * @Route("/acceptKittyJoinRequestByUser/{kittyId}/{username}/", name="coffeekitty_accept_join")
      *
      * @Secure(roles="ROLE_USER")
      */
-    public function acceptKittyJoinRequestByUserAction($kittyId, $userId)
+    public function acceptKittyJoinRequestByUserAction($kittyId, $username)
     {
-        // @TODO implementation
+        /* @var $kittyService KittyServiceInterface */
+        $kittyService = $this->get('icans.platforms.kitty.service');
+        $kitty = $kittyService->findById($kittyId);
+
+        if ($kitty->getOwner()->getId() != $this->getUser()->getId()) {
+            throw new AccessDeniedHttpException('You cannot accept requests for kitties you did not start');
+        }
+
+        $userManager = $this->container->get('fos_user.user_manager');
+        $user = $userManager->findUserByUsername($username);
+
+        /* @var $kittyUserService KittyUserServiceInterface */
+        $kittyUserService = $this->get('icans.platforms.kittyuser.service');
+        $kittyUserService->acknowledgeMembership($kitty, $user);
+
         return $this->redirect($this->getRequest()->headers->get('referer'));
     }
 
     /**
      * Decline a user request to join a coffee kitty
      *
-     * @Route("/declineKittyJoinRequestByUser/{kittyId}/{userId}/", name="coffeekitty_decline_join")
+     * @Route("/declineKittyJoinRequestByUser/{kittyId}/{username}/", name="coffeekitty_decline_join")
      *
      * @Secure(roles="ROLE_USER")
      */
-    public function declineKittyJoinRequestByUserAction($kittyId, $userId)
+    public function declineKittyJoinRequestByUserAction($kittyId, $username)
     {
-        // @TODO implementation
+        /* @var $kittyService KittyServiceInterface */
+        $kittyService = $this->get('icans.platforms.kitty.service');
+        $kitty = $kittyService->findById($kittyId);
+
+        if ($kitty->getOwner()->getId() != $this->getUser()->getId()) {
+            throw new AccessDeniedHttpException('You cannot accept requests for kitties you did not start');
+        }
+
+        $userManager = $this->container->get('fos_user.user_manager');
+        $user = $userManager->findUserByUsername($username);
+
+        /* @var $kittyUserService KittyUserServiceInterface */
+        $kittyUserService = $this->get('icans.platforms.kittyuser.service');
+        $kittyUserService->declineMembership($kitty, $user);
+
         return $this->redirect($this->getRequest()->headers->get('referer'));
     }
 }

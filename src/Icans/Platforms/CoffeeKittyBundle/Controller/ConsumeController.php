@@ -42,7 +42,6 @@ class ConsumeController extends Controller
     {
         /* @var $kittyUserService \Icans\Platforms\CoffeeKittyBundle\Api\KittyUserServiceInterface */
         $kittyUserService = $this->get('icans.platforms.kitty_user.service');
-
         $userKittiesFromDb = $kittyUserService->findAllForUser($this->getUser());
 
         $userKitties = array();

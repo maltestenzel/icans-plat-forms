@@ -20,14 +20,14 @@
                         }}
                         <div class="notification-controls">
                             <a href="{{ path('coffeekitty_accept_join', {
-                                    'userId': notification.user.id,
+                                    'username': notification.user.displayname,
                                     'kittyId': notification.kitty.id,
                                 }) }}"
                                class="notification-control accept-member">
                                 {{ 'module.notifications.action.acceptUserRequest'|trans }}
                             </a>
                             <a href="{{ path('coffeekitty_decline_join', {
-                                    'userId': notification.user.id,
+                                    'username': notification.user.displayname,
                                     'kittyId': notification.kitty.id,
                                 }) }}"
                                class="notification-control decline-member">
