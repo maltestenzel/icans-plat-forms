@@ -2,7 +2,7 @@
     Author:    Thorsten 'stepo' Hallwas
                Sascha 's10z' Schulz
     origin:    M
-    copyright: ${date} ICANS GmbH
+    copyright: 2012 ICANS GmbH
 
     @TODO: Table Markup is used to achive table layout. This reduces semantics and needs to be refactored.
     @TODO: For now, the template is provided by a form that contains all relevant data to display.
@@ -20,12 +20,12 @@
             <th>{{ 'module.editPayments.payment'|trans }}</th>
         </thead>
         <tbody>
-            {# iterate over users #}
+            {# iterate over user associated form rows #}
             {% for id, formField in form.userbalances %}
-                {# TODO: outsource form theme in order to reuse them among templates #}
-                {% form_theme formField.balance 'IcansPlatformsCoffeeKittyBundle:CoffeeKitty:editPaymentsFormTheme.html.twig' %}
-                {% form_theme formField.description  'IcansPlatformsCoffeeKittyBundle:CoffeeKitty:editPaymentsFormTheme.html.twig' %}
-                {% form_theme formField.payment 'IcansPlatformsCoffeeKittyBundle:CoffeeKitty:editPriceFormTheme.html.twig' %}
+                {# form themes have to be applied each cycle #}
+                {% form_theme formField.balance 'IcansPlatformsCafManBundle:Forms:textified_formTheme.html.twig' %}
+                {% form_theme formField.description  'IcansPlatformsCafManBundle:Forms:textified_formTheme.html.twig' %}
+                {% form_theme formField.payment 'IcansPlatformsCafManBundle:Forms:unitPrefix_formTheme.html.twig' %}
 
                 <tr {% if(KITTY_OWNER_INDICATOR in formField.description.vars.value) %}class="contains-user"{% endif %}>
                     <td class="editpayments-description">

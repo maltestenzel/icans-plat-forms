@@ -1,9 +1,10 @@
 {#
-    Author:    Thorsten 'stepo' Hallwas
-    origin:    M
-    copyright: ${date} ICANS GmbH
+ #  Author:    Thorsten 'stepo' Hallwas
+ #             Sascha 's10z' Schulz
+ #  origin:    M
+ #  copyright: 2012 ICANS GmbH
  #}
-{% form_theme form.price 'IcansPlatformsCoffeeKittyBundle:CoffeeKitty:editPriceFormTheme.html.twig' %}
+{% form_theme form.price 'IcansPlatformsCafManBundle:Forms:unitPrefix_formTheme.html.twig' %}
 <form action="{{ path('coffeekitty_administrate', {'kittyId' : kittyId}) }}" method="post" {{ form_enctype(form) }} class="editprice-kitty-form">
     {{ form_widget(form) }}
     <div class="editprice-kitty-actions">

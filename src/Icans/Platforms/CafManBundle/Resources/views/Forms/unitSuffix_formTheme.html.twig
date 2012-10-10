@@ -7,6 +7,6 @@
 {% spaceless %}
     {% set type = type|default('text') %}
     <input type="{{ type }}" {{ block('widget_attributes') }} {% if value is not empty %}value="{{ value }}" {% endif %}/>
-    <span class="form-field-unit">{{ (id ~ '_unit')|trans }}</span>
+    <span class="form-field-unit">{{ ('unit_for' ~ form.vars.unique_block_prefix)|trans }}</span>
 {% endspaceless %}
 {% endblock form_widget_simple %}

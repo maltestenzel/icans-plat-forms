@@ -5,8 +5,7 @@
  #   origin:    M
  #   copyright: 2012 ICANS GmbH
  #}
-{# attach a custom form theme in order to inject the unit to the form field #}
-{% form_theme form.caffeinThreshold 'IcansPlatformsUserBundle:Profile:caffeinThresholdAlertForm.html.twig' %}
+{% form_theme form.caffeinThreshold 'IcansPlatformsCafManBundle:Forms:unitSuffix_formTheme.html.twig' %}
 
 <h2>{{ 'module.caffeinThresholdAlert.title'|trans }}</h2>
 <p>{{ 'module.caffeinThresholdAlert.description'|trans }}</p>

@@ -64,4 +64,4 @@ page:
       body: Shows your caffeine levels in the last 7 hours. You can download a CSV file with your levels on a 30-minute interval below.
       linkText: Download CSV
 
-icans_platforms_coffein_threshold_alert_caffeinThreshold_unit: '.00 mg'
+unit_for_icans_platforms_coffein_threshold_alert_caffeinThreshold: '.00 mg'
