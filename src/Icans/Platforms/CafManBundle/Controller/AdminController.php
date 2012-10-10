@@ -25,7 +25,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 class AdminController extends Controller
 {
     /**
-     * Reset the application to factory defaults
+     * Display form to reset the application to factory defaults
      *
      * @Route("/admin/reset", name="cafman_admin_reset")
      * @Secure(roles="ROLE_SUPER_ADMIN")
@@ -34,28 +34,37 @@ class AdminController extends Controller
      */
     public function resetAction(Request $request)
     {
-        if ($request->isMethod('POST')) {
-            // Reset the application
-            /* @var $kernel KernelInterface */
-            $kernel = $this->get('kernel');
-            $application = new Application($kernel);
-            $application->setAutoExit(false);
-
-            // Drop dbs
-            $options = array('command' => 'doctrine:mongodb:schema:drop');
-            $application->run(new ArrayInput($options));
-            $options = array('command' => 'doctrine:mongodb:schema:create');
-            $application->run(new ArrayInput($options));
-
-            // Create admin user
-            $options = array('command' => 'fos:user:create', 'username' => 'admin', 'email' => 'organizers@plat-forms.org', 'password' => 'admin');
-            $application->run(new ArrayInput($options));
-            $options = array('command' => 'fos:user:promote', 'username' => 'admin', '--super' => true);
-            $application->run(new ArrayInput($options));
-
-            return new RedirectResponse($this->generateUrl('fos_user_security_logout'));
-        }
-
         return array();
+    }
+
+    /**
+     * Reset the application to factory defaults
+     *
+     * @Route("/admin/reset/execute", name="cafman_admin_reset_execute")
+     * @Secure(roles="ROLE_SUPER_ADMIN")
+     *
+     * @Template()
+     */
+    public function resetExecuteAction()
+    {
+        // Reset the application
+        /* @var $kernel KernelInterface */
+        $kernel = $this->get('kernel');
+        $application = new Application($kernel);
+        $application->setAutoExit(false);
+
+        // Drop dbs
+        $options = array('command' => 'doctrine:mongodb:schema:drop');
+        $application->run(new ArrayInput($options));
+        $options = array('command' => 'doctrine:mongodb:schema:create');
+        $application->run(new ArrayInput($options));
+
+        // Create admin user
+        $options = array('command' => 'fos:user:create', 'username' => 'admin', 'email' => 'organizers@plat-forms.org', 'password' => 'admin');
+        $application->run(new ArrayInput($options));
+        $options = array('command' => 'fos:user:promote', 'username' => 'admin', '--super' => true);
+        $application->run(new ArrayInput($options));
+
+        return new RedirectResponse($this->generateUrl('fos_user_security_logout'));
     }
 }

@@ -243,3 +243,51 @@ body{
     @extend .btn-primary;
     @extend .btn-large;
 }
+
+/**
+ * Kitty Price Form
+ * ================
+ */
+.editprice-kitty-form {
+    @extend %formbuilder-horizontal-form;
+
+    .form-controls {
+        @extend .input-prepend;
+        display: block;
+    }
+    .form-field-unit {
+        @extend .add-on;
+    }
+
+    input {
+        @extend .input-small;
+    }
+}
+.editprice-kitty-primary-action {
+    @extend .btn;
+    @extend .btn-primary;
+}
+.editprice-kitty-actions {
+    @extend .form-actions;
+}
+
+/**
+ * Kitty Search Form
+ * ================
+ */
+.search-kitty-form {
+    @extend .form-search;
+    div {
+        display: inline-block;
+    }
+    label {
+        display: none;
+    }
+    input {
+        @extend .input-xlarge;
+        @extend .search-query;
+    }
+}
+.search-kitty-primary-action{
+    @extend .btn;
+}

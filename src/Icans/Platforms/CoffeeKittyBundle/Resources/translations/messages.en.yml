@@ -13,11 +13,14 @@ page:
 
 module:
   search:
-    title: 'Search results:'
-    entryLabel: Name
-    actionLabel: Action
+    title: Become a member of a coffee kitty
+    description: Use the following search form to search for a coffee kitty and request to become a member.
     action:
       requestMembership: Request Membership
+    results:
+      title: 'Search results:'
+      entryLabel: Name
+      actionLabel: Action
   createKitty:
     title: start a new coffee kitty
   kittyOverview:
@@ -27,6 +30,19 @@ form:
   create:
     placeholder:
       kitty: coffee kitty name
+  price:
+    label: Price for one cup
+  search:
+    label: Search
+    placeholder:
+      kitty: coffee kitty name
 
 createKitty:
   submit: Create Kitty
+editpriceKitty:
+  submit: Save price
+searchKitty:
+  submit: Search
+
+# custom handling in order to inject a form field prefix value
+icans_platforms_coffeekitty_kittyprice_price_unit: €

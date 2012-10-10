@@ -1,4 +1,4 @@
-<form action="{{ path('coffeekitty_create') }}" method="post" {{ form_enctype(form) }} class="create-kitty-form">
+<form action="{{ path('coffeekitty_manage') }}" method="post" {{ form_enctype(form) }} class="create-kitty-form">
     {{ form_widget(form) }}
     <button type="submit" class="create-kitty-primary-action">
         {{ 'createKitty.submit'|trans }}
