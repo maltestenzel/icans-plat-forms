@@ -13,8 +13,10 @@ use Icans\Platforms\CoffeeKittyBundle\Api\KittyServiceInterface;
 use Icans\Platforms\CoffeeKittyBundle\Api\KittyUserServiceInterface;
 use Icans\Platforms\CoffeeKittyBundle\Api\Exception\CoffeeKittyExceptionInterface;
 use Icans\Platforms\CoffeeKittyBundle\Document\Kitty;
+use Icans\Platforms\CoffeeKittyBundle\Document\KittySearch;
 use Icans\Platforms\UserBundle\Document\User;
 use Icans\Platforms\CoffeeKittyBundle\Form\Type\KittyType;
+use Icans\Platforms\CoffeeKittyBundle\Form\Type\KittySearchType;
 use Icans\Platforms\CoffeeKittyBundle\Form\Type\KittyPriceType;
 
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
@@ -23,6 +25,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use JMS\SecurityExtraBundle\Annotation\Secure;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * Implements the CoffeeKittyController
@@ -50,17 +53,28 @@ class CoffeeKittyController extends Controller
      *
      * @Route("/search/{partialName}/", name="coffeekitty_search")
      * @Route("/search/", name="coffeekitty_search_empty")
+     * @Route("/search/", name="coffeekitty_search_submit")
      *
      * @Secure(roles="ROLE_USER")
      *
      * @Template()
      */
-    public function searchAction($partialName = "")
+    public function searchAction(Request $request, $partialName = "")
     {
         /* @var $kittyService KittyServiceInterface */
         $kittyService = $this->get('icans.platforms.kitty.service');
+        $kitty = new KittySearch();
+        $form = $this->createForm(new KittySearchType(), $kitty);
 
-        return array('kitties' => $kittyService->findByPartialName($partialName, 10, 0));
+        if ($request->isMethod('POST')) {
+            $form->bind($request);
+            $partialName = $kitty->getName();
+        }
+
+        return array(
+            'form' => $form->createView(),
+            'kitties' => $kittyService->findByPartialName($partialName, 10, 0),
+        );
     }
 
     /**
@@ -202,7 +216,7 @@ class CoffeeKittyController extends Controller
     public function acceptKittyJoinRequestByUserAction($kittyId, $userId)
     {
         // @TODO implementation
-        return $this->redirect($this->getReqest()->headers->get('referer'));
+        return $this->redirect($this->getRequest()->headers->get('referer'));
     }
 
     /**
@@ -215,6 +229,6 @@ class CoffeeKittyController extends Controller
     public function declineKittyJoinRequestByUserAction($kittyId, $userId)
     {
         // @TODO implementation
-        return $this->redirect($this->getReqest()->headers->get('referer'));
+        return $this->redirect($this->getRequest()->headers->get('referer'));
     }
 }

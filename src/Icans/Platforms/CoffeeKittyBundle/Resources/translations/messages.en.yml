@@ -27,6 +27,9 @@ form:
   create:
     placeholder:
       kitty: coffee kitty name
+  search:
+    placeholder:
+      kitty: coffee kitty name
 
 createKitty:
   submit: Create Kitty
