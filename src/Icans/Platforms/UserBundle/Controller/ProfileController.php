@@ -29,24 +29,13 @@ class ProfileController extends BaseController
 {
     /**
      * Displays the user profile.
-     *
-     * @Route("/myprofile/", name="user_profile_display_self")
      * @Route("/profile/{username}/", name="user_profile_display")
-     *
      * @Template()
      */
-    public function showUserAction($username = null)
+    public function showUserAction($username)
     {
-        $token = $this->container->get('security.context')->getToken();
-        if (empty($username)) {
-            if (!empty($token)) {
-                $user = $token->getUser();
-            }
-        } else {
-            $userManager = $this->container->get('fos_user.user_manager');
-            $user = $userManager->findUserByUsername($username);
-        }
-
+        $userManager = $this->container->get('fos_user.user_manager');
+        $user = $userManager->findUserByUsername($username);
         if (null === $user) {
             throw new NotFoundHttpException("No User with the name '{$username}' could be found");
         }
