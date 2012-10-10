@@ -284,6 +284,7 @@ class CoffeeKittyController extends Controller
         // Create sub forms, will forward the post if neccessary
         $subForms = array(
             'price_form' => $multiFormService->renderSubForm('IcansPlatformsCoffeeKittyBundle:CoffeeKitty:editPrice'),
+            'editPayments_form' => $multiFormService->renderSubForm('IcansPlatformsCoffeeKittyBundle:CoffeeKitty:editPayments'),
         );
 
         // If one of the sub forms contains a redirect (=> success), we want to execute the redirect
