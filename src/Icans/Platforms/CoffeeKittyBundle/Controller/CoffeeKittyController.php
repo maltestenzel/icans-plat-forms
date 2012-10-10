@@ -225,7 +225,7 @@ class CoffeeKittyController extends Controller
             $description = $userKitty->getUser()->getFullName()
                 . ' (' . $userKitty->getUser()->getUsername() . ')';
             if ($userKitty->getUser()->getId() == $this->getUser()->getId()) {
-                $description .= ' (You)';
+                $description .= ' ' . $this->get('translator')->trans('kitty_owner_indicator');
             }
             $userBalance->setDescription($description);
             $userBalance->setBalance($userKitty->getBalance());

@@ -1,10 +1,49 @@
 {#
     Author:    Thorsten 'stepo' Hallwas
+               Sascha 's10z' Schulz
     origin:    M
     copyright: ${date} ICANS GmbH
+
+    @TODO: Table Markup is used to achive table layout. This reduces semantics and needs to be refactored.
+    @TODO: For now, the template is provided by a form that contains all relevant data to display.
+           Therefore, we need to remove the form mapping for some fields as well as using some hacks to
+           identify state and make those transparent with CSS classes for styling.
  #}
+{# mimic constant to reduce requests; used to identify ownership which is merged into the description #}
+{% set KITTY_OWNER_INDICATOR = 'kitty_owner_indicator'|trans %}
+
 <form action="{{ path('coffeekitty_administrate', {'kittyId' : kittyId}) }}" method="post" {{ form_enctype(form) }} class="editpayments-kitty-form">
-    {{ form_widget(form) }}
+    <table class="table">
+        <thead>
+            <th>{{ 'module.editPayments.description'|trans }}</th>
+            <th>{{ 'module.editPayments.balance'|trans }}</th>
+            <th>{{ 'module.editPayments.payment'|trans }}</th>
+        </thead>
+        <tbody>
+            {# iterate over users #}
+            {% for id, formField in form.userbalances %}
+                {# TODO: outsource form theme in order to reuse them among templates #}
+                {% form_theme formField.balance 'IcansPlatformsCoffeeKittyBundle:CoffeeKitty:editPaymentsFormTheme.html.twig' %}
+                {% form_theme formField.description  'IcansPlatformsCoffeeKittyBundle:CoffeeKitty:editPaymentsFormTheme.html.twig' %}
+                {% form_theme formField.payment 'IcansPlatformsCoffeeKittyBundle:CoffeeKitty:editPriceFormTheme.html.twig' %}
+
+                <tr {% if(KITTY_OWNER_INDICATOR in formField.description.vars.value) %}class="contains-user"{% endif %}>
+                    <td class="editpayments-description">
+                        {{ form_widget(formField.description) }}
+                    </td>
+                    <td class="editpayments-balance {{ formField.payment.vars.value < 0 ? 'below' : 'above' }}-quota">
+                        {{ 'module.editPayments.balanceCurrency'|trans }}
+                        {{ form_widget(formField.balance) }}
+                    </td>
+                    <td class="editpayments-payment">
+                        {{ form_widget(formField.payment, {attr: {class: 'input-payment'}}) }}
+                        {{ form_rest(formField) }}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {{ form_rest(form) }}
     <button type="submit" class="editpayments-kitty-primary-action">
         {{ 'editpaymentsKitty.submit'|trans }}
     </button>
