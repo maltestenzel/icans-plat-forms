@@ -243,3 +243,30 @@ body{
     @extend .btn-primary;
     @extend .btn-large;
 }
+
+/**
+ * Kitty Price Form
+ * ================
+ */
+.editprice-kitty-form {
+    @extend %formbuilder-horizontal-form;
+
+    .form-controls {
+        @extend .input-prepend;
+        display: block;
+    }
+    .form-field-unit {
+        @extend .add-on;
+    }
+
+    input {
+        @extend .input-small;
+    }
+}
+.editprice-kitty-primary-action {
+    @extend .btn;
+    @extend .btn-primary;
+}
+.editprice-kitty-actions {
+    @extend .form-actions;
+}

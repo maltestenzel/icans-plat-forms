@@ -3,9 +3,12 @@
     origin:    M
     copyright: ${date} ICANS GmbH
  #}
+{% form_theme form.price 'IcansPlatformsCoffeeKittyBundle:CoffeeKitty:editPriceFormTheme.html.twig' %}
 <form action="{{ path('coffeekitty_editprice', {'kittyId' : kittyId}) }}" method="post" {{ form_enctype(form) }} class="editprice-kitty-form">
     {{ form_widget(form) }}
-    <button type="submit" class="editprice-kitty-primary-action">
-        {{ 'editpriceKitty.submit'|trans }}
-    </button>
+    <div class="editprice-kitty-actions">
+        <button type="submit" class="editprice-kitty-primary-action" id="price-submit">
+            {{ 'editpriceKitty.submit'|trans }}
+        </button>
+    </div>
 </form>

@@ -26,7 +26,7 @@ class KittyPriceType extends AbstractType
             ->add(
             'price',
             null,
-            array()
+            array('label' => 'form.price.label')
         );
     }
 

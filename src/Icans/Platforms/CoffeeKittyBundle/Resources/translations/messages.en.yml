@@ -27,6 +27,13 @@ form:
   create:
     placeholder:
       kitty: coffee kitty name
+  price:
+    label: Price for one cup
 
 createKitty:
   submit: Create Kitty
+editpriceKitty:
+  submit: Save price
+
+# custom handling in order to inject a form field prefix value
+icans_platforms_coffeekitty_kittyprice_price_unit: €
