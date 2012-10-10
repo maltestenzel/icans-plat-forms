@@ -1,0 +1,11 @@
+{#
+    Author:    Thorsten 'stepo' Hallwas
+    origin:    M
+    copyright: ${date} ICANS GmbH
+ #}
+<form action="{{ path('coffeekitty_editpayments', {'kittyId' : kittyId}) }}" method="post" {{ form_enctype(form) }} class="editpayments-kitty-form">
+    {{ form_widget(form) }}
+    <button type="submit" class="editpayments-kitty-primary-action">
+        {{ 'editpaymentsKitty.submit'|trans }}
+    </button>
+</form>
