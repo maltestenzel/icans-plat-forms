@@ -62,7 +62,7 @@ class CoffeeKittyController extends Controller
             $returnedKitty = array(
                 'name' => $userKitty->getKitty()->getName(),
                 'balance' => $userKitty->getBalance(),
-                'pending' => $userKitty->getPending(),
+                'pending' => $userKitty->isPending(),
                 'kittyId' => $userKitty->getKitty()->getId(),
                 'isOwner' => ($userKitty->getUser()->getId() === $this->getUser()->getId())
             );
