@@ -96,6 +96,17 @@ class KittyUserService implements KittyUserServiceInterface
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public function findAllForUser(UserInterface $user)
+    {
+        $queryBuilder = $this->documentManager->createQueryBuilder('\Icans\Platforms\CoffeeKittyBundle\Document\KittyUser')
+            ->field('user')->equals($user->getId());
+
+       return $queryBuilder->getQuery()->execute()->toArray();
+    }
+
+    /**
      * Loads the Kitty User from the database.
      *
      * @param KittyInterface $kitty
@@ -105,9 +116,9 @@ class KittyUserService implements KittyUserServiceInterface
      *
      * @throws NotFoundException In case the kitty to user relation document cannot be found.
      */
-    protected function getKittyUser(KittyInterface $kitty, UserInterface $user, $balance)
+    protected function getKittyUser(KittyInterface $kitty, UserInterface $user)
     {
-        $queryBuilder = $this->documentManager->createQueryBuilder('Icans\Platforms\CoffeeKittyBundle\Document\Kitty')
+        $queryBuilder = $this->documentManager->createQueryBuilder('\Icans\Platforms\CoffeeKittyBundle\Document\KittyUser')
             ->field('kitty')->equals($kitty->getId())
             ->field('user')->equals($user->getId())
             ->find();
