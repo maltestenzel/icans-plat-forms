@@ -14,7 +14,7 @@ use Icans\Platforms\CoffeeKittyBundle\Api\ConsumptionInterface;
 use Icans\Platforms\UserBundle\Api\UserInterface;
 
 /**
- * Description of ConsumptionServiceInterface
+ * Interface for the service to track a users coffee consumption.
  */
 interface ConsumptionServiceInterface
 {
@@ -23,7 +23,7 @@ interface ConsumptionServiceInterface
      *
      * @param \MongoId $id
      *
-     * @return KittyInterface
+     * @return ConsumptionInterface
      */
     public function findById($id);
 
@@ -43,6 +43,8 @@ interface ConsumptionServiceInterface
      * 
      * @param UserInterface $user
      * @param \DateTime $since
+     *
+     * @return array
      */
     public function findAllForUserSince(UserInterface $user, \DateTime $since);
 }

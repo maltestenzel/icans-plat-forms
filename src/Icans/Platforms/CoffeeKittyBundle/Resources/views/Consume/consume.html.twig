@@ -1,0 +1,11 @@
+{#
+    Author:    Thorsten 'stepo' Hallwas
+    origin:    M
+    copyright: ${date} ICANS GmbH
+ #}
+<form action="{{ path('coffeekitty_consume') }}" method="post" {{ form_enctype(form) }} class="consume-form">
+    {{ form_widget(form) }}
+    <button type="submit" class="consume-primary-action">
+        {{ 'consume.submit'|trans }}
+    </button>
+</form>
