@@ -1,3 +1,10 @@
+{#
+ #  Renders dialogue to create new coffee kitties.
+ #
+ #  Author:    Sascha 's10z' Schulz
+ #  origin:    M
+ #  copyright: 2012 ICANS GmbH
+ #}
 <form action="{{ path('coffeekitty_manage') }}" method="post" {{ form_enctype(form) }} class="create-kitty-form">
     {{ form_widget(form) }}
     <button type="submit" class="create-kitty-primary-action">
