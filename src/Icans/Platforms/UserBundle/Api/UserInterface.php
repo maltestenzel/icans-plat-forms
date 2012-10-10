@@ -19,6 +19,13 @@ use FOS\UserBundle\Model\UserInterface as BaseUserInterface;
 interface UserInterface extends BaseUserInterface
 {
     /**
+     * Get the user id or null if not exists yet.
+     *
+     * @return \MongoId|null
+     */
+    public function getId();
+
+    /**
      * Get the full name of the user.
      *
      * @return string|null
