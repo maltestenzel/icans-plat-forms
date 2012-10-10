@@ -36,7 +36,7 @@ class UserPeak implements UserPeakInterface
     protected $user;
 
     /**
-     * @MongoDB\Timestamp
+     * @MongoDB\Date
      * @var \DateTime
      */
     protected $timestamp;

@@ -37,7 +37,7 @@ class Consumption implements ConsumptionInterface
     protected $user;
 
     /**
-     * @MongoDB\Timestamp
+     * @MongoDB\Date
      * @var \DateTime
      */
     protected $timestamp;

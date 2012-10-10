@@ -10,6 +10,7 @@
 namespace Icans\Platforms\CoffeeKittyBundle\Controller;
 
 use Icans\Platforms\CoffeeKittyBundle\Api\KittyServiceInterface;
+use Icans\Platforms\CoffeeKittyBundle\Api\KittyUserServiceInterface;
 use Icans\Platforms\CoffeeKittyBundle\Api\Exception\CoffeeKittyExceptionInterface;
 use Icans\Platforms\CoffeeKittyBundle\Document\Kitty;
 use Icans\Platforms\UserBundle\Document\User;
@@ -89,6 +90,11 @@ class CoffeeKittyController extends Controller
                     $user = $this->getUser();
                     $kitty->setOwner($user);
                     $kittyService->create($form->getData());
+                    // now sign up automatically to ones own coffee kitty
+                    /* @var $kittyUserService \Icans\Platforms\CoffeeKittyBundle\Api\KittyUserServiceInterface */
+                    $kittyUserService = $this->get('icans.platforms.kittyuser.service');
+                    $kittyUserService->requestMembership($kitty, $user);
+                    $kittyUserService->acknowledgeMembership($kitty, $user);
                 } catch (CoffeeKittyExceptionInterface $exception) {
                     // @todo mast: write validator instead on form -> present different error message
                     $form->addError(new \Symfony\Component\Form\FormError('Coffee kitty already exists. [Database error occured]'));

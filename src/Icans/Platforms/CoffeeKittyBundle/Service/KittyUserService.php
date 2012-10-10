@@ -78,7 +78,7 @@ class KittyUserService implements KittyUserServiceInterface
             $this->documentManager->flush();
         } catch (\Exception $exception) {
             throw new AlreadyExistsException(
-                'The kitty->user ' . $kittyUser->getKitty()->getName() . ' -> ' . $kittyUser->getUser()->getUsername() . ' already exists.'
+                'The kitty->user ' . $kitty->getName() . ' -> ' . $user->getUsername() . ' already exists.'
             );
         }
     }
@@ -98,10 +98,11 @@ class KittyUserService implements KittyUserServiceInterface
     /**
      * {@inheritDoc}
      */
-    public function findAllForUser(UserInterface $user)
+    public function findAllForUser(UserInterface $user, $pending = false)
     {
-        $queryBuilder = $this->documentManager->createQueryBuilder('\Icans\Platforms\CoffeeKittyBundle\Document\KittyUser')
-            ->field('user')->equals($user->getId());
+        $queryBuilder = $this->documentManager->createQueryBuilder('Icans\Platforms\CoffeeKittyBundle\Document\KittyUser')
+            ->field('user.$id')->equals(new \MongoId($user->getId()))
+            ->field('pending')->equals($pending);
 
        return $queryBuilder->getQuery()->execute()->toArray();
     }
@@ -118,9 +119,9 @@ class KittyUserService implements KittyUserServiceInterface
      */
     protected function getKittyUser(KittyInterface $kitty, UserInterface $user)
     {
-        $queryBuilder = $this->documentManager->createQueryBuilder('\Icans\Platforms\CoffeeKittyBundle\Document\KittyUser')
-            ->field('kitty')->equals($kitty->getId())
-            ->field('user')->equals($user->getId())
+        $queryBuilder = $this->documentManager->createQueryBuilder('Icans\Platforms\CoffeeKittyBundle\Document\KittyUser')
+            ->field('kitty.$id')->equals(new \MongoId($kitty->getId()))
+            ->field('user.$id')->equals(new \MongoId($user->getId()))
             ->find();
 
         /* @var $kittyUser KittyUserInterface */
@@ -128,7 +129,7 @@ class KittyUserService implements KittyUserServiceInterface
 
         if (empty($kittyUser)) {
             throw new NotFoundException(
-                'The kitty->user ' . $kittyUser->getKitty()->getName() . ' -> ' . $kittyUser->getUser()->getUsername() . ' was not found.'
+                'The kitty->user ' . $kitty->getName() . '->' . $user->getUsername() . ' was not found.'
             );
         }
 

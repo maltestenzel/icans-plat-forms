@@ -40,7 +40,7 @@ class UserPeakService implements UserPeakServiceInterface
      */
     public function findById($id)
     {
-        return $this->documentManager->find('\Icans\Platforms\CoffeeKittyBundle\Document\UserPeak', $id);
+        return $this->documentManager->find('Icans\Platforms\CoffeeKittyBundle\Document\UserPeak', $id);
     }
 
     /**
@@ -59,6 +59,8 @@ class UserPeakService implements UserPeakServiceInterface
                 'Error persisting userPeak (' . $exception->getMessage . ').'
             );
         }
+
+        return $userPeak;
     }
 
     /**
@@ -66,8 +68,8 @@ class UserPeakService implements UserPeakServiceInterface
      */
     public function findAllForUserSince(UserInterface $user, \DateTime $since)
     {
-        $queryBuilder = $this->documentManager->createQueryBuilder('\Icans\Platforms\CoffeeKittyBundle\Document\UserPeak')
-            ->field('user')->equals($user->getId())
+        $queryBuilder = $this->documentManager->createQueryBuilder('Icans\Platforms\CoffeeKittyBundle\Document\UserPeak')
+            ->field('user.$id')->equals(new \MongoId($user->getId()))
             ->field('timestamp')->gt($since)
             ->sort('timestamp');
 

@@ -39,6 +39,17 @@ interface ConsumptionServiceInterface
     public function create(ConsumptionInterface $consumption);
 
     /**
+     * Stores a new consumption in the database for the current user and timestamp set to now.
+     *
+     * @param UserInterface $user
+     *
+     * @return ConsumptionInterface
+     *
+     * @throws AlreadyExistsException In case the consumption already exists.
+     */
+    public function createForUserNow(UserInterface $user);
+
+    /**
      * Find all consumptions for the given user since the given date.
      * 
      * @param UserInterface $user

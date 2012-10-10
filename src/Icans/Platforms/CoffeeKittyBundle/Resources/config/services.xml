@@ -7,7 +7,7 @@
     <parameters>
         <parameter key="icans.platforms.kitty.service.class">Icans\Platforms\CoffeeKittyBundle\Service\KittyService</parameter>
         <parameter key="icans.platforms.kitty_user.service.class">Icans\Platforms\CoffeeKittyBundle\Service\KittyUserService</parameter>
-        <parameter key="icans.platforms.consumption.service.class">Icans\Platforms\CoffeeKittyBundle\Service\Consumption</parameter>
+        <parameter key="icans.platforms.consumption.service.class">Icans\Platforms\CoffeeKittyBundle\Service\ConsumptionService</parameter>
         <parameter key="icans.platforms.userpeak.service.class">Icans\Platforms\CoffeeKittyBundle\Service\UserPeakService</parameter>
     </parameters>
 
