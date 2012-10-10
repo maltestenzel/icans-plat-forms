@@ -28,9 +28,12 @@ class KittySearchType extends AbstractType
             ->add(
             'name',
             null,
-            array('attr' => array(
-                'placeholder' => 'form.search.placeholder.kitty',
-            ))
+            array(
+                'label' => 'form.search.label',
+                'attr' => array(
+                    'placeholder' => 'form.search.placeholder.kitty',
+                ),
+            )
         );
     }
 

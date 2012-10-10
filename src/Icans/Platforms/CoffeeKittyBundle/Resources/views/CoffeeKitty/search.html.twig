@@ -9,17 +9,20 @@
     copyright: 2012 ICANS GmbH
  #}
 <h2>{{ 'module.search.title'|trans }}</h2>
+<p>{{ 'module.search.description'|trans }}</p>
 <form action="{{ path('coffeekitty_manage') }}" method="post" {{ form_enctype(form) }} class="search-kitty-form">
     {{ form_widget(form) }}
-    <button type="submit" class="search-kitty-primary-action">
+    <button type="submit" class="search-kitty-primary-action" id="search-submit">
         {{ 'searchKitty.submit'|trans }}
     </button>
 </form>
+
+<h3>{{ 'module.search.results.title'|trans }}</h3>
 <table class="table">
     <thead>
         <tr>
-          <th>{{ 'module.search.entryLabel'|trans }}</th>
-          <th>{{ 'module.search.actionLabel'|trans }}</th>
+          <th>{{ 'module.search.results.entryLabel'|trans }}</th>
+          <th>{{ 'module.search.results.actionLabel'|trans }}</th>
         </tr>
     </thead>
     <tbody>
