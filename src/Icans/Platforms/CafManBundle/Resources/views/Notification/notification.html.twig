@@ -1,0 +1,32 @@
+{#
+    Template to render Notifications.
+
+    Author:    Sascha 's10z' Schulz
+    origin:    M
+    copyright: ${date} ICANS GmbH
+ #}
+{% block notifications %}
+    {% if notifications is not empty %}
+        <div class="page-header notifications">
+            <h1>{{ 'module.notifications.title'|trans }}</h1>
+            {% for notification in notifications %}
+                <div class="alert alert-info">
+                    {{ 'module.notifications.joinKittenRequest'|trans({
+                        '%user.name%': notification.user.fullname,
+                        '%user.screenname%': notification.user.displayname,
+                        '%kitten.name%': notification.kitty.name
+                        })
+                    }}
+                    <div class="pull-right alert-controls">
+                        <button type="submit" class="btn btn-success btn-mini accept-member" data-dismiss="alert">
+                            {{ 'module.notifications.action.acceptUserRequest'|trans }}
+                        </button>
+                        <button type="submit" class="btn btn-danger btn-mini decline-member" data-dismiss="alert">
+                            {{ 'module.notifications.action.declineUserRequest'|trans }}
+                        </button>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endblock notifications %}
