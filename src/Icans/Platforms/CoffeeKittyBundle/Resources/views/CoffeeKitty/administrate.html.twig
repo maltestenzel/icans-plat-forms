@@ -1,1 +1,22 @@
-{{ kitty.name }}
+{#
+ #  Render Dialogue to administrate Kitty, its a standalone page.
+ #
+ #  Author:    Sascha 's10z' Schulz
+ #  origin:    M
+ #  copyright: 2012 ICANS GmbH
+ #}
+{% extends 'IcansPlatformsCafManBundle::base.html.twig' %}
+{% block stage %}
+    <div class="page-header">
+        <h1>{{ 'page.administrateKitty.title'|trans({'%kitty.name%': kitty.name}) }}</h1>
+    </div>
+    <div class="row">
+        <div class="span7">
+            <h2>{{ 'page.administrateKitty.members.title'|trans }}</h2>
+        </div>
+        <div class="span5">
+            <h2>{{ 'page.administrateKitty.price.title'|trans }}</h2>
+        </div>
+    </div>
+    {{ kitty.name }}
+{% endblock %}
