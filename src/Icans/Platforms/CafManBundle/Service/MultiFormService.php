@@ -63,7 +63,12 @@ class MultiFormService implements MultiFormServiceInterface
         // With more time, a nice solution can be added here - i.e. hidden field indicating which form to post,
         // or looking at the submitted formType
         if (empty($response) || stripos($response->getContent(), ' csrf ') !== false) {
-            $response = new Response($kernel->render($controller, $options));
+            $subRequest = $this->cloneRequestWithPost($request, $controller, $options);
+            $subRequest->setMethod('GET');
+            return $kernel->handle(
+                $subRequest,
+                HttpKernelInterface::SUB_REQUEST
+            );
         }
 
         return $response;
