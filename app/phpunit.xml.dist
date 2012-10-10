@@ -19,6 +19,12 @@
         </testsuite>
     </testsuites>
 
+	<groups>
+		<exclude>
+			<group>Functional</group>
+		</exclude>
+	</groups>
+
     <!--
     <php>
         <server name="KERNEL_DIR" value="/path/to/your/app/" />

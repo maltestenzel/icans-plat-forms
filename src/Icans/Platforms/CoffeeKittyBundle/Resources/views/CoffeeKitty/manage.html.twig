@@ -1,8 +1,5 @@
 {% extends 'IcansPlatformsCafManBundle::base.html.twig' %}
 {% block stage %}
-    {% use 'IcansPlatformsCafManBundle:Partials:notifications.html.twig' %}
-    {{ block('notifications') }}
-
     <div class="page-header">
         <h1>{{ 'page.manageCoffeKittys.title'|trans }}</h1>
     </div>
@@ -10,7 +7,7 @@
     <div class="row">
         <div class="span6">
             <h2>{{ 'module.kittyOverview.title'|trans }}</h2>
-            <p>This Section will be implemented soon.</p>
+            {% render "IcansPlatformsCoffeeKittyBundle:CoffeeKitty:overview" %}
         </div>
     </div>
 

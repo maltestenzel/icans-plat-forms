@@ -24,6 +24,20 @@ body{
     @extend .btn-mini;
 }
 
+/**
+ * Styling of form errors
+ * ======================
+ */
+.form-error-list {
+    margin: 0;
+    list-style-type: none;
+}
+.form-error-item {
+    @extend .alert;
+    @extend .alert-error;
+    margin: 0 0 4px;
+}
+
 
 /**
  * Mapp main menu onto bootstrap
@@ -138,6 +152,9 @@ body{
 .login-primary-action {
     @extend .btn;
 }
+.login-error {
+    @extend .form-error-item;
+}
 
 /**
  * Default Kitty Form
@@ -154,4 +171,33 @@ body{
 .default-kitty-edit-primary-action {
     @extend .btn;
     @extend .btn-primary;
+}
+
+/**
+ * Notifications
+ * =============
+ */
+.notification-list {
+    list-style-type: none;
+    margin: 0;
+}
+.notification-item {
+    @extend .alert;
+    @extend .alert-info;
+}
+.notification-controls {
+    @extend .pull-right;
+    @extend .alert-controls;
+}
+.notification-control {
+    @extend .btn;
+    @extend .btn-mini;
+    @extend button;
+
+    &.accept-member {
+        @extend .btn-success;
+    }
+    &.decline-member {
+        @extend .btn-danger;
+    }
 }

@@ -6,9 +6,9 @@
  # origin: RM
  # originalFile: /vendor/friendsofsymfony/user-bundle/FOS/UserBundle/Resources/views/Security/login.html.twig
  #}
-{% block fos_user_content %}
+{% block stage %}
     {% if error %}
-        <div>{{ error|trans({}, 'FOSUserBundle') }}</div>
+        <div class="login-error">{{ error|trans({}, 'FOSUserBundle') }}</div>
     {% endif %}
 
     <form action="{{ path("fos_user_security_check") }}" method="post" class="login-form">
@@ -39,4 +39,4 @@
             </button>
         </div>
     </form>
-{% endblock fos_user_content %}
+{% endblock stage %}

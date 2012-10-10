@@ -19,11 +19,13 @@
     </head>
     <body>
         {# render the primary navigation #}
-        {% render "IcansPlatformsCafManBundle:Menu:menu" %}
+        {% render 'IcansPlatformsCafManBundle:Menu:menu' %}
         {#% use 'IcansPlatformsCafManBundle:Partials:navPrimary.html.twig' %#}
         {#{ block('nav_primary') }#}
 
         <div class="stage">
+            {# above the content, notifications may show up #}
+            {% render 'IcansPlatformsCafManBundle:Notification:notification' %}
             {# stage content block will be declared by pages #}
             {{ block('stage') }}
         </div>

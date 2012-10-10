@@ -67,7 +67,9 @@ class KittyService implements KittyServiceInterface
         try {
             $this->documentManager->flush();
         } catch (\Exception $exception) {
-            throw new AlreadyExistsException('The kitty ' . $kitty->getName() . ' already exists.');
+            throw new AlreadyExistsException(
+                'The kitty ' . $kitty->getName() . ' already exists. (' . $exception->getMessage . ')'
+            );
         }
     }
 }
